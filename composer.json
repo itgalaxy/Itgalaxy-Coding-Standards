@@ -15,7 +15,6 @@
         "phpunit/phpunit": "~5.3.0",
         "phpunit/php-code-coverage": "~3.3.0"
     },
-    "minimum-stability": "RC",
     "support": {
         "issues": "https://github.com/itgalaxy/Itgalaxy-Coding-Standards/issues"
     },
