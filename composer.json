@@ -1,5 +1,5 @@
 {
-    "name": "itgalaxy-coding-standards/wpcs",
+    "name": "itgalaxy/itgalaxy-coding-standards",
     "description": "PHP_CodeSniffer rules (sniffs) to enforce Itgalaxy coding conventions",
     "keywords": ["phpcs", "standards", "Itgalaxy", "itgalaxy"],
     "license": "MIT",
