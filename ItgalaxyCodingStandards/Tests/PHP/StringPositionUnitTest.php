@@ -1,0 +1,36 @@
+<?php
+
+class ItgalaxyCodingStandards_Tests_PHP_StringPositionUnitTest extends AbstractSniffUnitTest
+{
+    /**
+     * Returns the lines where errors should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of errors that should occur on that line.
+     *
+     * @return array<int, int>
+     */
+    public function getErrorList()
+    {
+        return [
+            44 => 1,
+            48 => 1,
+            52 => 1,
+            56 => 1,
+            60 => 1
+        ];
+    }
+
+    /**
+     * Returns the lines where warnings should occur.
+     *
+     * The key of the array should represent the line number and the value
+     * should represent the number of warnings that should occur on that line.
+     *
+     * @return array<int, int>
+     */
+    public function getWarningList()
+    {
+        return [];
+    }
+}

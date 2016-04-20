@@ -1,0 +1,19 @@
+sudo: false
+
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+before_script:
+  - if find . -name "*.php" -exec php -l {} \; | grep "^[Parse error|Fatal error]"; then exit 1; fi;
+  - composer selfupdate
+  - composer install
+  - phpunit --filter WordPress /tmp/phpcs/tests/AllTests.php
+
+test:
+  script:
+    - vendor/bin/phpunit

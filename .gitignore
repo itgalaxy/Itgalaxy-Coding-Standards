@@ -1,0 +1,14 @@
+# Version control
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# IDE
+.idea
+*.iml
+
+build
+vendor
+composer.lock
