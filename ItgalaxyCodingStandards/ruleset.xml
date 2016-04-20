@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="ItgalaxyCodingStandardss">
+<ruleset name="ItgalaxyCodingStandards">
     <description>Itgalaxy coding standard.</description>
 
     <!-- PSR2 rules -->
