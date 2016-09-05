@@ -1,14 +1,25 @@
-# Version control
-.DS_Store
-
 # Logs
 logs
-*.log
+*.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.lock
+
+# VSCode metadata
+.vscode
+
+# Mac files
+.DS_Store
+
+# Dependency directories
+vendor
+
+# gitkeep
+!.gitkeep
 
 # IDE
 .idea
 *.iml
-
-build
-vendor
-composer.lock

@@ -59,6 +59,12 @@ class UnusedFunctionParameterSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
+
+        // Skip empty function declarations in classes.
+        if (isset($token['scope_opener']) === false || isset($token['parenthesis_opener']) === false) {
+            return;
+        }
+
         $params = [];
 
         foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {
@@ -68,6 +74,7 @@ class UnusedFunctionParameterSniff implements \PHP_CodeSniffer_Sniff
         $allParams = $params;
         $next = ++$token['scope_opener'];
         $end = --$token['scope_closer'];
+
         $foundContent = false;
 
         $validTokens = [
@@ -98,6 +105,10 @@ class UnusedFunctionParameterSniff implements \PHP_CodeSniffer_Sniff
                 // A return statement as the first content indicates an interface method.
                 if ($code === T_RETURN) {
                     $tmp = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $next + 1, null, true);
+
+                    if ($tmp === false) {
+                        return;
+                    }
 
                     // There is a return.
                     if ($tokens[$tmp]['code'] === T_SEMICOLON) {
