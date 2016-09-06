@@ -1,8 +1,7 @@
 image: php:5.6
 
 before_script:
-  - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
-  - apt-get update -yq && apt-get -o dir::cache::archives="$APT_CACHE_DIR" install -y -qq git php5-xdebug
+  - apt-get update -yq && apt-get install -y -qq git php5-xdebug
   - php5enmod xdebug
   - php -v
   - which php
@@ -19,7 +18,6 @@ before_script:
 cache:
     paths:
         - vendor
-        - apt-cache
 
 test:
   script:
