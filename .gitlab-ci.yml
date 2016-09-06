@@ -9,7 +9,6 @@ before_script:
   - mv composer.phar /usr/local/bin/composer
   - composer --version
   - composer self-update
-  - vendor/bin/phpcs -i
 
 cache:
     paths:
