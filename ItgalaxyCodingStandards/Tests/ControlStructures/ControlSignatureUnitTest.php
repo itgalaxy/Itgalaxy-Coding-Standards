@@ -58,10 +58,10 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ControlSignatureUnitTest e
             231 => 1,
             240 => 1,
             254 => 1,
-            260 => 1,
+            260 => 2,
             272 => 1,
             278 => 1,
-            284 => 2,
+            284 => 3,
             290 => 2,
             296 => 2,
             302 => 2,
@@ -69,7 +69,8 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ControlSignatureUnitTest e
             // 308 => 1,
             316 => 1,
             326 => 1,
-            330 => 1
+            330 => 1,
+            335 => 1
         ];
     }
 

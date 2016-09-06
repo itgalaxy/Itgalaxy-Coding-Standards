@@ -14,12 +14,12 @@ function test()
 
 class TestClass
 {
-    public $good = array(
+    public $bad = array(
         'width'  => '',
         'height' => '',
     );
 
-    private $_bad = Array(
+    private $good = Array(
         'width' => '',
         'height' => ''
     );
@@ -333,3 +333,13 @@ function test() : array
 {
     return [];
 }
+
+array(
+     'test',
+    'test2'
+);
+
+array(
+     'key' => 'value',
+    'key1' => 'value1'
+);

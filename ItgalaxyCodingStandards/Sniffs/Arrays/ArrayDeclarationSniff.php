@@ -1,16 +1,4 @@
 <?php
-/**
- * A test to ensure that arrays conform to the array coding standard.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: @package_version@
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Arrays;
 
 class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
@@ -73,6 +61,11 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
             }
 
             $arrayStart = $tokens[$stackPtr]['parenthesis_opener'];
+
+            if (isset($tokens[$arrayStart]['parenthesis_closer']) === false) {
+                return;
+            }
+
             $arrayEnd = $tokens[$arrayStart]['parenthesis_closer'];
 
             if ($arrayStart !== ($stackPtr + 1)) {
@@ -576,21 +569,18 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
             // Array cannot be empty, so this is a multi-line array with
             // a single value. It should be defined on single line.
             $error = 'Multi-line array contains a single value; use single-line array instead';
-            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'MultiLineNotAllowed');
+            $phpcsFile->addError($error, $stackPtr, 'MultiLineNotAllowed');
 
-            if ($fix === true) {
-                $phpcsFile
-                    ->fixer
-                    ->beginChangeset();
+            // Todo should fixable
+            /* if ($fix === true) {
+                $phpcsFile->fixer->beginChangeset();
 
                 for ($i = ($arrayStart + 1); $i < $arrayEnd; $i++) {
                     if ($tokens[$i]['code'] !== T_WHITESPACE) {
                         break;
                     }
 
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken($i, '');
+                    $phpcsFile->fixer->replaceToken($i, '');
                 }
 
                 for ($i = ($arrayEnd - 1); $i > $arrayStart; $i--) {
@@ -598,15 +588,11 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                         break;
                     }
 
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken($i, '');
+                    $phpcsFile->fixer->replaceToken($i, '');
                 }
 
-                $phpcsFile
-                    ->fixer
-                    ->endChangeset();
-            }
+                $phpcsFile->fixer->endChangeset();
+            }*/
 
             return;
         }
@@ -659,9 +645,7 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                 $fix = $phpcsFile->addFixableError($error, $trailingContent, 'CommaAfterLast');
 
                 if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->addContent($trailingContent, ',');
+                    $phpcsFile->fixer->replaceToken($trailingContent, '');
                 }
             } else {
                 $phpcsFile->recordMetric($stackPtr, 'Array end comma', 'no');
@@ -669,30 +653,6 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($keyUsed === false && empty($indices) === false) {
-            $count = count($indices);
-            $lastIndex = $indices[($count - 1)]['value'];
-
-            $trailingContent = $phpcsFile->findPrevious(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
-                ($arrayEnd - 1),
-                $lastIndex,
-                true
-            );
-
-            if ($tokens[$trailingContent]['code'] !== T_COMMA) {
-                $phpcsFile->recordMetric($stackPtr, 'Array end comma', 'no');
-                $error = 'Comma required after last value in array declaration';
-                $fix = $phpcsFile->addFixableError($error, $trailingContent, 'NoCommaAfterLast');
-
-                if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->addContent($trailingContent, ',');
-                }
-            } else {
-                $phpcsFile->recordMetric($stackPtr, 'Array end comma', 'yes');
-            }
-
             $lastValueLine = false;
 
             foreach ($indices as $value) {
@@ -717,33 +677,6 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                         $phpcsFile
                             ->fixer
                             ->addNewlineBefore($value['value']);
-                    }
-                } elseif ($tokens[($value['value'] - 1)]['code'] === T_WHITESPACE) {
-                    $expected = $keywordStart;
-
-                    $first = $phpcsFile->findFirstOnLine(T_WHITESPACE, $value['value'], true);
-                    $found = ($tokens[$first]['column'] - 1);
-
-                    if ($found !== $expected) {
-                        $error = 'Array value not aligned correctly; expected %s spaces but found %s';
-                        $data = [
-                            $expected,
-                            $found
-                        ];
-
-                        $fix = $phpcsFile->addFixableError($error, $value['value'], 'ValueNotAligned', $data);
-
-                        if ($fix === true) {
-                            if ($found === 0) {
-                                $phpcsFile
-                                    ->fixer
-                                    ->addContent(($value['value'] - 1), str_repeat(' ', $expected));
-                            } else {
-                                $phpcsFile
-                                    ->fixer
-                                    ->replaceToken(($value['value'] - 1), str_repeat(' ', $expected));
-                            }
-                        }
                     }
                 }
 
@@ -781,28 +714,12 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
         $numValues = count($indices);
         $indicesStart = ($keywordStart + 1);
         $arrowStart = ($indicesStart + $maxLength + 1);
-        $valueStart = ($arrowStart + 3);
         $indexLine = $tokens[$stackPtr]['line'];
         $lastIndexLine = null;
         $lastColumn = null;
 
         foreach ($indices as $index) {
             if (isset($index['index']) === false) {
-                // Todo indent bugs :( for seconds and late keys
-                if ($lastColumn !== null && $lastColumn !== $tokens[$index['value']]['column']) {
-                    $expected = $lastColumn - 1;
-                    $found = $tokens[$index['value']]['column'] - 1;
-                    $error = 'Array values not correctly spaces; expected %s spaces but found %s';
-                    $data = [
-                        $expected,
-                        $found
-                    ];
-
-                    $phpcsFile->addError($error, $index['value'], 'ValueNotCorrectlySpaces', $data);
-                }
-
-                $lastColumn = $tokens[$index['value']]['column'];
-
                 // Array value only.
                 if ($tokens[$index['value']]['line'] === $tokens[$stackPtr]['line'] && $numValues > 1) {
                     $error = 'The first value in a multi-value array must be on a new line';
@@ -817,20 +734,6 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
                 continue;
             }
-
-            if ($lastColumn !== null && $lastColumn !== $tokens[$index['index']]['column']) {
-                $expected = $lastColumn - 1;
-                $found = $tokens[$index['index']]['column'] - 1;
-                $error = 'Array key not correctly spaces; expected %s spaces but found %s';
-                $data = [
-                    $expected,
-                    $found
-                ];
-
-                $phpcsFile->addError($error, $index['value'], 'KeyNotCorrectlySpaces', $data);
-            }
-
-            $lastColumn = $tokens[$index['index']]['column'];
 
             $lastIndexLine = $indexLine;
             $indexLine = $tokens[$index['index']]['line'];
@@ -867,37 +770,7 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                 continue;
             }
 
-            if ($tokens[$index['index']]['code'] !== T_LNUMBER
-                && $tokens[$index['index']]['code'] !== T_CONSTANT_ENCAPSED_STRING
-                && $tokens[$index['index']]['code'] !== T_STRING
-            ) {
-                $error = 'Array key must be string or number';
-                $phpcsFile->addError($error, $index['index'], 'KeyTypeNotAllowed');
-            }
-
             if ($tokens[$index['index']]['column'] !== $indicesStart) {
-                $expected = ($indicesStart - 1);
-                $found = ($tokens[$index['index']]['column'] - 1);
-                $error = 'Array key not aligned correctly; expected %s spaces but found %s';
-                $data = [
-                    $expected,
-                    $found
-                ];
-
-                $fix = $phpcsFile->addFixableError($error, $index['index'], 'KeyNotAligned', $data);
-
-                if ($fix === true) {
-                    if ($found === 0) {
-                        $phpcsFile
-                            ->fixer
-                            ->addContent(($index['index'] - 1), str_repeat(' ', $expected));
-                    } else {
-                        $phpcsFile
-                            ->fixer
-                            ->replaceToken(($index['index'] - 1), str_repeat(' ', $expected));
-                    }
-                }
-
                 continue;
             }
 
@@ -926,54 +799,6 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                 }
 
                 continue;
-            }
-
-            if ($tokens[$index['value']]['column'] !== $valueStart) {
-                $expected = ($valueStart - ($tokens[$index['arrow']]['length'] + $tokens[$index['arrow']]['column']));
-                $found = ($tokens[$index['value']]['column']
-                    - ($tokens[$index['arrow']]['length'] + $tokens[$index['arrow']]['column']));
-
-                if ($found < 0) {
-                    $found = 'newline';
-                }
-
-                $error = 'Array value not aligned correctly; expected %s space(s) but found %s';
-                $data = [
-                    $expected,
-                    $found
-                ];
-
-                $fix = $phpcsFile->addFixableError($error, $index['arrow'], 'ValueNotAligned', $data);
-
-                if ($fix === true) {
-                    if ($found === 'newline') {
-                        $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($index['value'] - 1), null, true);
-                        $phpcsFile
-                            ->fixer
-                            ->beginChangeset();
-
-                        for ($i = ($prev + 1); $i < $index['value']; $i++) {
-                            $phpcsFile
-                                ->fixer
-                                ->replaceToken($i, '');
-                        }
-
-                        $phpcsFile
-                            ->fixer
-                            ->replaceToken(($index['value'] - 1), str_repeat(' ', $expected));
-                        $phpcsFile
-                            ->fixer
-                            ->endChangeset();
-                    } elseif ($found === 0) {
-                        $phpcsFile
-                            ->fixer
-                            ->addContent(($index['value'] - 1), str_repeat(' ', $expected));
-                    } else {
-                        $phpcsFile
-                            ->fixer
-                            ->replaceToken(($index['value'] - 1), str_repeat(' ', $expected));
-                    }
-                }
             }
 
             // Check each line ends in a comma.

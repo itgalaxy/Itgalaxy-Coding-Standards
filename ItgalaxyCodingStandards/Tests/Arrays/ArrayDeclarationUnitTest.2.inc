@@ -14,12 +14,12 @@ function test()
 
 class TestClass
 {
-    public $good = [
+    public $_bad = [
         'width'  => '',
         'height' => '',
     ];
 
-    private $_bad = [
+    private $good = [
         'width' => '',
         'height' => ''
     ];
