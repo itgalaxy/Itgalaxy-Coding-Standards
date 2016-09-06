@@ -12,11 +12,16 @@ class ItgalaxyCodingStandards_Tests_Namespaces_NamespaceDeclarationUnitTest exte
      */
     public function getErrorList($testFile = '')
     {
+        // Todo should be throw errors if use <?php namespace;
         switch ($testFile) {
             case 'NamespaceDeclarationUnitTest.1.inc':
                 return [];
             case 'NamespaceDeclarationUnitTest.2.inc':
                 return [3 => 2];
+            case 'NamespaceDeclarationUnitTest.3.inc':
+                return [4 => 2];
+            case 'NamespaceDeclarationUnitTest.4.inc':
+                return [1 => 1];
             default:
                 return [];
         }
