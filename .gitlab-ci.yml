@@ -9,19 +9,32 @@ before_script:
   - mv composer.phar /usr/local/bin/composer
   - composer --version
   - composer self-update
-  - composer install --prefer-source --no-interaction
   - vendor/bin/phpcs -i
 
 cache:
     paths:
         - vendor
 
-test:5.6:
+test:5.6:stable:
     image: php:5.6
     script:
+        - composer install --prefer-source --no-interaction --prefer-stable --no-suggest
         - composer test
 
-test:7.0:
+test:5.6:lowest:
+    image: php:5.6
+    script:
+        - composer install --prefer-source --no-interaction -prefer-lowest --prefer-stable --no-suggest
+        - composer test
+
+test:7.0:stable:
     image: php:7.0
     script:
+        - composer install --prefer-source --no-interaction --prefer-stable --no-suggest
+        - composer test
+
+test:7.0:lowest:
+    image: php:7.0
+    script:
+        - composer install --prefer-source --no-interaction -prefer-lowest --prefer-stable --no-suggest
         - composer test
