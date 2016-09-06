@@ -18,7 +18,7 @@ class ItgalaxyCodingStandards_Tests_Files_FileNameUnitTest extends AbstractSniff
 
                 ];
             case 'FileNameUnitTest.2_.inc':
-                return [1];
+                return [1 => 1];
             default:
                 return [];
         }

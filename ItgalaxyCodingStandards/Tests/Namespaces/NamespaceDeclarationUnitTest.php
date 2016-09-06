@@ -10,9 +10,16 @@ class ItgalaxyCodingStandards_Tests_Namespaces_NamespaceDeclarationUnitTest exte
      *
      * @return array<int, int>
      */
-    public function getErrorList()
+    public function getErrorList($testFile = '')
     {
-        return [];
+        switch ($testFile) {
+            case 'NamespaceDeclarationUnitTest.1.inc':
+                return [];
+            case 'NamespaceDeclarationUnitTest.2.inc':
+                return [3 => 2];
+            default:
+                return [];
+        }
     }
 
     /**
