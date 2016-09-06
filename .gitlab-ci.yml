@@ -1,4 +1,4 @@
-image: php:5.6.20-cli
+image: php:5.6
 
 before_script:
   - export APT_CACHE_DIR=`pwd`/apt-cache && mkdir -pv $APT_CACHE_DIR
