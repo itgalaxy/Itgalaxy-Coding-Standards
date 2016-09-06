@@ -17,6 +17,9 @@ pids
 # Dependency directories
 vendor
 
+# Build directory
+build
+
 # gitkeep
 !.gitkeep
 

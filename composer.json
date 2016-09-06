@@ -12,8 +12,8 @@
         "squizlabs/php_codesniffer": "~2.7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.3.0",
-        "phpunit/php-code-coverage": "~3.3.0"
+        "phpunit/phpunit": "~5.5.0",
+        "phpunit/php-code-coverage": "~4.0.0"
     },
     "support": {
         "issues": "https://github.com/itgalaxy/Itgalaxy-Coding-Standards/issues"
@@ -21,6 +21,8 @@
     "scripts": {
         "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
         "post-update-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
-        "test": "phpunit --filter ItgalaxyCodingStandards vendor/squizlabs/php_codesniffer/tests/AllTests.php"
+
+        "phpunit": "phpunit --filter ItgalaxyCodingStandards",
+        "test": "@phpunit"
     }
 }
