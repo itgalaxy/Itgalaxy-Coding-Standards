@@ -344,3 +344,13 @@ function test() : array
     'key' => 'value',
     'key1' => 'value1'
     ];
+
+[
+    'foo' => 'bar',
+    'bar' => 'foo', 'foo-bar' => 'bar-foo'
+];
+
+[
+    'foo',
+    'bar', 'foo-bar'
+];

@@ -352,3 +352,8 @@ array(
     'key' => 'value',
     'key1' => 'value1'
     );
+
+array(
+    'foo' => 'bar',
+    'bar' => 'foo', 'foo-bar' => 'bar-foo'
+);

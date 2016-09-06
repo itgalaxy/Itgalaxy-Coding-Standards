@@ -12,6 +12,13 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
      */
     public function getErrorList($testFile = '')
     {
+        /*
+         * Todo throw error on
+         * array(
+         *   'foo',
+         *   'bar', 'foo-bar'
+         * );
+         */
         switch ($testFile) {
             case 'ArrayDeclarationUnitTest.1.inc':
                 return [
@@ -91,7 +98,8 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
                     347 => 1,
                     348 => 1,
                     349 => 2,
-                    354 => 1
+                    354 => 1,
+                    358 => 1
                 ];
             case 'ArrayDeclarationUnitTest.2.inc':
                 return [
@@ -157,7 +165,8 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
                     339 => 1,
                     340 => 1,
                     341 => 2,
-                    346 => 1
+                    346 => 1,
+                    350 => 1
                 ];
             default:
                 return [];
