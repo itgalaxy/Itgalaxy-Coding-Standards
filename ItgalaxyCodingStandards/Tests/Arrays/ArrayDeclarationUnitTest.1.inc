@@ -343,3 +343,12 @@ array(
      'key' => 'value',
     'key1' => 'value1'
 );
+
+array( 'key' => 'value');
+array('key' => 'value' );
+array( 'key' => 'value' );
+
+array(
+    'key' => 'value',
+    'key1' => 'value1'
+    );

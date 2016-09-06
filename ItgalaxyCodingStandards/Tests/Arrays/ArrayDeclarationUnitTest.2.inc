@@ -325,3 +325,22 @@ function test() : array
 {
     return [];
 }
+
+[
+     'test',
+    'test2'
+];
+
+[
+    'key' => 'value',
+     'key1' => 'value1'
+];
+
+[ 'key' => 'value'];
+['key' => 'value' ];
+[ 'key' => 'value' ];
+
+[
+    'key' => 'value',
+    'key1' => 'value1'
+    ];

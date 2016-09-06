@@ -87,7 +87,11 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
                     319 => 1,
                     329 => 1,
                     338 => 1,
-                    343 => 1
+                    343 => 1,
+                    347 => 1,
+                    348 => 1,
+                    349 => 2,
+                    354 => 1
                 ];
             case 'ArrayDeclarationUnitTest.2.inc':
                 return [
@@ -149,7 +153,11 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
                     287 => 1,
                     293 => 1,
                     311 => 1,
-                    321 => 1
+                    321 => 1,
+                    339 => 1,
+                    340 => 1,
+                    341 => 2,
+                    346 => 1
                 ];
             default:
                 return [];
