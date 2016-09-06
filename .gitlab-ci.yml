@@ -1,7 +1,4 @@
-image: php:5.6
-
 before_script:
-  - apt-get update -yq && apt-get install -y -qq git
   - bash ci/docker_install.sh > /dev/null
   - php -v
   - which php
@@ -19,6 +16,13 @@ cache:
     paths:
         - vendor
 
-test:
-  script:
-    - composer test
+test:5.6:
+    image: php:5.6
+    script:
+        - composer test
+
+# We test PHP7.0 (good luck with that)
+test:7.0:
+    image: php:7.0
+    script:
+        - composer test
