@@ -20,6 +20,7 @@
     },
     "scripts": {
         "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
-        "post-update-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../.."
+        "post-update-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths ../../..",
+        "test": "phpunit --filter ItgalaxyCodingStandards vendor/squizlabs/php_codesniffer/tests/AllTests.php"
     }
 }

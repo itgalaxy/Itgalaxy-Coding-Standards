@@ -21,4 +21,4 @@ cache:
 
 test:
   script:
-    - vendor/bin/phpunit --filter ItgalaxyCodingStandards vendor/squizlabs/php_codesniffer/tests/AllTests.php
+    - composer test
