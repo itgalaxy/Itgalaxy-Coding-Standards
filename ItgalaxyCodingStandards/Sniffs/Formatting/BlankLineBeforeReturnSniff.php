@@ -53,7 +53,8 @@ class BlankLineBeforeReturnSniff implements \PHP_CodeSniffer_Sniff
             && ($prevLineTokens[0] === 'T_OPEN_CURLY_BRACKET'
                 || $prevLineTokens[0] === 'T_COLON'
                 || $prevLineTokens[0] === 'T_CLOSE_TAG'
-                || $prevLineTokens[0] === 'T_INLINE_HTML')
+                || $prevLineTokens[0] === 'T_INLINE_HTML'
+                || $prevLineTokens[0] === 'T_OPEN_TAG')
         ) {
             return;
         } elseif (count($prevLineTokens) > 0) {

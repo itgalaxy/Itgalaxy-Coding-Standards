@@ -86,3 +86,11 @@ switch ($condition) {
     default:
         return false;
 }
+
+function foo()
+{
+    ?>
+        Some string
+    <?php
+    return;
+}
