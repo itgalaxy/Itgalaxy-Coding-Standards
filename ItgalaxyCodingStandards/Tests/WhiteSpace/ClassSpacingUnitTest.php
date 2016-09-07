@@ -17,7 +17,8 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_ClassSpacingUnitTest extends Abst
             32 => 1,
             36 => 1,
             49 => 1,
-            62 => 1
+            62 => 1,
+            82 => 1
         ];
     }
 

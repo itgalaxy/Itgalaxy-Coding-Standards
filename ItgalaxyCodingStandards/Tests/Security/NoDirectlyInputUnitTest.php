@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Security_BacktickUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Security_NoDirectlyInputUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,8 +13,24 @@ class ItgalaxyCodingStandards_Tests_Security_BacktickUnitTest extends AbstractSn
     public function getErrorList()
     {
         return [
-            7 => 2,
-            12 => 2
+            3 => 1,
+            4 => 1,
+            5 => 2,
+            13 => 1,
+            14 => 1,
+            15 => 1,
+            16 => 1,
+            17 => 1,
+            18 => 1,
+            19 => 1,
+            20 => 1,
+            21 => 1,
+            23 => 1,
+            24 => 1,
+            25 => 1,
+            26 => 1,
+            34 => 2,
+            36 => 2
         ];
     }
 

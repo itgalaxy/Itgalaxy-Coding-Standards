@@ -80,3 +80,4 @@ class SimpleClassSeventh
         echo $this->var;
     }
 }
+?><?php class Foo {}?><?php

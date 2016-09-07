@@ -1,11 +1,12 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-class IncludeFileSniff implements \PHP_CodeSniffer_Sniff
+class NoInsecurityIncludeSniff implements \PHP_CodeSniffer_Sniff
 {
     public $allowUrl = false;
 
     public $allowHasVariable = true;
+
     /**
      * Pattern to match urls
      *
@@ -13,11 +14,24 @@ class IncludeFileSniff implements \PHP_CodeSniffer_Sniff
      */
     public $urlPattern = '#(https?|ftp|ssh2\..*?)://.*#i';
 
+    /**
+     * Returns the token types that this sniff is interested in.
+     *
+     * @return array(int)
+     */
     public function register()
     {
         return \PHP_CodeSniffer_Tokens::$includeTokens;
     }
 
+    /**
+     * Processes the tokens that this sniff is interested in.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file where the token was found.
+     * @param int $stackPtr  The position in the stack where the token was found.
+     *
+     * @return void
+     */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         if ($this->allowUrl && $this->allowHasVariable) {
@@ -29,7 +43,6 @@ class IncludeFileSniff implements \PHP_CodeSniffer_Sniff
         $error = '"%s" statement detected. File manipulations are discouraged.';
 
         $ignoredTokens = array_merge(\PHP_CodeSniffer_Tokens::$emptyTokens, [T_CLOSE_PARENTHESIS]);
-        $isConcatenated = false;
         $isUrl = false;
         $hasVariable = false;
 
@@ -56,7 +69,7 @@ class IncludeFileSniff implements \PHP_CodeSniffer_Sniff
         $hasError = false;
 
         if ($isUrl && !$this->allowUrl) {
-            $error .= 'Using http, https, ftp and ssh2 wrappers is forbidden.';
+            $error .= ' Using http, https, ftp and ssh2 wrappers is forbidden.';
             $hasError = true;
         }
 
@@ -65,8 +78,10 @@ class IncludeFileSniff implements \PHP_CodeSniffer_Sniff
             $hasError = true;
         }
 
-        if ($hasError) {
-            $phpcsFile->addError($error, $stackPtr, 'IncludeFileDetected', [$tokens[$stackPtr]['content']]);
+        if (!$hasError) {
+            return;
         }
+
+        $phpcsFile->addError($error, $stackPtr, 'IncludeFileDetected', [$tokens[$stackPtr]['content']]);
     }
 }

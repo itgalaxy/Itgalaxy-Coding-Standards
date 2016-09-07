@@ -1,19 +1,4 @@
 <?php
-/**
- * PHP Version 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * This file is originally written by Greg Sherwood and Marc McIntyre, but
- * modified for CakePHP.
- *
- * @copyright     2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @link          http://pear.php.net/package/PHP_CodeSniffer_CakePHP
- * @since         CakePHP CodeSniffer 0.1.1
- * @license       https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
 class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
@@ -44,6 +29,7 @@ class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         // Check the number of blank lines after the class.
         $closer = $tokens[$stackPtr]['scope_closer'];
+
         // There needs to be 1 blank lines after the closer.
         $nextLineToken = null;
 
@@ -51,7 +37,7 @@ class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
             if (strpos($tokens[$i]['content'], $phpcsFile->eolChar) === false) {
                 continue;
             } else {
-                $nextLineToken = ($i + 1);
+                $nextLineToken = $i + 1;
                 break;
             }
         }
@@ -89,7 +75,7 @@ class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
-        // Check the number of blank lines before the class.
+        // There needs to be 1 blank lines before the class.
         $prevLineToken = null;
 
         for ($i = $stackPtr; $i > 0; $i--) {

@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Security_CryptoFunctionDisableUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Security_NoDeprecatedCryptoFunctionsUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

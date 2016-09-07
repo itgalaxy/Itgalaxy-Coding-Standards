@@ -64,10 +64,7 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
      *
      * @return void
      */
-    public function processFunctionCall(
-        \PHP_CodeSniffer_File $phpcsFile,
-        $stackPtr
-    ) {
+    public function processFunctionCall(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
         $argument = $this->getArgument(1);
 
@@ -87,7 +84,7 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
         $quote = substr($pattern, 0, 1);
 
         // Check that the pattern is a string.
-        if ($quote == '"' || $quote == "'") {
+        if ($quote === '"' || $quote === "'") {
             // Get the delimiter - first char after the enclosing quotes.
             $delimiterStart = substr($pattern, 1, 1);
             $patternWithoutModifiers = rtrim(

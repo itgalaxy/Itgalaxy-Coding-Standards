@@ -17,7 +17,10 @@ class ItgalaxyCodingStandards_Tests_Security_EscapeOutputUnitTest extends Abstra
             7 => 1,
             9 => 2,
             16 => 2,
-            18 => 1
+            18 => 1,
+            25 => 1,
+            29 => 1,
+            30 => 1
         ];
     }
 

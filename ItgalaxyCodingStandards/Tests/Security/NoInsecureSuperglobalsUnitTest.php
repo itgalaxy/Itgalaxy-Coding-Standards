@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Security_SuperglobalsUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Security_NoInsecureSuperglobalsUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
