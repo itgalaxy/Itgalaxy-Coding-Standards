@@ -19,6 +19,7 @@ class BlankLineBeforeReturnSniff implements \PHP_CodeSniffer_Sniff
     {
         return [T_RETURN];
     }
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
