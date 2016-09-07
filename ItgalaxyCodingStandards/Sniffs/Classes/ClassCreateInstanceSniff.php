@@ -1,27 +1,5 @@
 <?php
-/**
- * Class create instance Test.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @link     http://pear.php.net/package/PHP_CodeSniffer
- */
-
-/**
- * Class create instance Test.
- *
- * Checks the declaration of the class is correct.
- *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @link     http://pear.php.net/package/PHP_CodeSniffer
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
-
-// Todo refactoring https://github.com/escapestudios/Symfony2-coding-standard/blob/master/Symfony2/Sniffs/Objects/ObjectInstantiationSniff.php
 
 class ClassCreateInstanceSniff implements \PHP_CodeSniffer_Sniff
 {
@@ -47,36 +25,31 @@ class ClassCreateInstanceSniff implements \PHP_CodeSniffer_Sniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+        $allowed = [
+            T_STRING,
+            T_NS_SEPARATOR,
+            T_VARIABLE,
+            T_STATIC
+        ];
 
-        // Search for an opening parenthesis in the current statement untill the
-        // next semicolon.
-        $nextParenthesis = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr, null, false, null, true);
+        $object = $stackPtr;
+        $line   = $tokens[$object]['line'];
 
-        // If there is a parenthesis owner then this is not a constructor call,
-        // but rather some array or something else.
-        if ($nextParenthesis === false || isset($tokens[$nextParenthesis]['parenthesis_owner']) === true) {
-            $error = 'Calling class constructors must always include parentheses';
-            $constructor = $phpcsFile->findNext(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
-                ($stackPtr + 1),
-                null,
-                true,
-                null,
-                true
-            );
+        while ($object && $tokens[$object]['line'] === $line) {
+            $object = $phpcsFile->findNext($allowed, $object + 1);
 
-            // We can only invoke the fixer if we know this is a static constructor
-            // function call.
-            if ($tokens[$constructor]['code'] === T_STRING) {
-                $fix = $phpcsFile->addFixableError($error, $constructor, 'ParenthesisMissing');
-
-                if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->addContent($constructor, '()');
+            if ($tokens[$object]['line'] === $line
+                && !in_array($tokens[$object + 1]['code'], $allowed)
+            ) {
+                if ($tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
+                    $phpcsFile->addError(
+                        'Use parentheses when instantiating classes',
+                        $stackPtr,
+                        'Invalid'
+                    );
                 }
-            } else {
-                $phpcsFile->addError($error, $stackPtr, 'ParenthesisMissing');
+
+                break;
             }
         }
     }

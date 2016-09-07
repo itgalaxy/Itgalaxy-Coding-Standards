@@ -1,31 +1,7 @@
 <?php
-/**
- * This file is part of the Symfony2-coding-standard (phpcs standard)
- *
- * PHP version 5
- *
- * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
- * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
- * @link     https://github.com/escapestudios/Symfony2-coding-standard
- */
-/**
- * Symfony2_Sniffs_Functions_ScopeOrderSniff.
- *
- * Throws warnings if properties are declared after methods
- *
- * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
- * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/escapestudios/Symfony2-coding-standard
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
 
-class ScopeOrderSniff implements \PHP_CodeSniffer_Sniff
+class ScopeMethodsOrderSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -39,13 +15,11 @@ class ScopeOrderSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return array
      */
-    // Todo trait
-    // Todo add also properties
     public function register()
     {
         return [
             T_CLASS,
-            T_INTERFACE
+            T_TRAIT
         ];
     }
 
@@ -85,7 +59,7 @@ class ScopeOrderSniff implements \PHP_CodeSniffer_Sniff
                         $phpcsFile->addError(
                             'Declare public methods first, then protected ones and finally private ones',
                             $scope,
-                            'Invalid'
+                            'InvalidScopeMethodPlace'
                         );
                     }
 
