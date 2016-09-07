@@ -333,3 +333,29 @@ do {
 do {
     echo $i;
 }     while ($i > 0);
+
+if(true){}else{}
+
+while(true) ?>
+<?php while(true)
+    echo 'test';
+
+if ( true ){echo 'test';}
+else {
+
+}
+
+if (
+    true
+)
+{echo 'test';}
+else {
+
+}?>
+<?php
+
+if(
+true
+) {
+    echo 'test';
+}

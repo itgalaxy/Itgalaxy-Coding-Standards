@@ -70,7 +70,19 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ControlSignatureUnitTest e
             316 => 1,
             326 => 1,
             330 => 1,
-            335 => 1
+            335 => 1,
+            337 => 8,
+            339 => 2,
+            340 => 2,
+            343 => 6,
+            344 => 2,
+            346 => 1,
+            348 => 1,
+            350 => 1,
+            351 => 3,
+            352 => 2,
+            354 => 1,
+            357 => 2
         ];
     }
 

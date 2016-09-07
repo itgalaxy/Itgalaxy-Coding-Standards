@@ -92,3 +92,12 @@ function testFourth() {
 function testFifth($a) {
     return $a;
 }
+
+class Foo
+{
+    public abstract function foo($bar);
+}
+
+add(function () {
+    return ?> <? echo 'test'; ?><?php
+});

@@ -25,7 +25,11 @@ class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return [T_CLASS];
+        return [
+            T_CLASS,
+            T_INTERFACE,
+            T_TRAIT
+        ];
     }
 
     /**
@@ -56,7 +60,7 @@ class ClassSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         if ($nextLineToken === null) {
             // Never found the next line, which means
-            // there are 0 blank lines after the function.
+            // there are 0 blank lines after the class.
             $foundLines = 0;
         } else {
             $nextContent = $phpcsFile->findNext([T_WHITESPACE], $nextLineToken + 1, null, true);

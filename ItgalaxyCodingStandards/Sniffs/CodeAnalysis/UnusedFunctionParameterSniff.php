@@ -103,12 +103,8 @@ class UnusedFunctionParameterSniff implements \PHP_CodeSniffer_Sniff
                 }
 
                 // A return statement as the first content indicates an interface method.
-                if ($code === T_RETURN) {
+                if (isset($tokens[$next + 1]) && $code === T_RETURN) {
                     $tmp = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $next + 1, null, true);
-
-                    if ($tmp === false) {
-                        return;
-                    }
 
                     // There is a return.
                     if ($tokens[$tmp]['code'] === T_SEMICOLON) {

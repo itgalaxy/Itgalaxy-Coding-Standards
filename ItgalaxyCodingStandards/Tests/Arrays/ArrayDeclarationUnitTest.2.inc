@@ -354,3 +354,17 @@ function test() : array
     'foo',
     'bar', 'foo-bar'
 ];
+
+class Foo
+{
+    public function __construct(array $array, Array $array1, ARRAY $array2)
+    {
+    }
+}
+
+class FooBar
+{
+    public function __construct(array $array = [])
+    {
+    }
+}

@@ -357,3 +357,17 @@ array(
     'foo' => 'bar',
     'bar' => 'foo', 'foo-bar' => 'bar-foo'
 );
+
+class Foo
+{
+    public function __construct(array $array, Array $array1, ARRAY $array2)
+    {
+    }
+}
+
+class FooBar
+{
+    public function __construct(array $array = array())
+    {
+    }
+}

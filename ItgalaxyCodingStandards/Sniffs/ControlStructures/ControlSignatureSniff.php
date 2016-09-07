@@ -424,7 +424,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             $closer = $tokens[$stackPtr]['parenthesis_closer'];
             $found = 0;
 
-            if ($tokens[($closer + 1)]['code'] === T_WHITESPACE) {
+            if (isset($tokens[($closer + 1)]) && $tokens[($closer + 1)]['code'] === T_WHITESPACE) {
                 if (strpos($tokens[($closer + 1)]['content'], $phpcsFile->eolChar) !== false) {
                     $found = 'newline';
                 } else {
