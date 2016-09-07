@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_ParenthesisCastExpressionUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_ParensAroundExpressionInTypeCastingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,7 +13,7 @@ class ItgalaxyCodingStandards_Tests_Formatting_ParenthesisCastExpressionUnitTest
     public function getErrorList()
     {
         return [
-            3 => 1
+            2 => 1
         ];
     }
 
