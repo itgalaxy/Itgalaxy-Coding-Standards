@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
-class DeprecatedNewReferenceSniff implements \PHP_CodeSniffer_Sniff
+class NoDeprecatedNewReferenceSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

@@ -1,26 +1,10 @@
 <?php
-/**
- * Drupal_Sniffs_Classes_InterfaceNameSniff.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @link     http://pear.php.net/package/PHP_CodeSniffer
- */
-
-/**
- * Checks that interface names end with "Interface".
- *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @link     http://pear.php.net/package/PHP_CodeSniffer
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
-class InterfaceNameSniff implements \PHP_CodeSniffer_Sniff
+class InterfaceNamePatternSniff implements \PHP_CodeSniffer_Sniff
 {
+    public $pattern = '/^[A-Z][A-Za-z0-9]*Interface$/';
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -44,9 +28,12 @@ class InterfaceNameSniff implements \PHP_CodeSniffer_Sniff
     {
         $name = $phpcsFile->getDeclarationName($stackPtr);
 
-        if (substr($name, -9) !== 'Interface') {
-            $warn = 'Interface names should always have the suffix "Interface"';
-            $phpcsFile->addError($warn, $stackPtr, 'InvalidInterfaceName');
+        if (!preg_match($this->pattern, $name)) {
+            $phpcsFile->addError(
+                'Interface does not match the pattern "' . $this->pattern . '"',
+                $stackPtr,
+                'InvalidInterfaceNamePattern'
+            );
         }
     }
 }

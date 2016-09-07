@@ -92,7 +92,7 @@ class NoDeprecatedCryptoFunctionsSniff implements \PHP_CodeSniffer_Sniff
             . $tokens[$stackPtr]['content']
             . '` is disable for security reason. Use instead password or openssl or hash api.',
             $stackPtr,
-            'OlderCryptoFunc'
+            'DeprecatedCryptoFunction'
         );
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_PHP_AlternativeSyntaxUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Arrays_NoCurlyBracesAccessArrayUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,18 +13,7 @@ class ItgalaxyCodingStandards_Tests_PHP_AlternativeSyntaxUnitTest extends Abstra
     public function getErrorList()
     {
         return [
-            9 => 1,
-            16 => 1,
-            22 => 1,
-            28 => 1,
-            35 => 1,
-            46 => 1,
-            55 => 1,
-            59 => 1,
-            73 => 1,
-            87 => 1,
-            94 => 1,
-            103 => 1
+            7 => 1
         ];
     }
 

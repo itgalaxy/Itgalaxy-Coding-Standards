@@ -1,31 +1,7 @@
 <?php
-/**
- * This file is part of the Symfony2-coding-standard (phpcs standard)
- *
- * PHP version 5
- *
- * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
- * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
- * @link     https://github.com/M6Web/Symfony2-coding-standard
- */
-/**
- * Symfony2_Sniffs_Classes_PropertyDeclarationSniff.
- *
- * Throws warnings if properties are declared after methods
- *
- * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
- * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/M6Web/Symfony2-coding-standard
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
 
-class PropertyDeclarationSniff implements \PHP_CodeSniffer_Sniff
+class PropertiesBeforeMethodsSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -39,10 +15,13 @@ class PropertyDeclarationSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return array
      */
-    // Todo interface and trait
+
     public function register()
     {
-        return [T_CLASS];
+        return [
+            T_CLASS,
+            T_TRAIT
+        ];
     }
 
     /**
@@ -69,9 +48,9 @@ class PropertyDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
             if ($scope && $tokens[$scope + 2]['code'] === T_VARIABLE) {
                 $phpcsFile->addError(
-                    'Declare class properties before methods',
+                    'Declare class and trait properties before methods',
                     $scope,
-                    'Invalid'
+                    'PropertiesBeforeMethods'
                 );
             }
         }

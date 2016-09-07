@@ -13,7 +13,9 @@ class ItgalaxyCodingStandards_Tests_CodeAnalysis_WrongParentCallUnitTest extends
     public function getErrorList()
     {
         return [
-            28 => 1
+            28 => 1,
+            36 => 1,
+            45 => 1
         ];
     }
 

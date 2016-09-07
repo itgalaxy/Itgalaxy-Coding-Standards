@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_NamingConventions_InterfaceNameUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_ControlStructures_NoEachInLoopConditionUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,8 +13,7 @@ class ItgalaxyCodingStandards_Tests_NamingConventions_InterfaceNameUnitTest exte
     public function getErrorList()
     {
         return [
-            9 => 1,
-            15 => 1
+            11 => 1
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_ControlStructures_DisallowGotoUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Strings_NoMultilineStringDeclarationUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,7 +13,12 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_DisallowGotoUnitTest exten
     public function getErrorList()
     {
         return [
-            2 => 1,
+            3 => 1,
+            4 => 1,
+            5 => 1,
+            6 => 1,
+            7 => 1,
+            10 => 1,
             11 => 1
         ];
     }

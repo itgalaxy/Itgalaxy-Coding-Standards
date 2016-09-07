@@ -32,26 +32,25 @@ class ExitSniff implements \PHP_CodeSniffer_Sniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $firstContent = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
+        $nonWhitespaceToken = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
 
-        if ($tokens[$firstContent]['code'] !== T_OPEN_PARENTHESIS) {
-            $error = 'Exit or die must have parenthesis';
-            $phpcsFile->addError($error, $stackPtr, 'ExitParenthesis');
-        } elseif ($tokens[$firstContent]['code'] === T_OPEN_PARENTHESIS) {
-            $openParenthesisPtr = $firstContent;
+        if ($tokens[$nonWhitespaceToken]['code'] !== T_OPEN_PARENTHESIS) {
+            $phpcsFile->addError('Exit or die should have parenthesis', $stackPtr, 'ExitParenthesis');
+        } elseif ($tokens[$nonWhitespaceToken]['code'] === T_OPEN_PARENTHESIS) {
+            $openParenthesisPtr = $nonWhitespaceToken;
             $endStatementPtr = $phpcsFile->findNext(
                 [
                     T_SEMICOLON,
                     T_CLOSE_TAG
                 ],
-                $firstContent + 1,
+                $nonWhitespaceToken + 1,
                 null,
                 false
             );
             $closeParenthesisPtr = $phpcsFile->findPrevious(
                 T_CLOSE_PARENTHESIS,
                 $endStatementPtr - 1,
-                $firstContent + 1,
+                $nonWhitespaceToken + 1,
                 false
             );
             $error = false;

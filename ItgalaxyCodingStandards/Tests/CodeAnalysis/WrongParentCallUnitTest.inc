@@ -28,3 +28,23 @@ class ErrorExtenderBase extends Base
         return trim(parent::nickname($str));
     }
 }
+
+class PropertiesExtenderBase extends Base
+{
+    public function name($str = 'Test')
+    {
+        return trim(parent::$static);
+    }
+}
+
+class PropertiesExExtenderBase extends Base
+{
+    public function name($str = 'Test')
+    {
+        $func = function () {
+            parent::nickname();
+        };
+
+        return $func;
+    }
+}

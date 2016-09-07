@@ -1,7 +1,7 @@
 <?php
-namespace ItgalaxyCodingStandards\Sniffs\Arrays;
+namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class DisallowCurlyBracesAccessArraySniff implements \PHP_CodeSniffer_Sniff
+class NoGotoSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -10,7 +10,7 @@ class DisallowCurlyBracesAccessArraySniff implements \PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return [T_OPEN_CURLY_BRACKET];
+        return [T_GOTO];
     }
 
     /**
@@ -24,12 +24,7 @@ class DisallowCurlyBracesAccessArraySniff implements \PHP_CodeSniffer_Sniff
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-        $variableBefore = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
-
-        if ($tokens[$variableBefore]['code'] === T_VARIABLE) {
-            $error = 'Not use curly braces to access array throw index or key';
-            $phpcsFile->addError($error, $stackPtr, 'DisallowCurlyBracesAccessArray');
-        }
+        $error = 'Goto is forbidden';
+        $phpcsFile->addError($error, $stackPtr, 'Forbidden');
     }
 }

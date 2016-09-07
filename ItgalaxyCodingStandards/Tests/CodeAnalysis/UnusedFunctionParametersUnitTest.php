@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Strings_StringDeclarationUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_CodeAnalysis_UnusedFunctionParametersUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -14,12 +14,7 @@ class ItgalaxyCodingStandards_Tests_Strings_StringDeclarationUnitTest extends Ab
     {
         return [
             3 => 1,
-            4 => 1,
-            5 => 1,
-            6 => 1,
-            7 => 1,
-            10 => 1,
-            11 => 1
+            7 => 1
         ];
     }
 

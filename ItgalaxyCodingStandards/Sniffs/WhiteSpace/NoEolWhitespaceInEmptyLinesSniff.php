@@ -1,17 +1,7 @@
 <?php
-/**
- * Php_Sniffs_WhiteSpace_DisallowBlankLinesWithSpacesSniff
- *
- * No blank lines allowed that contain any form of indentation
- *
- * @category  PHP
- * @package   standards
- * @author    Sam Wilson <samwilson@purdue.edu>
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-class DisallowBlankLinesWithSpacesSniff implements \PHP_CodeSniffer_Sniff
+class NoEolWhitespaceInEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens for which this test wants to listen
@@ -59,7 +49,7 @@ class DisallowBlankLinesWithSpacesSniff implements \PHP_CodeSniffer_Sniff
 
         if ($emptyLineWithSpaces && strlen($tokens[$stackPtr]['content']) > 1) {
             $error = 'Blank lines containing indentation are not allowed.';
-            $phpcsFile->addError($error, $stackPtr, 'IndentedBlankLine');
+            $phpcsFile->addError($error, $stackPtr, 'NoEolWhitespaceInEmptyLines');
         }
     }
 }

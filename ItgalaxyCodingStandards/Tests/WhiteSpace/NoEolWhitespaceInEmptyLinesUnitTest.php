@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_ControlStructures_DisallowEachInLoopConditionUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_WhiteSpace_NoEolWhitespaceInEmptyLinesUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,7 +13,11 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_DisallowEachInLoopConditio
     public function getErrorList()
     {
         return [
-            11 => 1
+            2 => 1,
+            3 => 1,
+            4 => 1,
+            5 => 1,
+            7 => 1
         ];
     }
 

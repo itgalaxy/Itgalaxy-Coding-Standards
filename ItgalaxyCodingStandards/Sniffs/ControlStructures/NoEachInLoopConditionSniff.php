@@ -1,25 +1,7 @@
 <?php
-/**
- * PHP version 5
- *
- * @category  ControlStructures
- * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2012 Andy Grunwald
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- */
-/**
- * Checks that the PHP function "each()" is not used in loop conditions.
- *
- * @category  ControlStructures
- * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2012 Andy Grunwald
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class DisallowEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
+class NoEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -56,7 +38,7 @@ class DisallowEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
 
         if ($result !== false) {
             $message = 'Usage of "each()" not allowed in loop condition. Use "foreach"-loop instead.';
-            $phpcsFile->addError($message, $stackPtr, 'EachInWhileLoopNotAllowed');
+            $phpcsFile->addError($message, $stackPtr, 'NoEachInLoopCondition');
         }
     }
 }

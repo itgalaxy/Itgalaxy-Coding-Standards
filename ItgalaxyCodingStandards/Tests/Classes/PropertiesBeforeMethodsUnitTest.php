@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_PHP_DeprecatedNewReferenceUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Classes_PropertiesBeforeMethodsUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,8 +13,13 @@ class ItgalaxyCodingStandards_Tests_PHP_DeprecatedNewReferenceUnitTest extends A
     public function getErrorList()
     {
         return [
-            2 => 1,
-            3 => 1
+            34 => 1,
+            41 => 1,
+            48 => 1,
+            60 => 1,
+            67 => 1,
+            83 => 1,
+            90 => 1
         ];
     }
 

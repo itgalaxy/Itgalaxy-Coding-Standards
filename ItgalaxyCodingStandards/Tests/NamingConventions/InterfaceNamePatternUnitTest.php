@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_FunctionSpacingUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_NamingConventions_InterfaceNamePatternUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -12,7 +12,13 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_FunctionSpacingUnitTest extends A
      */
     public function getErrorList()
     {
-        return [];
+        return [
+            9 => 1,
+            15 => 1,
+            21 => 1,
+            27 => 1,
+            33 => 1
+        ];
     }
 
     /**

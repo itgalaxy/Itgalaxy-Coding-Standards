@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
-class StringDeclarationSniff implements \PHP_CodeSniffer_Sniff
+class NoMultilineStringDeclarationSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -29,11 +29,13 @@ class StringDeclarationSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr + 1]['code'] === T_CONSTANT_ENCAPSED_STRING
-            || $tokens[$stackPtr + 1]['code'] === T_DOUBLE_QUOTED_STRING
+        if ($tokens[$stackPtr + 1]['code'] !== T_CONSTANT_ENCAPSED_STRING
+            && $tokens[$stackPtr + 1]['code'] !== T_DOUBLE_QUOTED_STRING
         ) {
-            $error = 'Multiline string declaration not allowed';
-            $phpcsFile->addError($error, $stackPtr + 1, 'MultilineStringDeclaration');
+            return;
         }
+
+        $error = 'Multiline string declaration is not allowed';
+        $phpcsFile->addError($error, $stackPtr + 1, 'NoMultilineStringDeclaration');
     }
 }

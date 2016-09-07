@@ -41,30 +41,32 @@ class ScopeMethodsOrderSniff implements \PHP_CodeSniffer_Sniff
             1 => T_PROTECTED,
             2 => T_PRIVATE
         ];
-        $whitelisted = ['__construct'];
+        $whitelist = ['__construct'];
 
         while ($function) {
             $function = $phpcsFile->findNext(T_FUNCTION, $function + 1, $tokens[$stackPtr]['scope_closer']);
 
-            if (isset($tokens[$function]['parenthesis_opener'])) {
-                $scope = $phpcsFile->findPrevious($scopes, $function - 1, $stackPtr);
-                $name = $phpcsFile->findNext(T_STRING, $function + 1, $tokens[$function]['parenthesis_opener']);
+            if (!isset($tokens[$function]['parenthesis_opener'])) {
+                continue;
+            }
 
-                if ($scope && $name && !in_array($tokens[$name]['content'], $whitelisted)) {
-                    $current = array_keys($scopes, $tokens[$scope]['code']);
+            $scope = $phpcsFile->findPrevious($scopes, $function - 1, $stackPtr);
+            $name = $phpcsFile->findNext(T_STRING, $function + 1, $tokens[$function]['parenthesis_opener']);
 
-                    $current = $current[0];
+            if ($scope && $name && !in_array($tokens[$name]['content'], $whitelist)) {
+                $current = array_keys($scopes, $tokens[$scope]['code']);
 
-                    if (isset($previous) && $current < $previous) {
-                        $phpcsFile->addError(
-                            'Declare public methods first, then protected ones and finally private ones',
-                            $scope,
-                            'InvalidScopeMethodPlace'
-                        );
-                    }
+                $current = $current[0];
 
-                    $previous = $current;
+                if (isset($previous) && $current < $previous) {
+                    $phpcsFile->addError(
+                        'Declare public methods first, then protected ones and finally private ones',
+                        $scope,
+                        'InvalidScopeMethodOrder'
+                    );
                 }
+
+                $previous = $current;
             }
         }
     }

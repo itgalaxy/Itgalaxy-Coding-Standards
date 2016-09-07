@@ -36,7 +36,7 @@ class ParensAroundExpressionInTypeCastingSniff implements \PHP_CodeSniffer_Sniff
 
         if ($tokens[$next]['code'] === T_OPEN_PARENTHESIS) {
             $error = 'Do not use parenthesis around expression in type casting';
-            $phpcsFile->addError($error, $next, 'NoParenthesisAroundExpressionInTypeCasting');
+            $phpcsFile->addError($error, $next, 'NoParensAroundExpressionInTypeCasting');
         }
     }
 }

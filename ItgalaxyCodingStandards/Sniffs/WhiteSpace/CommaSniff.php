@@ -46,43 +46,37 @@ class CommaSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[($stackPtr + 1)]) === false) {
-            return;
-        }
-
-        if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE
-            && $tokens[($stackPtr + 1)]['code'] !== T_COMMA
-            && $tokens[($stackPtr + 1)]['code'] !== T_CLOSE_PARENTHESIS
+        if (isset($tokens[$stackPtr + 1]) === true
+            && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE
+            && $tokens[$stackPtr + 1]['code'] !== T_COMMA
+            && $tokens[$stackPtr + 1]['code'] !== T_CLOSE_PARENTHESIS
         ) {
             $error = 'Expected one space after the comma, 0 found';
             $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpace');
 
             if ($fix === true) {
-                $phpcsFile
-                    ->fixer
-                    ->addContent($stackPtr, ' ');
+                $phpcsFile->fixer->addContent($stackPtr, ' ');
             }
 
             return;
         }
 
-        if ($tokens[($stackPtr + 1)]['code'] === T_WHITESPACE
-            && isset($tokens[($stackPtr + 2)]) === true
-            && $tokens[($stackPtr + 2)]['line'] === $tokens[($stackPtr + 1)]['line']
-            && $tokens[($stackPtr + 1)]['content'] !== ' '
+        if (isset($tokens[$stackPtr + 1]) === true
+            && isset($tokens[$stackPtr + 2]) === true
+            && $tokens[$stackPtr + 1]['code'] === T_WHITESPACE
+            && $tokens[$stackPtr + 2]['line'] === $tokens[$stackPtr + 1]['line']
+            && $tokens[$stackPtr + 1]['content'] !== ' '
         ) {
             $error = 'Expected one space after the comma, %s found';
             $fix = $phpcsFile->addFixableError(
                 $error,
                 $stackPtr,
                 'TooManySpaces',
-                [strlen($tokens[($stackPtr + 1)]['content'])]
+                [strlen($tokens[$stackPtr + 1]['content'])]
             );
 
             if ($fix === true) {
-                $phpcsFile
-                    ->fixer
-                    ->replaceToken(($stackPtr + 1), ' ');
+                $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
             }
         }
     }

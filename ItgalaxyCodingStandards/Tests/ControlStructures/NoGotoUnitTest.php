@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_DisallowBlankLinesWithSpacesUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_ControlStructures_NoGotoUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -14,10 +14,7 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_DisallowBlankLinesWithSpacesUnitT
     {
         return [
             2 => 1,
-            3 => 1,
-            4 => 1,
-            5 => 1,
-            7 => 1
+            11 => 1
         ];
     }
 

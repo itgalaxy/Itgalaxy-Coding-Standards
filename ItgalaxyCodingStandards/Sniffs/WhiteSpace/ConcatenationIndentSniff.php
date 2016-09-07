@@ -11,31 +11,6 @@ class ConcatenationIndentSniff implements \PHP_CodeSniffer_Sniff
     public $supportedTokenizers = ['PHP'];
 
     /**
-     * The number of spaces code should be indented.
-     *
-     * @var int
-     */
-    public $indent = 4;
-
-    /**
-     * Should tabs be used for indenting?
-     *
-     * If TRUE, fixes will be made using tabs instead of spaces.
-     * The size of each tab is important, so it should be specified
-     * using the --tab-width CLI argument.
-     *
-     * @var bool
-     */
-    public $tabIndent = false;
-
-    /**
-     * The --tab-width CLI value that is being used.
-     *
-     * @var int
-     */
-    private $tabWidth = null;
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -65,7 +40,11 @@ class ConcatenationIndentSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[$stackPtr]['line'] - $tokens[$position]['line'] > 1) {
-            $phpcsFile->addError('No empty newline between concatenate strings.', $stackPtr);
+            $phpcsFile->addError(
+                'No empty newline between concatenate strings.',
+                $stackPtr,
+                'NoEmptyLinesBetweenConcat'
+            );
         }
     }
 }
