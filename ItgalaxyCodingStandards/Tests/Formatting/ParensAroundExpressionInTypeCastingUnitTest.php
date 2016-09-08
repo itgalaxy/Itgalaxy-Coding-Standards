@@ -13,7 +13,11 @@ class ItgalaxyCodingStandards_Tests_Formatting_ParensAroundExpressionInTypeCasti
     public function getErrorList()
     {
         return [
-            2 => 1
+            2 => 1,
+            5 => 1,
+            6 => 2,
+            9 => 1,
+            10 => 1
         ];
     }
 
