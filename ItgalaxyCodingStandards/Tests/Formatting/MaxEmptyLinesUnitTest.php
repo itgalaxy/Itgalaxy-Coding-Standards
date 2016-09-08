@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_EmptyLinesUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_MaxEmptyLinesUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,7 +13,13 @@ class ItgalaxyCodingStandards_Tests_Formatting_EmptyLinesUnitTest extends Abstra
     public function getErrorList()
     {
         return [
-            3 => 1
+            6 => 1,
+            10 => 1,
+            15 => 1,
+            18 => 1,
+            21 => 1,
+            36 => 1,
+            41 => 1
         ];
     }
 
