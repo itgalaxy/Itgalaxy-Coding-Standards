@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_ExitUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_ExitParensUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -14,16 +14,9 @@ class ItgalaxyCodingStandards_Tests_Formatting_ExitUnitTest extends AbstractSnif
     {
         return [
             3 => 1,
-            5 => 1,
-            6 => 1,
-            7 => 1,
-            8 => 1,
-            16 => 1,
             17 => 1,
-            19 => 1,
-            20 => 1,
-            21 => 1,
-            22 => 1
+            18 => 1,
+            41 => 1
         ];
     }
 
