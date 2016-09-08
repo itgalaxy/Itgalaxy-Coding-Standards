@@ -11,3 +11,5 @@ reset($fruit);
 while (list($key, $val) = each($fruit)) {
     $dic[] = $key . ' = ' . $val;
 }
+
+while(true) {}

@@ -36,9 +36,11 @@ class NoEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
         $endToken = $tokens[$stackPtr]['parenthesis_closer'] - 1;
         $result = $phpcsFile->findNext(T_STRING, $startToken, $endToken, false, 'each');
 
-        if ($result !== false) {
-            $message = 'Usage of "each()" not allowed in loop condition. Use "foreach"-loop instead.';
-            $phpcsFile->addError($message, $stackPtr, 'NoEachInLoopCondition');
+        if ($result === false) {
+            return;
         }
+
+        $message = 'Usage of "each()" not allowed in loop condition. Use "foreach"-loop instead.';
+        $phpcsFile->addError($message, $stackPtr, 'NoEachInLoopCondition');
     }
 }
