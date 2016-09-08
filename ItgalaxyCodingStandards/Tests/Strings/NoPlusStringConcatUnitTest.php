@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Strings_StringConcatUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Strings_NoPlusStringConcatUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -23,7 +23,12 @@ class ItgalaxyCodingStandards_Tests_Strings_StringConcatUnitTest extends Abstrac
             12 => 1,
             14 => 1,
             16 => 1,
-            18 => 1
+            18 => 1,
+            21 => 1,
+            23 => 1,
+            27 => 1,
+            31 => 1,
+            34 => 2
         ];
     }
 
