@@ -1,13 +1,7 @@
 <?php
-/**
- * Check if the === operator is used for testing the return value of the strpos PHP function
- *
- * Class InsteriaStandard_Sniffs_PHP_StringPositionSniff
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
-class StringPositionSniff implements \PHP_CodeSniffer_Sniff
+class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
 {
     public $functions = [
         'preg_match',
@@ -17,6 +11,9 @@ class StringPositionSniff implements \PHP_CodeSniffer_Sniff
         'stripos',
         'strripos',
         'strtok',
+        'iconv_strpos',
+        'iconv_strrpos',
+        'mb_strlen',
         'prev',
         'current',
         'next',
@@ -29,7 +26,10 @@ class StringPositionSniff implements \PHP_CodeSniffer_Sniff
         'imagecolorallocate',
         'simplexml_import_dom',
         'simplexml_load_file',
-        'simplexml_load_string'
+        'simplexml_load_string',
+        'curl_exec',
+        'pcntl-getpriority',
+        'readdir'
     ];
 
     protected $identicalOperators = [
@@ -62,21 +62,23 @@ class StringPositionSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
-        if ($foundFunction && !$foundIdentityOperator) {
-            $phpcsFile->addError(
-                'Identical operator === is not used for testing the return value of %s function. '
-                    . 'Use `$value = %s(...arguments); '
-                    . 'if ($value === false) { // Logic } else { // Logic }` '
-                    . 'or `$value = %s(...arguments); '
-                    . 'if ($value !== false) { // Logic } else { // Logic }`',
-                $stackPtr,
-                'ImproperValueTesting',
-                [
-                    $foundFunctionName,
-                    $foundFunctionName,
-                    $foundFunctionName
-                ]
-            );
+        if ($foundFunction && $foundIdentityOperator) {
+            return;
         }
+
+        $phpcsFile->addError(
+            'Identical operator === is not used for testing the return value of %s function. '
+                . 'Use `$value = %s(...arguments); '
+                . 'if ($value === false) { // Logic } else { // Logic }` '
+                . 'or `$value = %s(...arguments); '
+                . 'if ($value !== false) { // Logic } else { // Logic }`',
+            $stackPtr,
+            'ImproperValueTesting',
+            [
+                $foundFunctionName,
+                $foundFunctionName,
+                $foundFunctionName
+            ]
+        );
     }
 }

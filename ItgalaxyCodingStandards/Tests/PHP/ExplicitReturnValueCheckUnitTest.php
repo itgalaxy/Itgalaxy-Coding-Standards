@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_PHP_StringPositionUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_PHP_ExplicitReturnValueCheckUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
