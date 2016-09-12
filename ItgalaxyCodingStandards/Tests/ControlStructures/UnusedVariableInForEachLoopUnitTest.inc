@@ -99,3 +99,27 @@ foreach ($array as $_)
 
 foreach ($array as $_)
     $result = $_ * 2;
+
+foreach ($objects['objects'] as $object) {
+    $line = "{$object}";
+}
+
+foreach ($array as $index => $val) {
+    $output .= "{$index}_{$val}";
+}
+
+foreach ($array as $index => $val) {
+    $output .= "{$index}_index";
+}
+
+foreach ($array as $index => $val) {
+    $output .= "{$val}_val";
+}
+
+foreach ($array as $index => $val) {
+    $output .= "$index $val";
+}
+
+foreach ($array as $index => $val) {
+    $output .= "\$index \$val";
+}

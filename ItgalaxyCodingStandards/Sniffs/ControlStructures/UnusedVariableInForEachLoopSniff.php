@@ -1,25 +1,4 @@
 <?php
-/**
- * BetterCollectiveCodeStandard_Sniffs_ControlStructures_UnusedVariableInForEachLoopSniff.
- *
- * PHP version 5
- *
- * @category  ControlStructures
- * @package   TYPO3SniffPool
- * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2012 Andy Grunwald
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- */
-/**
- * Checks if a unused variable in a foreach loop is named $_.
- *
- * @category  ControlStructures
- * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2012 Andy Grunwald
- * @license   http://www.gnu.org/copyleft/gpl.html GNU Public License
- * @version   Release: @package_version@
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
 class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
@@ -53,17 +32,20 @@ class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $startToken = $tokens[$stackPtr]['parenthesis_opener'];
-        $endToken = $tokens[$stackPtr]['parenthesis_closer'];
-        $startToken = $phpcsFile->findNext(T_AS, $startToken, $endToken);
-        $valueToken = $phpcsFile->findNext(T_VARIABLE, $startToken, $endToken);
-        $tmpToken = $phpcsFile->findNext(T_VARIABLE, $valueToken + 1, $endToken);
-        // If $tmpToken is not false, the foreach loop uses $key => $value
-        $keyToken = false;
 
-        if ($tmpToken !== false) {
-            $keyToken = $valueToken;
-            $valueToken = $tmpToken;
+        $startTokenPtr = $tokens[$stackPtr]['parenthesis_opener'];
+        $endTokenPtr = $tokens[$stackPtr]['parenthesis_closer'];
+
+        $startTokenPtr = $phpcsFile->findNext(T_AS, $startTokenPtr, $endTokenPtr);
+
+        $valueTokenPtr = $phpcsFile->findNext(T_VARIABLE, $startTokenPtr, $endTokenPtr);
+        $tmpTokenPtr = $phpcsFile->findNext(T_VARIABLE, $valueTokenPtr + 1, $endTokenPtr);
+        // If $tmpToken is not false, the foreach loop uses $key => $value
+        $keyTokenPtr = false;
+
+        if ($tmpTokenPtr !== false) {
+            $keyTokenPtr = $valueTokenPtr;
+            $valueTokenPtr = $tmpTokenPtr;
             unset($tmpToken);
         }
 
@@ -74,50 +56,72 @@ class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
             $scopeCloser = $tokens[$stackPtr]['scope_closer'];
         } else {
             // If you are using inline control structure
-            $scopeOpener = $endToken + 1;
-            $scopeCloser = $phpcsFile->findEndOfStatement($endToken);
+            $scopeOpener = $endTokenPtr + 1;
+            $scopeCloser = $phpcsFile->findEndOfStatement($endTokenPtr) + 1;
         }
 
-        if ($keyToken !== false
-            && $phpcsFile->findNext(
-                T_VARIABLE,
-                $scopeOpener,
-                $scopeCloser,
-                false,
-                $tokens[$keyToken]['content']
-            ) === false
+        if ($keyTokenPtr !== false
+            && !$this->isVariableInsideBlock($phpcsFile, $scopeOpener, $scopeCloser, $keyTokenPtr)
         ) {
             // If a $key is used in foreach loop but not used in the foreach body
-            $message = 'The usage of the key variable %s is not necessary. Please remove this.';
-            $phpcsFile->addError($message, $stackPtr, 'KeyVariableNotNecessary', [$tokens[$keyToken]['content']]);
+            $phpcsFile->addError(
+                'The usage of the key variable \'%s\' is not necessary. Please remove this.',
+                $stackPtr,
+                'KeyVariableNotNecessary',
+                [$tokens[$keyTokenPtr]['content']]
+            );
         }
 
-        if ($tokens[$valueToken]['content'] === '$_'
-            && $phpcsFile->findNext(
-                T_VARIABLE,
-                $scopeOpener,
-                $scopeCloser,
-                false,
-                $tokens[$valueToken]['content']
-            ) !== false
+        if ($tokens[$valueTokenPtr]['content'] === '$_'
+            && $this->isVariableInsideBlock($phpcsFile, $scopeOpener, $scopeCloser, $valueTokenPtr)
         ) {
             // If the $value is named $_ AND used in the foreach body, this variable has to be renamed
-            $message = 'The variable $_ is used in the foreach body. '
-                . 'Please rename this variable to a more useful name.';
-            $phpcsFile->addError($message, $stackPtr, 'ValueVariableWrongName');
-        } elseif ($tokens[$valueToken]['content'] !== '$_'
-            && $phpcsFile->findNext(
-                T_VARIABLE,
-                $scopeOpener,
-                $scopeCloser,
-                false,
-                $tokens[$valueToken]['content']
-            ) === false
+            $phpcsFile->addError(
+                'The variable \'$_\' is used in the foreach body. '
+                    . 'Please rename this variable to a more useful name.',
+                $stackPtr,
+                'ValueVariableWrongName'
+            );
+        } elseif ($tokens[$valueTokenPtr]['content'] !== '$_'
+            && !$this->isVariableInsideBlock($phpcsFile, $scopeOpener, $scopeCloser, $valueTokenPtr)
         ) {
             // If the $value is NOT named $_, but no one will use this in the foreach body,
             // this variable has to be renamed
-            $message = 'The variable %s is NOT used in the foreach body. Please rename this variable to $_.';
-            $phpcsFile->addError($message, $stackPtr, 'ValueVariableNotUsed', [$tokens[$valueToken]['content']]);
+            $phpcsFile->addError(
+                'The variable \'%s\' is NOT used in the foreach body. Please rename this variable to $_.',
+                $stackPtr,
+                'ValueVariableNotUsed',
+                [$tokens[$valueTokenPtr]['content']]
+            );
         }
+    }
+
+    protected function isVariableInsideBlock(\PHP_CodeSniffer_File $phpcsFile, $scopeOpener, $scopeCloser, $contentPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+        $variableName = $tokens[$contentPtr]['content'];
+
+        $isVariableExist = $phpcsFile->findNext(
+            T_VARIABLE,
+            $scopeOpener + 1,
+            $scopeCloser - 1,
+            false,
+            $variableName
+        ) !== false;
+
+        if ($isVariableExist) {
+            return true;
+        }
+
+        $nextPtr = $scopeOpener + 1;
+        $isVariableInsideString = false;
+
+        while (($nextPtr = $phpcsFile->findNext(T_DOUBLE_QUOTED_STRING, $nextPtr + 1, $scopeCloser)) !== false) {
+            if (strpos($tokens[$nextPtr]['content'], $variableName) !== false) {
+                $isVariableInsideString = true;
+            }
+        }
+
+        return $isVariableInsideString;
     }
 }

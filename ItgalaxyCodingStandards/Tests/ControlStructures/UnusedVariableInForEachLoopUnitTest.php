@@ -27,7 +27,10 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_UnusedVariableInForEachLoo
             81 => 1,
             87 => 1,
             94 => 1,
-            100 => 1
+            100 => 1,
+            111 => 1,
+            115 => 1,
+            123 => 2
         ];
     }
 
