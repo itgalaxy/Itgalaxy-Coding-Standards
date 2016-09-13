@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Classes_ClassCreateInstanceUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Classes_InstantiateClassParensUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -19,7 +19,9 @@ class ItgalaxyCodingStandards_Tests_Classes_ClassCreateInstanceUnitTest extends 
             6 => 1,
             7 => 1,
             8 => 1,
-            9 => 1
+            9 => 1,
+            10 => 1,
+            12 => 1
         ];
     }
 

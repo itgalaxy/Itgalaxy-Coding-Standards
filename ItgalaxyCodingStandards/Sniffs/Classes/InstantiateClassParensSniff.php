@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
 
-class ClassCreateInstanceSniff implements \PHP_CodeSniffer_Sniff
+class InstantiateClassParensSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -43,7 +43,7 @@ class ClassCreateInstanceSniff implements \PHP_CodeSniffer_Sniff
             ) {
                 if ($tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
                     $phpcsFile->addError(
-                        'Use parentheses when instantiating classes',
+                        'Use parentheses when instantiating class',
                         $stackPtr,
                         'Invalid'
                     );

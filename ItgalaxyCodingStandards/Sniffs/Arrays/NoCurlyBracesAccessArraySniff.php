@@ -34,7 +34,7 @@ class NoCurlyBracesAccessArraySniff implements \PHP_CodeSniffer_Sniff
         $phpcsFile->addError(
             'Not use curly braces to access array throw index or key',
             $stackPtr,
-            'DisallowCurlyBracesAccessArray'
+            'Invalid'
         );
     }
 }

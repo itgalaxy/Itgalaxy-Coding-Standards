@@ -7,6 +7,12 @@ new $foo;
 new Foo ();
 new static;
 new self;
+new Foo
+();
+new Foo
+
+
+();
 
 // good
 new Foo();
