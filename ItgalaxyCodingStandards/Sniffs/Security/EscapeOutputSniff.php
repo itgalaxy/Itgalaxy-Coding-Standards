@@ -303,14 +303,14 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
                     );
 
                     if ($ternary) {
-                        $next_paren = $phpcsFile->findNext(
+                        $nextParen = $phpcsFile->findNext(
                             T_OPEN_PARENTHESIS,
                             $i + 1,
                             $tokens[$i]['parenthesis_closer']
                         );
 
                         // We only do it if the ternary isn't within a subset of parentheses.
-                        if (!$next_paren || $ternary > $tokens[$next_paren]['parenthesis_closer']) {
+                        if (!$nextParen || $ternary > $tokens[$nextParen]['parenthesis_closer']) {
                             $i = $ternary;
                         }
                     }

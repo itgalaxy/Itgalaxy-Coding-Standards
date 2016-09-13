@@ -572,7 +572,8 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
             $phpcsFile->addError($error, $stackPtr, 'MultiLineNotAllowed');
 
             // Todo should fixable
-            /* if ($fix === true) {
+            /*
+            if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
 
                 for ($i = ($arrayStart + 1); $i < $arrayEnd; $i++) {
@@ -592,7 +593,8 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                 }
 
                 $phpcsFile->fixer->endChangeset();
-            }*/
+            }
+            */
 
             return;
         }

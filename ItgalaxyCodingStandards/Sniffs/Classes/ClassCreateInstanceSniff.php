@@ -33,7 +33,7 @@ class ClassCreateInstanceSniff implements \PHP_CodeSniffer_Sniff
         ];
 
         $object = $stackPtr;
-        $line   = $tokens[$object]['line'];
+        $line = $tokens[$object]['line'];
 
         while ($object && $tokens[$object]['line'] === $line) {
             $object = $phpcsFile->findNext($allowed, $object + 1);

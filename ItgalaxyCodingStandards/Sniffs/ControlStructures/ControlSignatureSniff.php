@@ -499,7 +499,6 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             if ($found !== 1) {
                 $error = 'Expected 1 space after closing brace; %s found';
                 $data = [$found];
-                // Todo should be fixable
                 $phpcsFile->addError($error, $closer, 'SpaceAfterCloseBrace', $data);
             }
         }

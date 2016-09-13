@@ -57,7 +57,6 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
 
     /**
      * Processes this test, when one of its tokens is encountered.
-     * Todo multiline function call and multiline array in conditional
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
@@ -248,7 +247,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
         $openBrace = $tokens[$stackPtr]['scope_opener'];
         $next = $phpcsFile->findNext(T_WHITESPACE, $closeBracket + 1, $openBrace, true);
 
-        // Todo more powerfull check if comments
+        // Info more powerfull check if comments
         if ($next !== false) {
             // Probably comments in between tokens, so don't check.
             return;

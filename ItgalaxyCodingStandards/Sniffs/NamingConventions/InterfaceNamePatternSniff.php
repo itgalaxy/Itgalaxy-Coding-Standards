@@ -28,7 +28,7 @@ class InterfaceNamePatternSniff implements \PHP_CodeSniffer_Sniff
     {
         $name = $phpcsFile->getDeclarationName($stackPtr);
 
-        if (!preg_match($this->pattern, $name)) {
+        if (preg_match($this->pattern, $name) === 0) {
             $phpcsFile->addError(
                 'Interface does not match the pattern "' . $this->pattern . '"',
                 $stackPtr,

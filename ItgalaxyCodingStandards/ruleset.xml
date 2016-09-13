@@ -147,9 +147,13 @@
 
     <rule ref="Squiz.Functions.MultiLineFunctionDeclaration"/>
 
-    <rule ref="Squiz.NamingConventions.ValidFunctionName"/>
+    <rule ref="Squiz.NamingConventions.ValidFunctionName">
+        <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
+    </rule>
 
-    <rule ref="Squiz.NamingConventions.ValidVariableName"/>
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
+    </rule>
 
     <rule ref="Squiz.Objects.DisallowObjectStringIndex"/>
 

@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_ControlStructures_ValidBreakStatementsInSwitchesUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_ControlStructures_ValidBreakStatementsInSwitchUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -31,4 +31,3 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ValidBreakStatementsInSwit
         return [];
     }
 }
-

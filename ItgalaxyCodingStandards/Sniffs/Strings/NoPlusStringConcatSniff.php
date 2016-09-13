@@ -16,8 +16,8 @@ class NoPlusStringConcatSniff implements \PHP_CodeSniffer_Sniff
         $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true);
 
         if (!(in_array($tokens[$prev]['code'], \PHP_CodeSniffer_Tokens::$stringTokens)
-            || in_array($tokens[$next]['code'], \PHP_CodeSniffer_Tokens::$stringTokens)
-        )) {
+                || in_array($tokens[$next]['code'], \PHP_CodeSniffer_Tokens::$stringTokens))
+        ) {
             return;
         }
 

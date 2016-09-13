@@ -23,7 +23,7 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class ValidBreakStatementsInSwitchesSniff implements \PHP_CodeSniffer_Sniff
+class ValidBreakStatementsInSwitchSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports

@@ -333,12 +333,12 @@ class NoDirectlyInputSniff implements \PHP_CodeSniffer_Sniff
             if (preg_match(
                 '/\$\{?(_(GET|POST|REQUEST|COOKIE|SERVER|FILES|ENV|SESSION)|GLOBALS)/',
                 $inputType['content']
-            )) {
+            ) === 1) {
                 return true;
             }
         } elseif ($inputType['code'] == T_STRING) {
             // Need investigation about another functions
-            if (preg_match('/^(getenv|apache_getenv)$/', $inputType['content'])) {
+            if (preg_match('/^(getenv|apache_getenv)$/', $inputType['content']) === 1) {
                 return true;
             }
         }

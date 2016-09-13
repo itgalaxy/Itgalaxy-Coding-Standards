@@ -13,12 +13,13 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
     public function getErrorList($testFile = '')
     {
         /*
-         * Todo throw error on
+         * Info throw error on
          * array(
          *   'foo',
          *   'bar', 'foo-bar'
          * );
-         */
+        **/
+
         switch ($testFile) {
             case 'ArrayDeclarationUnitTest.1.inc':
                 return [

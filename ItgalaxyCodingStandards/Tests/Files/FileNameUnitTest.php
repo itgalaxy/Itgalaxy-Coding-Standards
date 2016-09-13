@@ -14,9 +14,7 @@ class ItgalaxyCodingStandards_Tests_Files_FileNameUnitTest extends AbstractSniff
     {
         switch ($testFile) {
             case 'FileNameUnitTest.1.inc':
-                return [
-
-                ];
+                return [];
             case 'FileNameUnitTest.2_.inc':
                 return [1 => 1];
             default:

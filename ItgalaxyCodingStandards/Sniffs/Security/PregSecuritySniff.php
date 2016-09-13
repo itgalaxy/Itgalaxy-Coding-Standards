@@ -64,7 +64,8 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
      *
      * @return void
      */
-    public function processFunctionCall(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function processFunctionCall(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $argument = $this->getArgument(1);
 
@@ -103,7 +104,7 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
             $delimiter = preg_quote($delimiterStart, '/');
 
             // Check if there is the evil e flag.
-            if (preg_match('/' . $delimiter . '[\w]{0,}e[\w]{0,}$/', substr($pattern, 0, -1))) {
+            if (preg_match('/' . $delimiter . '[\w]{0,}e[\w]{0,}$/', substr($pattern, 0, -1)) === 1) {
                 $warn = 'Using the e flag in %s is a possible security risk. '
                     . 'For details see http://drupal.org/node/750148';
                 $phpcsFile->addError(
