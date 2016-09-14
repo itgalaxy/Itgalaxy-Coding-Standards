@@ -438,7 +438,7 @@
 
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
-            <property name="forbiddenFunctions" type="array" value="die=>exit,sizeof=>count,delete=>unset,print=>echo,chop=>rtrim,diskfreespace=>disk_free_space,doubleval=>floatval,fputs=>fwrite,gzputs=>gzwrite,strchr=>strstr,recode=>recode_string,pos=>current,key_exists=>array_key_exists,join=>implode,is_writeable=>is_writable,is_real=>is_float,is_long=>is_int,is_integer=>is_int,is_double=>is_float,ini_alter=>ini_set,_=>gettext,is_null=>null,create_function=>null,phpinfo=>null,extract=>null,session_commit=>session_write_close,session_is_registered=>null,session_register=>null,session_unregister=>null,show_source=>highlight_file,var_export=>null,error_log=>null,var_dump=>null,user_error=>trigger_error,print_r=>null,debug_print_backtrace=>null,split=>null,spliti=>null"/>
+            <property name="forbiddenFunctions" type="array" value="die=>exit,sizeof=>count,delete=>unset,print=>echo,chop=>rtrim,diskfreespace=>disk_free_space,doubleval=>floatval,fputs=>fwrite,gzputs=>gzwrite,strchr=>strstr,recode=>recode_string,pos=>current,key_exists=>array_key_exists,join=>implode,is_writeable=>is_writable,is_real=>is_float,is_long=>is_int,is_integer=>is_int,is_double=>is_float,ini_alter=>ini_set,_=>gettext,is_null=>null,create_function=>null,phpinfo=>null,extract=>null,session_commit=>session_write_close,session_is_registered=>null,session_register=>null,session_unregister=>null,show_source=>highlight_file,var_export=>null,error_log=>null,var_dump=>null,user_error=>trigger_error,print_r=>null,debug_print_backtrace=>null,split=>null,spliti=>null,ereg=>null,ereg_replace=>null"/>
         </properties>
     </rule>
 

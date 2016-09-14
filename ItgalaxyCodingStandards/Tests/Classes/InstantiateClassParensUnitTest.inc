@@ -31,3 +31,4 @@ new $foo($this->foo);
 new static();
 new static(true);
 new static($this->foo);
+new self::$variable();

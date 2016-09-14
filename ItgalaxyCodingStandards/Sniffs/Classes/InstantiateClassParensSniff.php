@@ -29,7 +29,8 @@ class InstantiateClassParensSniff implements \PHP_CodeSniffer_Sniff
             T_STRING,
             T_NS_SEPARATOR,
             T_VARIABLE,
-            T_STATIC
+            T_STATIC,
+            T_DOUBLE_COLON
         ];
 
         $object = $stackPtr;
