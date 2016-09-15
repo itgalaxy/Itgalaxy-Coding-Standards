@@ -53,7 +53,8 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'split' => null,
         'spliti' => null,
         'ereg' => null,
-        'ereg_replace' => null
+        'ereg_replace' => null,
+        'register_globals' => null
     ];
 
     /**
