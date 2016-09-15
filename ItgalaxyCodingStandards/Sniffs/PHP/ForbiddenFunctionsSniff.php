@@ -36,7 +36,17 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'is_long' => 'is_int',
         'is_integer' => 'is_int',
         'is_double' => 'is_float',
-        'ini_alter' => 'ini_set',
+        'dl' => null,
+        'error_reporting' => null,
+        'ini_alter' => null,
+        'ini_restore' => null,
+        'ini_set' => null,
+        'magic_quotes_runtime' => null,
+        'set_magic_quotes_runtime' => null,
+        'apache_setenv' => null,
+        'putenv' => null,
+        'set_include_path' => null,
+        'restore_include_path' => null,
         '_' => 'gettext',
         'phpinfo' => null,
         'extract' => null,
@@ -49,12 +59,15 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'error_log' => null,
         'var_dump' => null,
         'user_error' => 'trigger_error',
+        'set_error_handler' => null,
         'debug_print_backtrace' => null,
         'split' => null,
         'spliti' => null,
         'ereg' => null,
         'ereg_replace' => null,
-        'register_globals' => null
+        'register_globals' => null,
+        'urlencode' => 'rawurlencode',
+        'urldecode' => 'rawurldecode'
     ];
 
     /**
