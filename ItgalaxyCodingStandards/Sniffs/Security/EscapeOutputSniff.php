@@ -62,11 +62,12 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
      * @var array
      */
     public $formattingFunctions = [
-        'implode' => 0,
-        'join' => 1,
-        'nl2br' => 2,
-        'sprintf' => 3,
-        'vsprintf' => 4
+        'array_fill' => 0,
+        'implode' => 1,
+        'join' => 2,
+        'nl2br' => 3,
+        'sprintf' => 4,
+        'vsprintf' => 5
     ];
 
     /**
