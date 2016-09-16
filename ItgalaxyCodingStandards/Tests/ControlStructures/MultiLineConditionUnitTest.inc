@@ -188,3 +188,5 @@ if ($condition1) {
     {
     }
 }
+
+if ($color) echo 'foo';

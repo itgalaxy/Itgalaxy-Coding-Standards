@@ -68,6 +68,11 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        if (isset($tokens[$stackPtr]['parenthesis_opener']) === false) {
+            return;
+        }
+
+        $emptyTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
         $openBracket = $tokens[$stackPtr]['parenthesis_opener'];
         $closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
         $spaceAfterOpen = 0;
@@ -139,7 +144,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
                                 $phpcsFile->fixer->addNewlineBefore($closeBracket);
                             } else {
                                 $next = $phpcsFile->findNext(
-                                    \PHP_CodeSniffer_Tokens::$emptyTokens,
+                                    $emptyTokens,
                                     $next + 1,
                                     null,
                                     true
@@ -193,7 +198,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
                 }
 
                 if ($tokens[$i]['line'] !== $tokens[$closeBracket]['line']) {
-                    $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $i, null, true);
+                    $next = $phpcsFile->findNext($emptyTokens, $i, null, true);
 
                     if (isset(\PHP_CodeSniffer_Tokens::$booleanOperators[$tokens[$next]['code']]) === false) {
                         $error = 'Each line in a multi-line IF statement must begin with a boolean operator';
@@ -201,7 +206,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
 
                         if ($fix === true) {
                             $prev = $phpcsFile->findPrevious(
-                                \PHP_CodeSniffer_Tokens::$emptyTokens,
+                                $emptyTokens,
                                 $i - 1,
                                 $openBracket,
                                 true
@@ -263,6 +268,8 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
             && $tokens[$closeBracket + 1]['code'] === T_WHITESPACE
         ) {
             $length = strlen($tokens[$closeBracket + 1]['content']);
+        } else {
+            $length = 1;
         }
 
         if ($length === 1) {
