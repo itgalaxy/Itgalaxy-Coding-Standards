@@ -13,7 +13,7 @@ class ItgalaxyCodingStandards_Tests_NamingConventions_AbstractNameUnitTest exten
     public function getErrorList()
     {
         return [
-            14 => 1,
+            3 => 1,
             25 => 1
         ];
     }

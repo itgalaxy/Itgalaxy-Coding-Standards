@@ -3,6 +3,8 @@ namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
 class AbstractNameSniff implements \PHP_CodeSniffer_Sniff
 {
+    public $pattern = '/^[A-Z][A-Za-z0-9]*Abstract$/';
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -17,7 +19,7 @@ class AbstractNameSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
+     * @param int                   $stackPtr  The position of the current token in
      *                                        the stack passed in $tokens.
      *
      * @return void
@@ -28,13 +30,13 @@ class AbstractNameSniff implements \PHP_CodeSniffer_Sniff
         $name = $phpcsFile->findNext(T_STRING, $stackPtr);
         $function = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
 
-        if ($name && ($function === null
-                || $name <= $function) && substr($tokens[$name]['content'], 0, 8) != 'Abstract'
+        if ($name && ($function === null || $name <= $function)
+            && preg_match($this->pattern, $tokens[$name]['content']) === 0
         ) {
             $phpcsFile->addError(
-                'Abstract class name is not prefixed with "Abstract"',
+                'Abstract class does not match the pattern "' . $this->pattern . '"',
                 $stackPtr,
-                'Invalid'
+                'InvalidAbstractNamePattern'
             );
         }
     }
