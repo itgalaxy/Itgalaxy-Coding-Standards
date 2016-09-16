@@ -21,7 +21,8 @@ class ItgalaxyCodingStandards_Tests_Classes_InstantiateClassParensUnitTest exten
             8 => 1,
             9 => 1,
             10 => 1,
-            12 => 1
+            12 => 1,
+            16 => 1
         ];
     }
 

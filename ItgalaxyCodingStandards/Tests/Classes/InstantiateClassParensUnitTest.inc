@@ -13,6 +13,7 @@ new Foo
 
 
 ();
+new self::$variable;
 
 // good
 new Foo();
