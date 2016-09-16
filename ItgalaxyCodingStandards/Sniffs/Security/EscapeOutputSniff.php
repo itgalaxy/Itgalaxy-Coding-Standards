@@ -81,10 +81,12 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
         'filter_input' => 0,
         'filter_var' => 1,
         'intval' => 2,
-        'json_encode' => 3,
-        'number_format' => 4,
-        'htmlspecialchars' => 5,
-        'htmlentities' => 6
+        'floatval' => 3,
+        'boolval' => 4,
+        'json_encode' => 5,
+        'number_format' => 6,
+        'htmlspecialchars' => 7,
+        'htmlentities' => 8
     ];
 
     /**
