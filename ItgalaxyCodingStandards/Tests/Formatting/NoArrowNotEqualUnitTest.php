@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_DisallowArrowNotEqualUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_NoArrowNotEqualUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

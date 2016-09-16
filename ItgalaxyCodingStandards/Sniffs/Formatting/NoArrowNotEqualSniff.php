@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class DisallowArrowNotEqualSniff implements \PHP_CodeSniffer_Sniff
+class NoArrowNotEqualSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -26,17 +26,14 @@ class DisallowArrowNotEqualSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['content'] === '<>') {
-            $error = 'Is not equal statement must be `!=`.';
-            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'WrongIsNotEqual');
-
-            if ($fix === true) {
-                $phpcsFile
-                    ->fixer
-                    ->replaceToken($stackPtr, '!=');
-            }
-
+        if ($tokens[$stackPtr]['content'] !== '<>') {
             return;
+        }
+
+        $fix = $phpcsFile->addFixableError('Not equal must be "!="', $stackPtr, 'WrongIsNotEqual');
+
+        if ($fix === true) {
+            $phpcsFile->fixer->replaceToken($stackPtr, '!=');
         }
     }
 }
