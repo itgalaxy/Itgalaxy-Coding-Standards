@@ -359,3 +359,7 @@ true
 ) {
     echo 'test';
 }
+
+if ($test)    { /*one space after the bracket*/
+    echo 'true';
+}

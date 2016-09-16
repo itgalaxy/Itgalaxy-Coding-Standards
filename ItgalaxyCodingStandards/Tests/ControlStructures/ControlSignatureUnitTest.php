@@ -65,8 +65,6 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ControlSignatureUnitTest e
             290 => 2,
             296 => 2,
             302 => 2,
-            // Todo more powerfull
-            // 308 => 1,
             316 => 1,
             326 => 1,
             330 => 1,
@@ -82,7 +80,8 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_ControlSignatureUnitTest e
             351 => 3,
             352 => 2,
             354 => 1,
-            357 => 2
+            357 => 2,
+            363 => 2
         ];
     }
 

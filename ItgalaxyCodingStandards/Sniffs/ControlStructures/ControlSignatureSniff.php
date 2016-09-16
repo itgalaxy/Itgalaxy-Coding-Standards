@@ -61,7 +61,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[($stackPtr + 1)]) === false) {
+        if (isset($tokens[$stackPtr + 1]) === false) {
             return;
         }
 
@@ -76,7 +76,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 if (strpos($tokens[($parenOpener + 1)]['content'], $phpcsFile->eolChar) !== false) {
                     $spaceAfterOpen = 'newline';
                 } else {
-                    $spaceAfterOpen = strlen($tokens[($parenOpener + 1)]['content']);
+                    $spaceAfterOpen = strlen($tokens[$parenOpener + 1]['content']);
                 }
             }
 
@@ -88,7 +88,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                     $this->requiredSpacesAfterOpen,
                     $spaceAfterOpen
                 ];
-                $fix = $phpcsFile->addFixableError($error, ($parenOpener + 1), 'SpacingAfterOpenParenthesis', $data);
+                $fix = $phpcsFile->addFixableError($error, $parenOpener + 1, 'SpacingAfterOpenParenthesis', $data);
 
                 if ($fix === true) {
                     $padding = str_repeat(' ', $this->requiredSpacesAfterOpen);
@@ -96,9 +96,9 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                     if ($spaceAfterOpen === 0) {
                         $phpcsFile->fixer->addContent($parenOpener, $padding);
                     } elseif ($spaceAfterOpen === 'newline') {
-                        $phpcsFile->fixer->replaceToken(($parenOpener + 1), '');
+                        $phpcsFile->fixer->replaceToken($parenOpener + 1, '');
                     } else {
-                        $phpcsFile->fixer->replaceToken(($parenOpener + 1), $padding);
+                        $phpcsFile->fixer->replaceToken($parenOpener + 1, $padding);
                     }
                 }
             }
@@ -106,8 +106,8 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             if ($tokens[$parenOpener]['line'] === $tokens[$parenCloser]['line']) {
                 $spaceBeforeClose = 0;
 
-                if ($tokens[($parenCloser - 1)]['code'] === T_WHITESPACE) {
-                    $spaceBeforeClose = strlen(ltrim($tokens[($parenCloser - 1)]['content'], $phpcsFile->eolChar));
+                if ($tokens[$parenCloser - 1]['code'] === T_WHITESPACE) {
+                    $spaceBeforeClose = strlen(ltrim($tokens[$parenCloser - 1]['content'], $phpcsFile->eolChar));
                 }
 
                 $phpcsFile->recordMetric(
@@ -140,13 +140,13 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
         // Single space after the keyword.
         $found = 1;
 
-        if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
+        if ($tokens[$stackPtr + 1]['code'] !== T_WHITESPACE) {
             $found = 0;
-        } elseif ($tokens[($stackPtr + 1)]['content'] !== ' ') {
-            if (strpos($tokens[($stackPtr + 1)]['content'], $phpcsFile->eolChar) !== false) {
+        } elseif ($tokens[$stackPtr + 1]['content'] !== ' ') {
+            if (strpos($tokens[$stackPtr + 1]['content'], $phpcsFile->eolChar) !== false) {
                 $found = 'newline';
             } else {
-                $found = strlen($tokens[($stackPtr + 1)]['content']);
+                $found = strlen($tokens[$stackPtr + 1]['content']);
             }
         }
 
@@ -162,7 +162,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 if ($found === 0) {
                     $phpcsFile->fixer->addContent($stackPtr, ' ');
                 } else {
-                    $phpcsFile->fixer->replaceToken(($stackPtr + 1), ' ');
+                    $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
                 }
             }
         }
@@ -171,44 +171,47 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
         if (isset($tokens[$stackPtr]['parenthesis_closer']) === true
             && isset($tokens[$stackPtr]['scope_opener']) === true
         ) {
-            $closer = $tokens[$stackPtr]['parenthesis_closer'];
-            $opener = $tokens[$stackPtr]['scope_opener'];
-            $content = $phpcsFile->getTokensAsString(($closer + 1), ($opener - $closer - 1));
+            $closer  = $tokens[$stackPtr]['parenthesis_closer'];
+            $opener  = $tokens[$stackPtr]['scope_opener'];
+            $content = $phpcsFile->getTokensAsString($closer + 1, $opener - $closer - 1);
 
             if ($content !== ' ') {
+
                 $error = 'Expected 1 space after closing parenthesis; found %s';
 
                 if (trim($content) === '') {
-                    if (strpos($content, $phpcsFile->eolChar) !== false) {
-                        $found = substr_count($content, $phpcsFile->eolChar) . ' newline';
-                    } else {
-                        $found = strlen($content);
-                    }
+                    $found = strlen($content);
                 } else {
                     $found = '"' . str_replace($phpcsFile->eolChar, '\n', $content) . '"';
                 }
 
-                $fix = $phpcsFile->addFixableError(
-                    $error,
-                    $closer,
-                    'SpaceAfterCloseParenthesis',
-                    [$found]
-                );
+                $fix = $phpcsFile->addFixableError($error, $closer, 'SpaceAfterCloseParenthesis', [$found]);
 
                 if ($fix === true) {
-                    if ($closer === $opener - 1) {
+                    if ($closer === ($opener - 1)) {
                         $phpcsFile->fixer->addContent($closer, ' ');
                     } else {
                         $phpcsFile->fixer->beginChangeset();
-                        $phpcsFile->fixer->addContent($closer, ' ' . $tokens[$opener]['content']);
-                        $phpcsFile->fixer->replaceToken($opener, '');
 
-                        if ($tokens[$opener]['line'] !== $tokens[$closer]['line']) {
-                            $next = $phpcsFile->findNext(T_WHITESPACE, ($opener + 1), null, true);
+                        if (trim($content) === '') {
+                            $phpcsFile->fixer->addContent($closer, ' ');
 
-                            if ($tokens[$next]['line'] !== $tokens[$opener]['line']) {
-                                for ($i = ($opener + 1); $i < $next; $i++) {
+                            if ($found !== 0) {
+                                for ($i = $closer + 1; $i < $opener; $i++) {
                                     $phpcsFile->fixer->replaceToken($i, '');
+                                }
+                            }
+                        } else {
+                            $phpcsFile->fixer->addContent($closer, ' '.$tokens[$opener]['content']);
+                            $phpcsFile->fixer->replaceToken($opener, '');
+
+                            if ($tokens[$opener]['line'] !== $tokens[$closer]['line']) {
+                                $next = $phpcsFile->findNext(T_WHITESPACE, ($opener + 1), null, true);
+
+                                if ($tokens[$next]['line'] !== $tokens[$opener]['line']) {
+                                    for ($i = $opener + 1; $i < $next; $i++) {
+                                        $phpcsFile->fixer->replaceToken($i, '');
+                                    }
                                 }
                             }
                         }
@@ -223,7 +226,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
         if (isset($tokens[$stackPtr]['scope_closer']) === true) {
             $closer = $tokens[$stackPtr]['scope_closer'];
 
-            for ($prev = ($closer - 1); $prev > 0; $prev--) {
+            for ($prev = $closer - 1; $prev > 0; $prev--) {
                 $code = $tokens[$prev]['code'];
 
                 if ($code === T_WHITESPACE) {
@@ -248,7 +251,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 if ($fix === true) {
                     $phpcsFile->fixer->beginChangeset();
 
-                    for ($i = ($closer - 1); $i > $prev; $i--) {
+                    for ($i = $closer - 1; $i > $prev; $i--) {
                         $phpcsFile->fixer->replaceToken($i, '');
                     }
 
@@ -259,7 +262,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 
             $nextContent = $phpcsFile->findNext(
                 T_WHITESPACE,
-                ($closer + 1),
+                $closer + 1,
                 null,
                 true
             );
@@ -281,7 +284,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                     $lastContent = $this->getLastCommentOrSelf($phpcsFile, $nextContent);
                     $nextLastContent = $phpcsFile->findNext(
                         [T_WHITESPACE],
-                        ($lastContent + 1),
+                        $lastContent + 1,
                         null,
                         true
                     );
@@ -309,9 +312,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                     );
 
                     if ($fix === true) {
-                        $phpcsFile
-                            ->fixer
-                            ->addNewline($closer);
+                        $phpcsFile->fixer->addNewline($closer);
                     }
                 }
             }
@@ -321,7 +322,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
         if (isset($tokens[$stackPtr]['scope_opener']) === true) {
             $opener = $tokens[$stackPtr]['scope_opener'];
 
-            for ($next = ($opener + 1); $next < $phpcsFile->numTokens; $next++) {
+            for ($next = $opener + 1; $next < $phpcsFile->numTokens; $next++) {
                 $code = $tokens[$next]['code'];
 
                 if ($code === T_WHITESPACE) {
@@ -359,12 +360,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 }
             }
 
-            $prevContent = $phpcsFile->findPrevious(
-                T_WHITESPACE,
-                ($stackPtr - 1),
-                null,
-                true
-            );
+            $prevContent = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
 
             if ($tokens[$tokens[$stackPtr]['scope_opener']]['content'] !== ':'
                 && $tokens[$prevContent]['code'] !== T_OPEN_TAG
@@ -407,15 +403,9 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                     );
 
                     if ($fix === true) {
-                        $phpcsFile
-                            ->fixer
-                            ->beginChangeset();
-                        $phpcsFile
-                            ->fixer
-                            ->addNewline($prevContent);
-                        $phpcsFile
-                            ->fixer
-                            ->endChangeset();
+                        $phpcsFile->fixer->beginChangeset();
+                        $phpcsFile->fixer->addNewline($prevContent);
+                        $phpcsFile->fixer->endChangeset();
                     }
                 }
             }
@@ -424,11 +414,11 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             $closer = $tokens[$stackPtr]['parenthesis_closer'];
             $found = 0;
 
-            if (isset($tokens[($closer + 1)]) && $tokens[($closer + 1)]['code'] === T_WHITESPACE) {
-                if (strpos($tokens[($closer + 1)]['content'], $phpcsFile->eolChar) !== false) {
+            if (isset($tokens[$closer + 1]) && $tokens[$closer + 1]['code'] === T_WHITESPACE) {
+                if (strpos($tokens[$closer + 1]['content'], $phpcsFile->eolChar) !== false) {
                     $found = 'newline';
                 } else {
-                    $found = strlen($tokens[($closer + 1)]['content']);
+                    $found = strlen($tokens[$closer + 1]['content']);
                 }
             }
 
@@ -438,7 +428,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 $fix = $phpcsFile->addFixableError($error, $closer, 'SpaceBeforeSemicolon', $data);
 
                 if ($fix === true) {
-                    $phpcsFile->fixer->replaceToken(($closer + 1), '');
+                    $phpcsFile->fixer->replaceToken($closer + 1, '');
                 }
             }
         }
@@ -476,7 +466,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 
                 $closer = $tokens[$stackPtr]['scope_closer'];
             } else {
-                $closer = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+                $closer = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
             }
 
             if ($closer === false || $tokens[$closer]['code'] !== T_CLOSE_CURLY_BRACKET) {
