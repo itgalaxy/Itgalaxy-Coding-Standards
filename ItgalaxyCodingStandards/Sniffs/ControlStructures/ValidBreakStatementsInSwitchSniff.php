@@ -57,12 +57,14 @@ class ValidBreakStatementsInSwitchSniff implements \PHP_CodeSniffer_Sniff
             $conditionPositions = array_keys($tokens[$stackPtr]['conditions']);
 
             // proof that the parent node is a switch
-            if ($tokens[$conditionPositions[0]]['code'] === T_SWITCH) {
-                $phpcsFile->addError(
-                    'Too many breaks! Expected one break per case; but found more than one break;',
-                    $stackPtr
-                );
+            if ($tokens[$conditionPositions[0]]['code'] !== T_SWITCH) {
+                return;
             }
+
+            $phpcsFile->addError(
+                'Too many breaks! Expected one break per case; but found more than one break;',
+                $stackPtr
+            );
         }
     }
 }
