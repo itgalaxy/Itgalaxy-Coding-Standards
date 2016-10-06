@@ -1,30 +1,4 @@
 <?php
-/**
- * PEAR_Sniffs_ControlStructures_MultiLineConditionSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-/**
- * PEAR_Sniffs_ControlStructures_MultiLineConditionSniff.
- *
- * Ensure multi-line IF conditions are defined correctly.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: @package_version@
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
 class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
@@ -42,6 +16,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
      * @var int
      */
     public $indent = 4;
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -59,8 +34,8 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
