@@ -37,11 +37,25 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
         T_IS_NOT_IDENTICAL
     ];
 
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
     public function register()
     {
         return [T_IF];
     }
 
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
+     *
+     * @return void
+     */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
@@ -70,7 +84,7 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
                 . 'or `$value = %s(...arguments); '
                 . 'if ($value !== false) { // Logic } else { // Logic }`',
                 $stackPtr,
-                'ImproperValueTesting',
+                'ExplicitReturnValueCheck',
                 [
                     $foundFunctionName,
                     $foundFunctionName,
