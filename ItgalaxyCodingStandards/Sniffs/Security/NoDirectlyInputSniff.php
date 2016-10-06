@@ -319,8 +319,8 @@ class NoDirectlyInputSniff implements \PHP_CodeSniffer_Sniff
 
             $phpcsFile->addError(
                 'Function '
-                . $tokens[$stackPtr]['content']
-                . '() detected with parameter directly from user input',
+                    . $tokens[$stackPtr]['content']
+                    . '() detected with parameter directly from user input',
                 $stackPtr,
                 'ParameterDirectlyFromUserInput'
             );
