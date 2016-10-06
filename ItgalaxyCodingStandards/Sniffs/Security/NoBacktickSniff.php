@@ -25,7 +25,7 @@ class NoBacktickSniff implements \PHP_CodeSniffer_Sniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $phpcsFile->addError(
-            'Forbidden to use backtick operator. Back quotes can only be used inside quotes.',
+            'Forbidden to use backtick operator, back quotes can only be used inside quotes',
             $stackPtr,
             'NoBacktick'
         );
