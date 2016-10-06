@@ -1,17 +1,4 @@
 <?php
-/**
- * Makes sure that all variables embedded in strings are enclosed in braces.
- *
- * @package DWS
- * @subpackage Sniffs
- */
-/**
- * Makes sure that all variables embedded in strings are enclosed in braces.
- *
- * @package DWS
- * @subpackage Sniffs
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
 class EmbeddedVariablesSniff implements \PHP_CodeSniffer_Sniff
@@ -25,13 +12,15 @@ class EmbeddedVariablesSniff implements \PHP_CodeSniffer_Sniff
     {
         return [T_DOUBLE_QUOTED_STRING];
     }
+
     /**
-     * Processes this test, when one of its tokens is encountered.
+     * Returns leading comment or self.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int $stackPtr The position of the current token in the stack passed in $tokens.
+     * @param \PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
-     * @return void
+     * @return bool|int
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
@@ -61,8 +50,8 @@ class EmbeddedVariablesSniff implements \PHP_CodeSniffer_Sniff
                     if ($openBraces < 1) {
                         $phpcsFile->addError(
                             'String '
-                            . $workingString
-                            . ' has a variable embedded without being delimited by braces',
+                                . $workingString
+                                . ' has a variable embedded without being delimited by braces',
                             $stackPtr,
                             'ContainsNonDelimitedVariable'
                         );
