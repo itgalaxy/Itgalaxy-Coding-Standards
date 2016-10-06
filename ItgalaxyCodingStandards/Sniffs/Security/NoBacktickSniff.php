@@ -17,8 +17,8 @@ class NoBacktickSniff implements \PHP_CodeSniffer_Sniff
      * Processes the tokens that this sniff is interested in.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file where the token was found.
-     * @param int                  $stackPtr  The position in the stack where
-     *                                        the token was found.
+     * @param int                   $stackPtr  The position in the stack where
+     *                                         the token was found.
      *
      * @return void
      */
