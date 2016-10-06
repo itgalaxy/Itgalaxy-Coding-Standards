@@ -1,10 +1,4 @@
 <?php
-/**
- * Asserts that type casts are in the short form:
- * - bool instead of boolean
- * - int instead of integer
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
 class TypeCastingSniff implements \PHP_CodeSniffer_Sniff
@@ -31,8 +25,8 @@ class TypeCastingSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param integer              $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param integer               $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      * @return void
      */
 
@@ -68,7 +62,7 @@ class TypeCastingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             $error = 'Usage of !! cast is not allowed. Please use (bool) to cast.';
-            $phpcsFile->addError($error, $stackPtr, 'NotAllowed');
+            $phpcsFile->addError($error, $stackPtr, 'NotAllowedDoubleNot');
         }
     }
 }
