@@ -21,8 +21,8 @@ class DuplicateSemicolonSniff implements \PHP_CodeSniffer_Sniff {
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token in the
+     *                                         stack passed in $tokens.
      *
      * @return void
      */
@@ -40,8 +40,7 @@ class DuplicateSemicolonSniff implements \PHP_CodeSniffer_Sniff {
             return;
         }
 
-        $error = 'Double semicolon found';
-        $fix = $phpcsFile->addFixableError($error, $stackPtr);
+        $fix = $phpcsFile->addFixableError('Duplicate semicolon found', $stackPtr);
 
         if ($fix) {
             $phpcsFile->fixer->beginChangeset();
