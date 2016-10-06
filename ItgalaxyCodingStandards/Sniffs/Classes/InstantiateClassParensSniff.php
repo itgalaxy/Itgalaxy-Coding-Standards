@@ -46,7 +46,7 @@ class InstantiateClassParensSniff implements \PHP_CodeSniffer_Sniff
                     $phpcsFile->addError(
                         'Use parentheses when instantiating class',
                         $stackPtr,
-                        'Invalid'
+                        'InstantiateClassParensSniff'
                     );
                 }
 
