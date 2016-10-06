@@ -1,5 +1,4 @@
 <?php
-
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
 class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
@@ -26,8 +25,8 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
      * Processes this sniff, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The current file being checked.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
@@ -56,6 +55,7 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
         if ($tokens[$stackPtr]['code'] === T_DEC || $tokens[$stackPtr]['code'] === T_INC) {
             $this->checkBefore($phpcsFile, $stackPtr);
             $this->checkAfter($phpcsFile, $stackPtr);
+
             return;
         }
 
@@ -94,12 +94,13 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
         }
     }
+
     /**
-     * @param \PHP_CodeSniffer_File $phpcsFile
+     * @param \PHP_CodeSniffer_File $phpcsFile The current file being checked.
      * @param int $stackPtr
+     *
      * @return void
      */
-
     protected function checkBefore(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
         $prevIndex = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
@@ -118,8 +119,9 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
     }
 
     /**
-     * @param \PHP_CodeSniffer_File $phpcsFile
+     * @param \PHP_CodeSniffer_File $phpcsFile The current file being checked.
      * @param int $stackPtr
+     *
      * @return void
      */
     protected function checkAfter(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
@@ -131,7 +133,7 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
                 return;
             }
 
-            $fix = $phpcsFile->addFixableError('No whitespace should be between incrementor and variable.', $stackPtr);
+            $fix = $phpcsFile->addFixableError('No whitespace should be between incrementor and variable', $stackPtr);
 
             if ($fix) {
                 $phpcsFile->fixer->replaceToken($stackPtr + 1, '');

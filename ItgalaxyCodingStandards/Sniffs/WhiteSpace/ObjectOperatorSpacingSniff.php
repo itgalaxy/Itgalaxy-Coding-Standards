@@ -4,14 +4,14 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 class ObjectOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
-     * Allow newlines instead of spaces.
+     * Allow newlines before object operator.
      *
      * @var boolean
      */
     public $ignoreNewlinesBefore = true;
 
     /**
-     * Allow newlines instead of spaces.
+     * Allow newlines after object operator.
      *
      * @var boolean
      */
@@ -71,13 +71,10 @@ class ObjectOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             if ($errorBefore) {
-                $error = 'Space found before object operator';
-                $fix = $phpcsFile->addFixableError($error, $stackPtr, 'Before');
+                $fix = $phpcsFile->addFixableError('Space found before object operator', $stackPtr, 'Before');
 
                 if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken(($stackPtr - 1), '');
+                    $phpcsFile->fixer->replaceToken(($stackPtr - 1), '');
                 }
             }
         }
@@ -90,13 +87,10 @@ class ObjectOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             if ($errorAfter) {
-                $error = 'Space found after object operator';
-                $fix = $phpcsFile->addFixableError($error, $stackPtr, 'After');
+                $fix = $phpcsFile->addFixableError('Space found after object operator', $stackPtr, 'After');
 
                 if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken(($stackPtr + 1), '');
+                    $phpcsFile->fixer->replaceToken(($stackPtr + 1), '');
                 }
             }
         }

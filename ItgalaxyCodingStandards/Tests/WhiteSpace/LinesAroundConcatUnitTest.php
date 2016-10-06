@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_ConcatenationIndentUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_WhiteSpace_LinesAroundConcatUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,7 +13,12 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_ConcatenationIndentUnitTest exten
     public function getErrorList()
     {
         return [
-            16 => 1
+            16 => 1,
+            27 => 1,
+            33 => 1,
+            41 => 1,
+            45 => 1,
+            47 => 1
         ];
     }
 

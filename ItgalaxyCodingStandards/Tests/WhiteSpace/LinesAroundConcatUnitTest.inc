@@ -15,7 +15,33 @@ $string = $variableFirst
 
     . $variableThird;
 
-// Todo Must throw error
 $string = $variableFirst
-    . $variableSecond .
-    $variableThird;
+    . $variableSecond
+    // Comment
+    . $variableThird;
+
+$string = $variableFirst
+    . $variableSecond
+
+    // Comment
+    . $variableThird;
+
+$string = $variableFirst
+    . $variableSecond
+    // Comment
+
+    . $variableThird;
+
+$string = $variableFirst
+    // test
+    . $variableSecond;
+
+$string = $variableFirst
+
+    . $variableSecond;
+
+$string = $variableFirst
+
+    . $variableSecond
+
+    . $variableSecond;
