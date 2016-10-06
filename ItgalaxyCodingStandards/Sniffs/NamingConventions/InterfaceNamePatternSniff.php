@@ -32,7 +32,7 @@ class InterfaceNamePatternSniff implements \PHP_CodeSniffer_Sniff
             $phpcsFile->addError(
                 'Interface does not match the pattern "' . $this->pattern . '"',
                 $stackPtr,
-                'InvalidInterfaceNamePattern'
+                'InterfaceNamePattern'
             );
         }
     }

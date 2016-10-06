@@ -33,7 +33,7 @@ class TraitNamePatternSniff implements \PHP_CodeSniffer_Sniff
             $phpcsFile->addError(
                 'Trait does not match the pattern "' . $this->pattern . '"',
                 $stackPtr,
-                'InvalidTraitNamePattern'
+                'TraitNamePattern'
             );
         }
     }

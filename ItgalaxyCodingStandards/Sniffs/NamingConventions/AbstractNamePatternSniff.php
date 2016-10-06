@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
-class AbstractNameSniff implements \PHP_CodeSniffer_Sniff
+class AbstractNamePatternSniff implements \PHP_CodeSniffer_Sniff
 {
     public $pattern = '/^[A-Z][A-Za-z0-9]*Abstract$/';
 
@@ -36,7 +36,7 @@ class AbstractNameSniff implements \PHP_CodeSniffer_Sniff
             $phpcsFile->addError(
                 'Abstract class does not match the pattern "' . $this->pattern . '"',
                 $stackPtr,
-                'InvalidAbstractNamePattern'
+                'AbstractName'
             );
         }
     }

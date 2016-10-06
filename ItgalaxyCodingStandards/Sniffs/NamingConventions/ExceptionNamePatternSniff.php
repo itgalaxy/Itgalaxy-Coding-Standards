@@ -1,8 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
-class ExceptionNameSniff implements \PHP_CodeSniffer_Sniff
+class ExceptionNamePatternSniff implements \PHP_CodeSniffer_Sniff
 {
+    public $pattern = '/^[A-Z][A-Za-z0-9]*Exception$/';
+
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -28,10 +30,13 @@ class ExceptionNameSniff implements \PHP_CodeSniffer_Sniff
         $extendedClassName = $phpcsFile->findExtendedClassName($stackPtr);
 
         if (substr($extendedClassName, -9) === 'Exception'
-            && substr($name, -9) !== 'Exception'
+            && preg_match($this->pattern, $name) === 0
         ) {
-            $warn = 'Exception names should always have the suffix "Exception"';
-            $phpcsFile->addError($warn, $stackPtr, 'InvalidExceptionName');
+            $phpcsFile->addError(
+                'Exception does not match the pattern "' . $this->pattern . '"',
+                $stackPtr,
+                'ExceptionName'
+            );
         }
     }
 }
