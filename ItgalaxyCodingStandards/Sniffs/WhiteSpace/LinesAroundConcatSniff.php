@@ -59,8 +59,8 @@ class LinesAroundConcatSniff implements \PHP_CodeSniffer_Sniff
      * Returns leading comment or self.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return bool|int
      */

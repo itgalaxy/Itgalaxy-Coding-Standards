@@ -3,11 +3,25 @@ namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
 class NoPlusStringConcatSniff implements \PHP_CodeSniffer_Sniff
 {
+    /**
+     * Returns an array of tokens this test wants to listen for.
+     *
+     * @return array
+     */
     public function register()
     {
         return [T_PLUS];
     }
 
+    /**
+     * Returns leading comment or self.
+     *
+     * @param \PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
+     *
+     * @return bool|int
+     */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
