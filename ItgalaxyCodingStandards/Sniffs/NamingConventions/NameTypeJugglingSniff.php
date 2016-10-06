@@ -5,11 +5,11 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
 {
     public $useShortName = true;
 
-    public $enableRealCast = false;
+    public $realCast = false;
 
-    public $enableDoubleCast = false;
+    public $doubleCast = false;
 
-    public $enableFloatCast = true;
+    public $floatCast = true;
 
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -29,8 +29,8 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token
+     *                                         in the stack passed in $tokens.
      *
      * @return void
      */
@@ -43,7 +43,7 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
 
         if ($tokens[$stackPtr]['code'] === T_BOOL_CAST) {
             if ($expected !== '(bool)' && $this->useShortName) {
-                $error = 'A cast statement must be with short name. Instead use `(bool)`.';
+                $error = 'A cast statement must be with short name, instead use `(bool)`.';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoBooleanLongNameCast');
 
                 if ($fix === true) {
@@ -56,7 +56,7 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             if ($expected !== '(boolean)' && !$this->useShortName) {
-                $error = 'A cast statement must be with long name. Instead use `(boolean)`.';
+                $error = 'A cast statement must be with long name, instead use `(boolean)`.';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoBooleanShortNameCast');
 
                 if ($fix === true) {
@@ -72,38 +72,38 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
         if ($tokens[$stackPtr]['code'] === T_DOUBLE_CAST) {
             $insteadMessage = '';
 
-            if ($this->enableRealCast
-                || $this->enableDoubleCast
-                || $this->enableFloatCast
+            if ($this->realCast
+                || $this->doubleCast
+                || $this->floatCast
             ) {
                 $insteadMessage = 'Instead use';
 
-                if ($this->enableRealCast) {
+                if ($this->realCast) {
                     $insteadMessage .= '` (real)`';
                 }
 
-                if ($this->enableDoubleCast) {
+                if ($this->doubleCast) {
                     $insteadMessage .= ' `(double)`';
                 }
 
-                if ($this->enableFloatCast) {
+                if ($this->floatCast) {
                     $insteadMessage .= ' `(float)`';
                 }
             }
 
             if ($expected !== '(double)'
                 && $expected !== '(float)'
-                && !$this->enableRealCast
+                && !$this->realCast
             ) {
                 $error = 'A cast statement must be another type. ' . $insteadMessage;
-                $phpcsFile->addError($error, $stackPtr, 'NoRealCastName');
+                $phpcsFile->addError($error, $stackPtr, 'NoRealNameCast');
 
                 return;
             }
 
             if ($expected !== '(real)'
                 && $expected !== '(float)'
-                && !$this->enableDoubleCast
+                && !$this->doubleCast
             ) {
                 $error = 'A cast statement must be another type. ' . $insteadMessage;
                 $phpcsFile->addError($error, $stackPtr, 'NoDoubleNameCast');
@@ -113,7 +113,7 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
 
             if ($expected !== '(real)'
                 && $expected !== '(double)'
-                && !$this->enableFloatCast
+                && !$this->floatCast
             ) {
                 $error = 'A cast statement must be another type. ' . $insteadMessage;
                 $phpcsFile->addError($error, $stackPtr, 'NoFloatNameCast');
@@ -137,7 +137,7 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             if ($expected !== '(integer)' && !$this->useShortName) {
-                $error = 'A cast statement must be with long name. Instead use `(integer)`.';
+                $error = 'A cast statement must be with long name, instead use `(integer)`.';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoIntegerShortNameCast');
 
                 if ($fix === true) {
