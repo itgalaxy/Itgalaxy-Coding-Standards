@@ -1,22 +1,4 @@
 <?php
-/**
- * PHP Version 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @since         CakePHP CodeSniffer 0.1.10
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-/**
- * Ensures all the use are in alphabetical order.
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
 class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
@@ -32,16 +14,19 @@ class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
      *
      * @var array
      */
+
     protected $uses = [];
     /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
+
     public function register()
     {
         return [T_USE];
     }
+
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -84,6 +69,7 @@ class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
             }
         }
     }
+
     /**
      * Check all the use tokens in a file.
      *
