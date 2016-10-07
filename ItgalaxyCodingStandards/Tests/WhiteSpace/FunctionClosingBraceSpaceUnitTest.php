@@ -12,7 +12,11 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_FunctionClosingBraceSpaceUnitTest
      */
     public function getErrorList()
     {
-        return [];
+        return [
+            36 => 1,
+            42 => 1,
+            50 => 1
+        ];
     }
 
     /**

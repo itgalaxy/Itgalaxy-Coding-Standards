@@ -28,10 +28,6 @@ class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         $nextPtr = $stackPtr + 1;
 
-        if (isset($tokens[$nextPtr]) !== true) {
-            return;
-        }
-
         if ($tokens[$nextPtr]['code'] !== T_WHITESPACE
             && $tokens[$nextPtr]['code'] !== T_COMMA
             && $tokens[$nextPtr]['code'] !== T_CLOSE_PARENTHESIS
@@ -49,11 +45,8 @@ class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         $nextNextPtr = $stackPtr + 2;
 
-        if (isset($tokens[$nextNextPtr]) !== true) {
-            return;
-        }
-
-        if ($tokens[$nextPtr]['code'] === T_WHITESPACE
+        if (isset($tokens[$nextNextPtr]) === true
+            && $tokens[$nextPtr]['code'] === T_WHITESPACE
             && $tokens[$nextPtr]['content'] !== ' '
             && $tokens[$nextNextPtr]['line'] === $tokens[$stackPtr + 1]['line']
         ) {
