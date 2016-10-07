@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_EchoLineUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_EchoStatementUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -23,7 +23,9 @@ class ItgalaxyCodingStandards_Tests_Formatting_EchoLineUnitTest extends Abstract
             111 => 1,
             112 => 1,
             146 => 1,
-            152 => 1
+            152 => 1,
+            174 => 1,
+            175 => 1
         ];
     }
 

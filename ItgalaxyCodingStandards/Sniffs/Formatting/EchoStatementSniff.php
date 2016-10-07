@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class EchoLineSniff implements \PHP_CodeSniffer_Sniff
+class EchoStatementSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -27,8 +27,8 @@ class EchoLineSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
@@ -59,7 +59,7 @@ class EchoLineSniff implements \PHP_CodeSniffer_Sniff
 
         if ($foundComma) {
             $error = 'No multiple output in echo';
-            $phpcsFile->addError($error, $stackPtr, 'NoMultipleOutputInEcho');
+            $phpcsFile->addError($error, $stackPtr, 'MultipleOutputInEcho');
         }
 
         $beforeCommentOrSelfPtr = $this->getLeadingCommentOrSelf($phpcsFile, $stackPtr);
@@ -96,7 +96,7 @@ class EchoLineSniff implements \PHP_CodeSniffer_Sniff
         ) {
             $data = [$tokens[$stackPtr]['content']];
             $error = 'No blank line found before "%s" or before comment';
-            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoBlankLineBefore', $data);
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'BlankLineBefore', $data);
 
             if ($fix === true) {
                 $phpcsFile
@@ -112,6 +112,11 @@ class EchoLineSniff implements \PHP_CodeSniffer_Sniff
         }
 
         $semicolonPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr + 1, null, false);
+
+        if ($semicolonPtr === false) {
+            return;
+        }
+
         $nextNonWhitespacePtr = $phpcsFile->findNext(
             array_merge(
                 [T_WHITESPACE],
@@ -129,13 +134,12 @@ class EchoLineSniff implements \PHP_CodeSniffer_Sniff
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_ENDSWITCH
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_DEFAULT
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_CLOSE_CURLY_BRACKET
-            && $tokens[$nextNonWhitespacePtr]['code'] !== T_EXIT
             && isset($tokens[$nextCommentOrSelfPtr])
             && $tokens[$nextCommentOrSelfPtr]['line'] + 1 === $tokens[$nextNonWhitespacePtr]['line']
         ) {
             $data = [$tokens[$stackPtr]['content']];
             $error = 'No blank line found after "%s" or after comment';
-            $fix = $phpcsFile->addError($error, $stackPtr, 'NoBlankLineAfter', $data);
+            $fix = $phpcsFile->addError($error, $stackPtr, 'BlankLineAfter', $data);
 
             if ($fix === true) {
                 $phpcsFile

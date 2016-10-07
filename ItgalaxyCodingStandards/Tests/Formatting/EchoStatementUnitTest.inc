@@ -155,6 +155,7 @@ echo 'test';
 ?>
 <?php
 echo 'test';
+
 exit();
 
 echo 'test';
@@ -169,3 +170,6 @@ echo 'test';
  */
 
 echo 'test';
+
+echo 'test', 'test';
+echo 'test','test';
