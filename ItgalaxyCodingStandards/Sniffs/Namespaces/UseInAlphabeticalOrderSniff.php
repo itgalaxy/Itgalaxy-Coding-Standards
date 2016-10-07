@@ -1,5 +1,5 @@
 <?php
-namespace ItgalaxyCodingStandards\Sniffs\Formatting;
+namespace ItgalaxyCodingStandards\Sniffs\Namespaces;
 
 class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
 {

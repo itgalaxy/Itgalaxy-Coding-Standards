@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_UseInAlphabeticalOrderUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Namespaces_UseInAlphabeticalOrderUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
