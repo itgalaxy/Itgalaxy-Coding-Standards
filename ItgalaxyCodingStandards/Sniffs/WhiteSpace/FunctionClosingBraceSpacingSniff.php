@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-class FunctionClosingBraceSpaceSniff implements \PHP_CodeSniffer_Sniff
+class FunctionClosingBraceSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.

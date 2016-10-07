@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_FunctionClosingBraceSpaceUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_WhiteSpace_FunctionClosingBraceSpacingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
