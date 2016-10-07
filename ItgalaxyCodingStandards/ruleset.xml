@@ -21,10 +21,6 @@
 
     <rule ref="PSR2.Methods.FunctionCallSignature"/>
 
-    <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
-        <severity>0</severity>
-    </rule>
-
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
     <!-- Use NamespaceDeclarationSniff  -->
