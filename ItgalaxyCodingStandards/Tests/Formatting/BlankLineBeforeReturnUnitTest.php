@@ -13,7 +13,8 @@ class ItgalaxyCodingStandards_Tests_Formatting_BlankLineBeforeReturnUnitTest ext
     public function getErrorList()
     {
         return [
-            23 => 1
+            23 => 1,
+            78 => 1
         ];
     }
 
