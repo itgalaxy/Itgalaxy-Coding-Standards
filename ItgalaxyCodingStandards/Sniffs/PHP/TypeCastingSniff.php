@@ -54,10 +54,10 @@ class TypeCastingSniff implements \PHP_CodeSniffer_Sniff
                 $error = 'Usage of strval($val) is not allowed. Please use (string) $var instead of strval($var)';
                 $phpcsFile->addError($error, $stackPtr, 'NotAllowedStrval');
             }
-        } elseif ($tokens[$stackPtr]['code'] == T_BOOLEAN_NOT) {
+        } elseif ($tokens[$stackPtr]['code'] === T_BOOLEAN_NOT) {
             $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
 
-            if ($tokens[$nextToken]['code'] != T_BOOLEAN_NOT) {
+            if ($tokens[$nextToken]['code'] !== T_BOOLEAN_NOT) {
                 return;
             }
 
