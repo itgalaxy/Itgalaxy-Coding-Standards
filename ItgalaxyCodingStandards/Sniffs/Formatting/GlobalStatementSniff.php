@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class MultipleGlobalSniff implements \PHP_CodeSniffer_Sniff
+class GlobalStatementSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.

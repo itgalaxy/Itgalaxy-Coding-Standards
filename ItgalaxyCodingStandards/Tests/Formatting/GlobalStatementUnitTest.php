@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_MultipleGlobalUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_GlobalStatementUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
