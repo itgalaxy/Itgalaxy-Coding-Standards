@@ -155,7 +155,6 @@ echo 'test';
 ?>
 <?php
 echo 'test';
-
 exit();
 
 echo 'test';

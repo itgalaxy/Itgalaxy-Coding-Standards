@@ -24,8 +24,8 @@ class ItgalaxyCodingStandards_Tests_Formatting_EchoStatementUnitTest extends Abs
             112 => 1,
             146 => 1,
             152 => 1,
-            174 => 1,
-            175 => 1
+            173 => 1,
+            174 => 1
         ];
     }
 

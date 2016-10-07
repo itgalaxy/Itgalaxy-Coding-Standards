@@ -134,6 +134,7 @@ class EchoStatementSniff implements \PHP_CodeSniffer_Sniff
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_ENDSWITCH
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_DEFAULT
             && $tokens[$nextNonWhitespacePtr]['code'] !== T_CLOSE_CURLY_BRACKET
+            && $tokens[$nextNonWhitespacePtr]['code'] !== T_EXIT
             && isset($tokens[$nextCommentOrSelfPtr])
             && $tokens[$nextCommentOrSelfPtr]['line'] + 1 === $tokens[$nextNonWhitespacePtr]['line']
         ) {
