@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_CommaUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_WhiteSpace_CommaSpacingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -18,7 +18,11 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_CommaUnitTest extends AbstractSni
             4 => 1,
             5 => 2,
             7 => 1,
-            11 => 2
+            11 => 2,
+            15 => 1,
+            18 => 1,
+            22 => 1,
+            23 => 2
         ];
     }
 
