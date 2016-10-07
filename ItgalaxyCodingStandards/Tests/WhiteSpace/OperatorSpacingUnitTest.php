@@ -120,10 +120,12 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_OperatorSpacingUnitTest extends A
             204 => 4,
             205 => 5,
             242 => 4,
-            287 => 1,
-            301 => 1,
-            302 => 1,
-            306 => 3
+            285 => 1,
+            299 => 1,
+            300 => 1,
+            304 => 3,
+            316 => 1,
+            317 => 1
         ];
     }
 

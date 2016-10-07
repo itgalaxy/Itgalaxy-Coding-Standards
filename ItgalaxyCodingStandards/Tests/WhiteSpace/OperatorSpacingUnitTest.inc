@@ -254,7 +254,6 @@ $y = 1
     + 2
     - 3;
 
-// @codingStandardsChangeSetting Squiz.WhiteSpace.OperatorSpacing ignoreNewlines true
 $y = 1
     + 2
     - 3;
@@ -266,7 +265,6 @@ $y = 1 +
 $y = 1
     + 2
     - 3;
-// @codingStandardsChangeSetting Squiz.WhiteSpace.OperatorSpacing ignoreNewlines false
 
 if (true || -1 == $b) {
 }
@@ -305,3 +303,15 @@ $ternary = $condition ? $variableFirst
 $ternary = $condition
     ? $variableFirst :
     $variableSecond;
+
+$ternary = $condition
+    // Comment
+    ? $variableFirst
+    // Comment
+    : $variableSecond;
+
+$a = $b /* Comment */ + $c;
+$a = $b + /* Comment */ $c;
+$a = $b/* Comment */ + $c;
+$a = $b +/* Comment */ $c;
+$a = $b/* Comment */+ $c;
