@@ -35,3 +35,8 @@ $test = 1;
 <?php // Spaces before and after
 ?>
 <?php
+// Comment
+$a = 1;
+// Comment
+?>
+<?php

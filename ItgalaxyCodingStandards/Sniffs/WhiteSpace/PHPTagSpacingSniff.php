@@ -1,31 +1,7 @@
 <?php
-/**
- * Generic_Sniffs_PHP_ClosingPHPTagSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Stefano Kowalke <blueduck@gmx.net>
- * @copyright 2010-2014 Stefano Kowalke
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-/**
- * Checks that open PHP tags are paired with closing tags.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Stefano Kowalke <blueduck@gmx.net>
- * @copyright 2010-2014 Stefano Kowalke
- * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: @package_version@
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
+namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-namespace ItgalaxyCodingStandards\Sniffs\PHP;
-
-class PHPTagSniff implements \PHP_CodeSniffer_Sniff
+class PHPTagSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Allow newlines instead of spaces.
@@ -51,8 +27,8 @@ class PHPTagSniff implements \PHP_CodeSniffer_Sniff
      * Processes this sniff, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
