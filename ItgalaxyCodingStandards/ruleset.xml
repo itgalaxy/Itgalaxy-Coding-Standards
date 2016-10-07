@@ -63,14 +63,16 @@
     <rule ref="Squiz.Classes.ValidClassName"/>
 
     <rule ref="Squiz.Commenting.BlockComment">
+        <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
+        <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
         <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
         <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
         <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
-        <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
-        <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
     </rule>
 
-    <!-- <rule ref="Squiz.Commenting.ClassComment"/> -->
+    <rule ref="Squiz.Commenting.ClassComment">
+        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+    </rule>
 
     <!-- <rule ref="Squiz.Commenting.ClosingDeclarationComment"/> -->
 
@@ -78,9 +80,13 @@
 
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
 
+    <!-- Todo evalation -->
     <!-- <rule ref="Squiz.Commenting.FileComment"/> -->
 
-    <!-- <rule ref="Squiz.Commenting.FunctionComment"/> -->
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
+    </rule>
 
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
 
@@ -92,9 +98,12 @@
 
     <!-- <rule ref="Squiz.Commenting.LongConditionClosingComment"/> -->
 
-    <rule ref="Squiz.Commenting.PostStatementComment"/>
+    <!-- Allow commenting after statement -->
+    <!-- <rule ref="Squiz.Commenting.PostStatementComment"/> -->
 
-    <!-- <rule ref="Squiz.Commenting.VariableComment"/> -->
+    <rule ref="Squiz.Commenting.VariableComment">
+        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+    </rule>
 
     <rule ref="Squiz.ControlStructures.ControlSignature"/>
 
