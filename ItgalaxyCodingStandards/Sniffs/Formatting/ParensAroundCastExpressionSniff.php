@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class ParensAroundExpressionInTypeCastingSniff implements \PHP_CodeSniffer_Sniff
+class ParensAroundCastExpressionSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -24,8 +24,8 @@ class ParensAroundExpressionInTypeCastingSniff implements \PHP_CodeSniffer_Sniff
      * Processes this test, when one of its tokens is encountered.
      *
      * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in
-     *                                        the stack passed in $tokens.
+     * @param int                   $stackPtr  The position of the current token in
+     *                                         the stack passed in $tokens.
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class ParensAroundExpressionInTypeCastingSniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $phpcsFile->addError('Do not use parenthesis around expression in type casting', $stackPtr, 'Forbidden');
+        $phpcsFile->addError('Do not use parenthesis around expression in type casting', $stackPtr);
     }
 
     protected function hasOneNotEmptyTokenInParens(\PHP_CodeSniffer_File $phpcsFile, $opener, $closer)
