@@ -475,4 +475,8 @@
             <property name="indent" value="4"/>
         </properties>
     </rule>
+
+    <rule ref="Internal.NoCodeFound">
+        <severity>0</severity>
+    </rule>
 </ruleset>
