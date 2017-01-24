@@ -63,11 +63,12 @@
     <rule ref="Squiz.Classes.ValidClassName"/>
 
     <rule ref="Squiz.Commenting.BlockComment">
-        <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
         <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
-        <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
+        <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
+        <exclude name="Squiz.Commenting.BlockComment.LastLineIndent"/>
         <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
         <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+        <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
     </rule>
 
     <rule ref="Squiz.Commenting.ClassComment">
