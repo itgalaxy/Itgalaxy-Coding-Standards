@@ -1,19 +1,15 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
-/**
- * Makes sure there is no duplicate semicolon.
- *
- * @author Mark Scherer
- * @license MIT
- */
-class DuplicateSemicolonSniff implements \PHP_CodeSniffer_Sniff {
+class DuplicateSemicolonSniff implements \PHP_CodeSniffer_Sniff
+{
     /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return [T_SEMICOLON];
     }
 
@@ -26,7 +22,8 @@ class DuplicateSemicolonSniff implements \PHP_CodeSniffer_Sniff {
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $previousIndex = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
 
