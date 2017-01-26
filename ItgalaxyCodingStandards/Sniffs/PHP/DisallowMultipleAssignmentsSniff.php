@@ -1,6 +1,7 @@
 <?php
-
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
+
+// Todo rename no-multi-assign
 
 class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
 {
@@ -190,7 +191,7 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($prevLine === $varLine) {
-            $error = 'Assignments must be the first block of code on a line';
+            $error = 'Unexpected chained assign';
             $phpcsFile->addError($error, $stackPtr, 'Found');
         }
     }
