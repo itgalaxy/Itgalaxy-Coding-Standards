@@ -270,10 +270,12 @@
 
     <!-- <rule ref="Squiz.WhiteSpace.OperatorSpacing"/> -->
 
-    <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/>
+    <!-- <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/> -->
 
-    <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
+    <!-- Use `FunctionClosingBraceSpacing` sniff -->
+    <!-- <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/> -->
 
+    <!-- Todo https://github.com/squizlabs/PHP_CodeSniffer/issues/1312 -->
     <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
@@ -316,6 +318,7 @@
 
     <!-- <rule ref="PEAR.ControlStructures.ControlSignature"/> -->
 
+    <!-- `MultiLineCondition` sniff instead this -> -->
     <!-- <rule ref="PEAR.ControlStructures.MultiLineCondition"/> -->
 
     <rule ref="PEAR.Files.IncludingFile"/>
