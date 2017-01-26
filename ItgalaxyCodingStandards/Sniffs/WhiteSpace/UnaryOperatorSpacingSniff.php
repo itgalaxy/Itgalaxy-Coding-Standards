@@ -8,7 +8,8 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return array
      */
-    public function register() {
+    public function register()
+    {
         return [
             T_INC,
             T_DEC,
@@ -30,7 +31,8 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === T_ASPERAND || $tokens[$stackPtr]['code'] === T_NONE) {
@@ -101,7 +103,8 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    protected function checkBefore(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    protected function checkBefore(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $prevIndex = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
 
@@ -124,7 +127,8 @@ class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    protected function checkAfter(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    protected function checkAfter(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    {
         $tokens = $phpcsFile->getTokens();
         $nextIndex = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
 
