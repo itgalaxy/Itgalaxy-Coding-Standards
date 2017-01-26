@@ -29,6 +29,8 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
+// Todo deprecated and allow usage double quote
+
 class DoubleQuoteUsageSniff implements \PHP_CodeSniffer_Sniff
 {
     public $allowedChars = [
