@@ -3,6 +3,10 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
+    <!-- Drupal rules -->
+
+    <rule ref="Drupal.WhiteSpace.Comma"/>
+
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
