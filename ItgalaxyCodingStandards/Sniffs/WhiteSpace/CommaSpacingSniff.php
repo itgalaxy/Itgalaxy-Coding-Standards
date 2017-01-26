@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
+// Todo need combine with
+// https://github.com/squizlabs/PHP_CodeSniffer/blob/master/CodeSniffer/Standards/Squiz/Sniffs/Functions/FunctionDeclarationArgumentSpacingSniff.php
 class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
