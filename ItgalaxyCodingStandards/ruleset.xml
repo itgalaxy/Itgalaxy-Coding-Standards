@@ -165,8 +165,6 @@
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
 
-    <rule ref="Squiz.Objects.DisallowObjectStringIndex"/>
-
     <rule ref="Squiz.Operators.ComparisonOperatorUsage">
         <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
         <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
