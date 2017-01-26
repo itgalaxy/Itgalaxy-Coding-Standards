@@ -49,11 +49,10 @@ class EmbeddedVariablesSniff implements \PHP_CodeSniffer_Sniff
 
                     if ($openBraces < 1) {
                         $phpcsFile->addError(
-                            'String '
-                                . $workingString
-                                . ' has a variable embedded without being delimited by braces',
+                            'String %s has a variable embedded without being delimited by braces',
                             $stackPtr,
-                            'ContainsNonDelimitedVariable'
+                            'ContainsNonDelimitedVariable',
+                            [$workingString]
                         );
                     }
                 }
