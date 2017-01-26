@@ -22,7 +22,6 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_MultiLineConditionUnitTest
             49 => 1,
             50 => 1,
             57 => 1,
-            58 => 1,
             62 => 1,
             66 => 1,
             67 => 1,
@@ -34,14 +33,10 @@ class ItgalaxyCodingStandards_Tests_ControlStructures_MultiLineConditionUnitTest
             96 => 1,
             98 => 1,
             104 => 2,
-            109 => 1,
             117 => 2,
             127 => 1,
-            132 => 1,
             152 => 1,
-            160 => 1,
-            173 => 1,
-            187 => 1
+            160 => 1
         ];
     }
 
