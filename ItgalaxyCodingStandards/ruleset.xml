@@ -167,8 +167,6 @@
 
     <rule ref="Squiz.Objects.DisallowObjectStringIndex"/>
 
-    <rule ref="Squiz.Objects.ObjectMemberComma"/>
-
     <rule ref="Squiz.Operators.ComparisonOperatorUsage">
         <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
         <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
