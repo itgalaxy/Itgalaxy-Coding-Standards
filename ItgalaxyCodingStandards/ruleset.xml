@@ -362,6 +362,7 @@
 
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 
+    <!-- Todo need improve to see extended classes -->
     <!-- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/> -->
 
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
