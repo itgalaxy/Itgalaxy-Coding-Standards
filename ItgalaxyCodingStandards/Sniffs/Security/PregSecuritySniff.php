@@ -53,14 +53,10 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
     /**
      * Processes this function call.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile
-     *   The file being scanned.
-     * @param int $stackPtr
-     *   The position of the function call in the stack.
-     * @param int $openBracket
-     *   The position of the opening parenthesis in the stack.
-     * @param int $closeBracket
-     *   The position of the closing parenthesis in the stack.
+     * @param \PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int $stackPtr The position of the function call in the stack.
+     * @param int $openBracket The position of the opening parenthesis in the stack.
+     * @param int $closeBracket The position of the closing parenthesis in the stack.
      *
      * @return void
      */
@@ -72,14 +68,6 @@ class PregSecuritySniff extends FunctionCallSniffAbstract
         if ($argument === false) {
             return;
         }
-
-        /*
-        Not a string literal.
-        TODO: Extend code to recognize patterns in variables.
-        if ($tokens[$argument['start']]['code'] !== T_CONSTANT_ENCAPSED_STRING) {
-            return;
-        }
-        */
 
         $pattern = $tokens[$argument['start']]['content'];
         $quote = substr($pattern, 0, 1);
