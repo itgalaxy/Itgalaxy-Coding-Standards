@@ -79,10 +79,10 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
         if ($foundFunction && !$foundIdentityOperator) {
             $phpcsFile->addError(
                 'Identical operator === is not used for testing the return value of %s function. '
-                . 'Use `$value = %s(...arguments); '
-                . 'if ($value === false) { // Logic } else { // Logic }` '
-                . 'or `$value = %s(...arguments); '
-                . 'if ($value !== false) { // Logic } else { // Logic }`',
+                    . 'Use `$value = %s(...arguments); '
+                    . 'if ($value === false) { // Logic } else { // Logic }` '
+                    . 'or `$value = %s(...arguments); '
+                    . 'if ($value !== false) { // Logic } else { // Logic }`',
                 $stackPtr,
                 'ExplicitReturnValueCheck',
                 [
