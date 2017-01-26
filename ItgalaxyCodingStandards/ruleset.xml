@@ -320,12 +320,14 @@
 
     <rule ref="PEAR.Files.IncludingFile"/>
 
+    <!-- Todo need remove EqualSignLine from MultiLineAssignmentSniff -->
     <rule ref="PEAR.Formatting.MultiLineAssignment"/>
 
     <!-- <rule ref="PEAR.Functions.FunctionCallSignature"/> -->
 
     <!-- <rule ref="PEAR.Functions.FunctionDeclaration"/> -->
 
+    <!-- Todo not working with closure -->
     <rule ref="PEAR.Functions.ValidDefaultValue"/>
 
     <!-- <rule ref="PEAR.NamingConventions.ValidClassName"/> -->
@@ -334,7 +336,8 @@
 
     <!-- <rule ref="PEAR.NamingConventions.ValidVariableName"/> -->
 
-    <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
+    <!-- Todo need investigation -->
+    <!-- <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/> -->
 
     <!-- <rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
 

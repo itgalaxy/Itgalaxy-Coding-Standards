@@ -233,7 +233,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $length = 1;
+        $length = null;
 
         if ($tokens[$openBrace]['line'] > $tokens[$closeBracket]['line']) {
             $length = -1;
