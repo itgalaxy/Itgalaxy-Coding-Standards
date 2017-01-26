@@ -417,7 +417,8 @@
 
     <rule ref="Generic.Functions.CallTimePassByReference"/>
 
-    <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+    <!-- Used more general sniff `CommaSpacingSniff` -->
+    <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
     <!-- Rule Squiz.Functions.MultiLineFunctionDeclaration more complex -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
@@ -436,8 +437,10 @@
 
     <rule ref="Generic.PHP.BacktickOperator"/>
 
+    <!-- Should be disabled in view files -->
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
 
+    <!-- No need everywhere closing php tag -->
     <!-- <rule ref="Generic.PHP.ClosingPHPTag"/> -->
 
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
@@ -445,6 +448,9 @@
     <rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
 
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+
+    <!-- Todo need working with classes -->
+    <!-- <rule ref="Generic.PHP.ForbiddenFunctionsSniff"/> -->
 
     <rule ref="Generic.PHP.LowerCaseConstant"/>
 
