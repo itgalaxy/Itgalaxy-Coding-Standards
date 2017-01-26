@@ -9,6 +9,8 @@
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
 
+    <rule ref="Drupal.WhiteSpace.Namespace"/>
+
     <rule ref="Drupal.WhiteSpace.Comma"/>
 
     <!-- PSR2 rules -->
