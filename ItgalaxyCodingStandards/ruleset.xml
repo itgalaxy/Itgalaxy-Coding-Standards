@@ -5,6 +5,16 @@
 
     <!-- Drupal rules -->
 
+    <!-- <rule ref="Drupal.CSS"/> -->
+
+    <!-- <rule ref="Drupal.InfoFiles"/> -->
+
+    <!-- <rule ref="Drupal.NamingConventions"/> -->
+
+    <!-- <rule ref="Drupal.Scope"/> -->
+
+    <rule ref="Drupal.Semantics.PregSecurity"/>
+
     <rule ref="Drupal.WhiteSpace.Comma"/>
 
     <!-- PSR2 rules -->
