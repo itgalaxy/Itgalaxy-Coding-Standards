@@ -5,13 +5,7 @@
 
     <!-- Drupal rules -->
 
-    <!-- <rule ref="Drupal.CSS"/> -->
-
-    <!-- <rule ref="Drupal.InfoFiles"/> -->
-
-    <!-- <rule ref="Drupal.NamingConventions"/> -->
-
-    <!-- <rule ref="Drupal.Scope"/> -->
+    <rule ref="Drupal.Files.FileEncoding"/>
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
 
