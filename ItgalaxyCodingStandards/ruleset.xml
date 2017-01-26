@@ -106,7 +106,8 @@
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
-    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+    <!-- Use `ControlSignature` sniff -->
+    <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
 

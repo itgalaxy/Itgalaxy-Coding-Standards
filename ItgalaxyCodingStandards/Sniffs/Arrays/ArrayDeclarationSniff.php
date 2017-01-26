@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Arrays;
 
+// Todo need refactoring
+
 class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
 {
     /**

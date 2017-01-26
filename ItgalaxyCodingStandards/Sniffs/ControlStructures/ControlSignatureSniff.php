@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
+// Todo need more tests
+
 class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
@@ -171,12 +173,11 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
         if (isset($tokens[$stackPtr]['parenthesis_closer']) === true
             && isset($tokens[$stackPtr]['scope_opener']) === true
         ) {
-            $closer  = $tokens[$stackPtr]['parenthesis_closer'];
-            $opener  = $tokens[$stackPtr]['scope_opener'];
+            $closer = $tokens[$stackPtr]['parenthesis_closer'];
+            $opener = $tokens[$stackPtr]['scope_opener'];
             $content = $phpcsFile->getTokensAsString($closer + 1, $opener - $closer - 1);
 
             if ($content !== ' ') {
-
                 $error = 'Expected 1 space after closing parenthesis; found %s';
 
                 if (trim($content) === '') {
@@ -202,7 +203,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                                 }
                             }
                         } else {
-                            $phpcsFile->fixer->addContent($closer, ' '.$tokens[$opener]['content']);
+                            $phpcsFile->fixer->addContent($closer, ' ' . $tokens[$opener]['content']);
                             $phpcsFile->fixer->replaceToken($opener, '');
 
                             if ($tokens[$opener]['line'] !== $tokens[$closer]['line']) {
