@@ -1,8 +1,6 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-// Todo need more tests
-
 class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
@@ -180,10 +178,14 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             if ($content !== ' ') {
                 $error = 'Expected 1 space after closing parenthesis; found %s';
 
-                if (trim($content) === '') {
-                    $found = strlen($content);
+                if ($tokens[$closer + 1]['code'] !== T_WHITESPACE) {
+                    $found = 0;
                 } else {
-                    $found = '"' . str_replace($phpcsFile->eolChar, '\n', $content) . '"';
+                    if (strpos($content, $phpcsFile->eolChar) !== false) {
+                        $found = 'newline';
+                    } else {
+                        $found = strlen($content);
+                    }
                 }
 
                 $fix = $phpcsFile->addFixableError($error, $closer, 'SpaceAfterCloseParenthesis', [$found]);
