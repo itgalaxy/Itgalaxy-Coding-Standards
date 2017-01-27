@@ -20,6 +20,12 @@
 
     <rule ref="Drupal.Commenting.DataTypeNamespace"/>
 
+    <rule ref="Drupal.Commenting.FileComment">
+        <exclude name="Drupal.Commenting.FileComment.Missing"/>
+        <exclude name="Drupal.Commenting.FileComment.FileTag"/>
+        <exclude name="Drupal.Commenting.FileComment.NamespaceNoFileDoc"/>
+    </rule>
+
     <rule ref="Drupal.Files.FileEncoding"/>
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
@@ -106,7 +112,6 @@
 
     <rule ref="Squiz.Commenting.EmptyCatchComment"/>
 
-    <!-- Todo evalation -->
     <!-- <rule ref="Squiz.Commenting.FileComment"/> -->
 
     <rule ref="Squiz.Commenting.FunctionComment">
