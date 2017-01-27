@@ -354,8 +354,7 @@
 
     <rule ref="PEAR.Files.IncludingFile"/>
 
-    <!-- Todo need remove EqualSignLine from MultiLineAssignmentSniff -->
-    <rule ref="PEAR.Formatting.MultiLineAssignment"/>
+    <!-- <rule ref="PEAR.Formatting.MultiLineAssignment"/> -->
 
     <!-- <rule ref="PEAR.Functions.FunctionCallSignature"/> -->
 
