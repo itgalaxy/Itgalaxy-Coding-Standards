@@ -16,9 +16,7 @@ class ItgalaxyCodingStandards_Tests_Formatting_MultiLineAssignmentUnitTest exten
             3 => 1,
             6 => 1,
             10 => 1,
-            14 => 1,
-            16 => 1,
-            18 => 1
+            14 => 1
         ];
     }
 
