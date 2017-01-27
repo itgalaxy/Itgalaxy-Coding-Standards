@@ -369,7 +369,7 @@
 
     <!-- <rule ref="PEAR.NamingConventions.ValidVariableName"/> -->
 
-    <!-- Todo need investigation -->
+    <!-- Use Indent and ObjectOperatorSpacing sniffs instead -->
     <!-- <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/> -->
 
     <!-- <rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
