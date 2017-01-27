@@ -13,6 +13,11 @@
 
     <rule ref="Drupal.Classes.UseLeadingBackslash"/>
 
+    <rule ref="Drupal.Commenting.ClassComment">
+        <exclude name="Drupal.Commenting.ClassComment.Missing"/>
+        <exclude name="Drupal.Commenting.ClassComment.SpacingAfter"/>
+    </rule>
+
     <rule ref="Drupal.Files.FileEncoding"/>
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
