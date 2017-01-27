@@ -30,9 +30,14 @@
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
 
-    <rule ref="Drupal.WhiteSpace.Namespace"/>
+    <rule ref="Drupal.WhiteSpace.CloseBracketSpacing"/>
 
     <rule ref="Drupal.WhiteSpace.Comma"/>
+
+    <rule ref="Drupal.WhiteSpace.Namespace"/>
+
+    <rule ref="Drupal.WhiteSpace.OpenBracketSpacing"/>
+
 
     <!-- PSR2 rules -->
 
