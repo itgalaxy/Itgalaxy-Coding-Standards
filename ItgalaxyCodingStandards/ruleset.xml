@@ -4,6 +4,10 @@
     <arg name="tab-width" value="4"/>
 
     <!-- Drupal rules -->
+    <!-- Todo false positive $test = new class {}; -->
+    <!-- <rule ref="Drupal.Classes.ClassCreateInstance"/> -->
+
+    <rule ref="Drupal.Classes.FullyQualifiedNamespace"/>
 
     <rule ref="Drupal.Files.FileEncoding"/>
 
