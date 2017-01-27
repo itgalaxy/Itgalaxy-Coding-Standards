@@ -520,12 +520,8 @@
 
     <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
 
-    <rule ref="Generic.WhiteSpace.ScopeIndent">
-        <properties>
-            <property name="ignoreIndentationTokens" type="array" value="T_COMMENT,T_DOC_COMMENT_OPEN_TAG"/>
-            <property name="indent" value="4"/>
-        </properties>
-    </rule>
+    <!-- Use Indent sniff instead -->
+    <!-- <rule ref="Generic.WhiteSpace.ScopeIndent"/> -->
 
     <rule ref="Internal.NoCodeFound">
         <severity>0</severity>
