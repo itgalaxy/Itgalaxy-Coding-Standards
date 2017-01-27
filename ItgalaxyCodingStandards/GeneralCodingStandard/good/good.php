@@ -78,8 +78,6 @@ echo '<option value="'
 
 // Todo blank lines before function and after
 
-// Todo blank line before return and before comment before return
-
 // Boolean
 true;
 false;
