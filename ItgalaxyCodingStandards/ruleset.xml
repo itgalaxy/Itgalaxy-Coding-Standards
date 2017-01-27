@@ -11,6 +11,8 @@
 
     <rule ref="Drupal.Classes.UnusedUseStatement"/>
 
+    <rule ref="Drupal.Classes.UseLeadingBackslash"/>
+
     <rule ref="Drupal.Files.FileEncoding"/>
 
     <rule ref="Drupal.Semantics.PregSecurity"/>
