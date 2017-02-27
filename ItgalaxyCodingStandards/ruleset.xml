@@ -337,6 +337,7 @@
         <severity>0</severity>
     </rule>
 
+
     <!-- Zend rules -->
 
     <!-- <rule ref="Zend.Debug.CodeAnalyzer"/> -->
@@ -344,6 +345,7 @@
     <!-- <rule ref="Zend.Files.ClosingTag"/> -->
 
     <!-- <rule ref="Zend.NamingConventions.ValidVariableName"/> -->
+
 
     <!-- PEAR rules -->
 
@@ -359,7 +361,6 @@
 
     <!-- <rule ref="PEAR.ControlStructures.ControlSignature"/> -->
 
-    <!-- `MultiLineCondition` sniff instead this -> -->
     <!-- <rule ref="PEAR.ControlStructures.MultiLineCondition"/> -->
 
     <rule ref="PEAR.Files.IncludingFile"/>
@@ -370,7 +371,6 @@
 
     <!-- <rule ref="PEAR.Functions.FunctionDeclaration"/> -->
 
-    <!-- Todo not working with closure -->
     <rule ref="PEAR.Functions.ValidDefaultValue"/>
 
     <!-- <rule ref="PEAR.NamingConventions.ValidClassName"/> -->
@@ -379,12 +379,12 @@
 
     <!-- <rule ref="PEAR.NamingConventions.ValidVariableName"/> -->
 
-    <!-- Use Indent and ObjectOperatorSpacing sniffs instead -->
     <!-- <rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/> -->
 
     <!-- <rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
 
     <!-- <rule ref="PEAR.WhiteSpace.ScopeIndent"/> -->
+
 
     <!-- Generic rules -->
 
@@ -394,7 +394,7 @@
 
     <rule ref="Generic.Classes.DuplicateClassName"/>
 
-    <!-- <rule ref="OpeningBraceSameLine"/> -->
+    <!-- <rule ref="Generic.Classes.OpeningBraceSameLine"/> -->
 
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
 
@@ -408,7 +408,7 @@
 
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 
-    <!-- Todo need improve to see extended classes -->
+    <!-- Best sniff is `ItgalaxyCodingStandards.CodeAnalysis.UnusedFunctionParameters` -->
     <!-- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/> -->
 
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
@@ -471,12 +471,11 @@
 
     <rule ref="Generic.Functions.CallTimePassByReference"/>
 
-    <!-- Used more general sniff `CommaSpacingSniff` -->
+    <!-- Best sniff is `Drupal.WhiteSpace.Comma` -->
     <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
-    <!-- Rule Squiz.Functions.MultiLineFunctionDeclaration more complex -->
+    <!-- Best sniff is `Squiz.Functions.MultiLineFunctionDeclaration -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
-
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceKernighan"/> -->
 
     <!-- <rule ref="Generic.Metrics.CyclomaticComplexity"/> -->
@@ -491,8 +490,7 @@
 
     <rule ref="Generic.PHP.BacktickOperator"/>
 
-    <!-- Should be disabled in view files -->
-    <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
+    <!-- <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/> -->
 
     <!-- No need everywhere closing php tag -->
     <!-- <rule ref="Generic.PHP.ClosingPHPTag"/> -->
