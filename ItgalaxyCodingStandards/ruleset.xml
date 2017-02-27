@@ -38,11 +38,13 @@
 
     <rule ref="Drupal.WhiteSpace.OpenBracketSpacing"/>
 
+
     <!-- PHPCompatibility rules -->
 
     <config name="testVersion" value="5.6-99.0"/>
 
     <!-- <rule ref="PHPCompatibility"/> -->
+
 
     <!-- PSR2 rules -->
 
@@ -73,6 +75,7 @@
 
     <rule ref="PSR2.Namespaces.UseDeclaration"/>
 
+
     <!-- PSR1 rules -->
 
     <rule ref="PSR1.Classes.ClassDeclaration"/>
@@ -82,22 +85,30 @@
     <!-- Use Generic.NamingConventions.CamelCapsFunctionName -->
     <!-- <rule ref="PSR1.Methods.CamelCapsMethodName"/> -->
 
+
+
+
+
+
+
     <!-- Squiz rules -->
 
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
+    <!-- Todo need used in next release -->
     <!-- <rule ref="Squiz.Arrays.ArrayDeclaration"/> -->
 
     <!-- <rule ref="Squiz.CSS"/> -->
 
-    <!-- rule PSR2.Classes.ClassDeclaration more best -->
+    <!-- Best sniff is `PSR2.Classes.ClassDeclaration more best` -->
     <!-- <rule ref="Squiz.Classes.ClassDeclaration"/> -->
 
     <rule ref="Squiz.Classes.ClassFileName"/>
 
-    <rule ref="Squiz.Classes.DuplicateProperty"/>
+    <!-- <rule ref="Squiz.Classes.DuplicateProperty"/> -->
 
-    <rule ref="Squiz.Classes.LowercaseClassKeywords"/>
+    <!-- Best sniff is `Generic.PHP.LowerCaseKeyword` -->
+    <!-- <rule ref="Squiz.Classes.LowercaseClassKeywords"/> -->
 
     <rule ref="Squiz.Classes.SelfMemberReference"/>
 
@@ -146,11 +157,12 @@
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
-    <!-- Use `ControlSignature` sniff -->
+    <!-- Best sniff is `ItgalaxyCodingStandards.ControlSignature.ControlSignature` -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
 
+    <!-- Todo need disable, after add rule `AsKeywordSpacing` -->
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
 
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
@@ -160,7 +172,8 @@
         <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NoBrackets"/>
     </rule>
 
-    <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+    <!-- Best sniff is `Generic.PHP.LowerCaseKeyword` -->
+    <!-- <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/> -->
 
     <rule ref="Squiz.ControlStructures.SwitchDeclaration">
         <exclude name="Squiz.ControlStructures.SwitchDeclaration.SpacingAfterBreak"/>
@@ -176,11 +189,8 @@
 
     <!-- <rule ref="Squiz.Files.FileExtension"/> -->
 
+    <!-- Todo need reverse sniff -->
     <!-- <rule ref="Squiz.Formatting.OperatorBracket"/> -->
-
-
-
-
 
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
         <properties>

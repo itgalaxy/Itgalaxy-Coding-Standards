@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="Itgalaxy-Coding-Standards">
     <description>
-        A custom set of code standard rules to check insteria files.
+        A custom set of code standard rules to check `ItgalaxyCodingStandards` files.
     </description>
 
     <arg value="sv"/>
