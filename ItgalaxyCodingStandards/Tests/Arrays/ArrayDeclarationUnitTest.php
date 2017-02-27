@@ -163,6 +163,7 @@ class ItgalaxyCodingStandards_Tests_Arrays_ArrayDeclarationUnitTest extends Abst
                     293 => 1,
                     311 => 1,
                     321 => 1,
+                    330 => 1,
                     339 => 1,
                     340 => 1,
                     341 => 2,

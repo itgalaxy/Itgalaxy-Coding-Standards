@@ -19,7 +19,6 @@ class ItgalaxyCodingStandards_Tests_Classes_InstantiateClassParensUnitTest exten
             6 => 1,
             7 => 1,
             8 => 1,
-            9 => 1,
             10 => 1,
             12 => 1,
             16 => 1
