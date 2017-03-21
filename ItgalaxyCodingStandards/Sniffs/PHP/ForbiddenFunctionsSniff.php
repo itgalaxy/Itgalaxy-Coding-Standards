@@ -162,6 +162,7 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'mysqli_get_metadata' => 'mysqli_stmt_result_metadata',
         'mysqli_param_count' => 'mysqli_stmt_param_count',
         'mysqli_send_long_data' => 'mysqli_stmt_send_long_data',
+        'ob_end_flush' => 'ob_get_contents() and ob_end_clean() instead',
         'oci8append' => 'ocicollappend',
         'oci8assign' => 'ocicollassign',
         'oci8assignelem' => 'ocicollassignelem',

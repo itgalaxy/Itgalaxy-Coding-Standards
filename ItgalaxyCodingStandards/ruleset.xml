@@ -221,7 +221,7 @@
     <!-- Todo need enable in next release -->
     <!-- <rule ref="Squiz.PHP.DisallowMultipleAssignments"/> -->
 
-    <rule ref="Squiz.PHP.DisallowObEndFlush"/>
+    <!-- <rule ref="Squiz.PHP.DisallowObEndFlush"/> -->
 
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
 
