@@ -32,9 +32,13 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
         'readdir'
     ];
 
-    protected $identicalOperators = [
+    public $allowedComparisonTokens = [
         T_IS_IDENTICAL,
-        T_IS_NOT_IDENTICAL
+        T_IS_NOT_IDENTICAL,
+        T_LESS_THAN,
+        T_IS_SMALLER_OR_EQUAL,
+        T_GREATER_THAN,
+        T_IS_GREATER_OR_EQUAL
     ];
 
     /**
@@ -62,34 +66,24 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
         $open = $tokens[$stackPtr]['parenthesis_opener'];
         $close = $tokens[$stackPtr]['parenthesis_closer'];
         $foundFunction = false;
-        $foundIdentityOperator = false;
+        $foundOperator = false;
         $foundFunctionName = '';
 
         for ($i = $open + 1; $i < $close; $i++) {
             if ($tokens[$i]['code'] === T_STRING && in_array($tokens[$i]['content'], $this->functions)) {
                 $foundFunction = true;
                 $foundFunctionName = $tokens[$i]['content'];
-            } elseif ($tokens[$i]['code'] === T_IS_IDENTICAL
-                || $tokens[$i]['code'] === T_IS_NOT_IDENTICAL
-            ) {
-                $foundIdentityOperator = true;
+            } elseif (in_array($tokens[$i]['code'], $this->allowedComparisonTokens)) {
+                $foundOperator = true;
             }
         }
 
-        if ($foundFunction && !$foundIdentityOperator) {
+        if ($foundFunction && !$foundOperator) {
             $phpcsFile->addError(
-                'Identical operator === is not used for testing the return value of %s function. '
-                    . 'Use `$value = %s(...arguments); '
-                    . 'if ($value === false) { // Logic } else { // Logic }` '
-                    . 'or `$value = %s(...arguments); '
-                    . 'if ($value !== false) { // Logic } else { // Logic }`',
+                'Identical operator === is not used for testing the return value of %s function'.
                 $stackPtr,
-                'ExplicitReturnValueCheck',
-                [
-                    $foundFunctionName,
-                    $foundFunctionName,
-                    $foundFunctionName
-                ]
+                'Found',
+                [$foundFunctionName]
             );
         }
     }
