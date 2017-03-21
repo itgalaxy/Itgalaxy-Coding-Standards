@@ -415,8 +415,7 @@
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
     <rule ref="Generic.Commenting.DocComment">
-        <!-- Todo need investigation -->
-        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
     </rule>
 
     <rule ref="Generic.Commenting.Fixme"/>
