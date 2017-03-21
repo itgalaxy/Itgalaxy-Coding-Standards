@@ -162,28 +162,6 @@ class ArrayDeclarationSniff implements \PHP_CodeSniffer_Sniff
                 continue;
             }
 
-            if ($tokens[$i]['code'] === T_WHITESPACE && $i == $arrayStart + 1) {
-                $error = 'There must be no space between the key or value and the opening parenthesis';
-                $fix = $phpcsFile->addFixableError($error, $i, 'SpaceAfterOpenBrace');
-
-                if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken($i, '');
-                }
-            }
-
-            if ($tokens[$i - 1]['code'] !== T_COMMA && $tokens[$i]['code'] === T_WHITESPACE && $i == $arrayEnd - 1) {
-                $error = 'There must be no space between the key or value and the closing parenthesis';
-                $fix = $phpcsFile->addFixableError($error, $i, 'SpaceAfterCloseBrace');
-
-                if ($fix === true) {
-                    $phpcsFile
-                        ->fixer
-                        ->replaceToken($i, '');
-                }
-            }
-
             if ($tokens[$i]['code'] === T_COMMA) {
                 // Before counting this comma, make sure we are not
                 // at the end of the array.
