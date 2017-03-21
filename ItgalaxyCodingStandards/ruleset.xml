@@ -142,7 +142,7 @@
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.ControlSignature.ControlSignature` -->
+    <!-- Best sniff is `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
@@ -160,13 +160,8 @@
     <!-- Best sniff is `Generic.PHP.LowerCaseKeyword` -->
     <!-- <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/> -->
 
-    <rule ref="Squiz.ControlStructures.SwitchDeclaration">
-        <exclude name="Squiz.ControlStructures.SwitchDeclaration.SpacingAfterBreak"/>
-        <exclude name="Squiz.ControlStructures.SwitchDeclaration.BreakIndent"/>
-        <properties>
-            <property name="indent" value="4"/>
-        </properties>
-    </rule>
+    <!-- Best sniff is `PSR2.ControlSignatures.SwitchDeclaration` -->
+    <!-- <rule ref="Squiz.ControlStructures.SwitchDeclaration"/> -->
 
     <!-- <rule ref="Squiz.Debug.JSLint"/> -->
 
