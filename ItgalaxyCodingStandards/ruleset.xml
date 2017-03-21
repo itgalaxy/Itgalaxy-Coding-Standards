@@ -38,14 +38,6 @@
 
     <rule ref="Drupal.WhiteSpace.OpenBracketSpacing"/>
 
-
-    <!-- PHPCompatibility rules -->
-
-    <config name="testVersion" value="5.6-99.0"/>
-
-    <!-- <rule ref="PHPCompatibility"/> -->
-
-
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
@@ -75,7 +67,6 @@
 
     <rule ref="PSR2.Namespaces.UseDeclaration"/>
 
-
     <!-- PSR1 rules -->
 
     <rule ref="PSR1.Classes.ClassDeclaration"/>
@@ -84,12 +75,6 @@
 
     <!-- Use Generic.NamingConventions.CamelCapsFunctionName -->
     <!-- <rule ref="PSR1.Methods.CamelCapsMethodName"/> -->
-
-
-
-
-
-
 
     <!-- Squiz rules -->
 
@@ -198,7 +183,6 @@
         </properties>
     </rule>
 
-
     <rule ref="Squiz.Functions.FunctionDeclaration"/>
 
     <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
@@ -251,7 +235,7 @@
 
     <!-- <rule ref="Squiz.PHP.EmbeddedPhp"/> -->
 
-    <rule ref="Squiz.PHP.Eval"/>
+    <!-- <rule ref="Squiz.PHP.Eval"/> -->
 
     <!-- Best sniff is `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` -->
     <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
@@ -298,12 +282,15 @@
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace">
         <severity>0</severity>
     </rule>
+
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpaceBeforeCloseBrace">
         <severity>0</severity>
     </rule>
+
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose">
         <severity>0</severity>
     </rule>
+
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.NoLineAfterClose">
         <severity>0</severity>
     </rule>
@@ -350,13 +337,14 @@
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile">
         <severity>0</severity>
     </rule>
+
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile">
         <severity>0</severity>
     </rule>
+
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
         <severity>0</severity>
     </rule>
-
 
     <!-- Zend rules -->
 
@@ -365,7 +353,6 @@
     <!-- <rule ref="Zend.Files.ClosingTag"/> -->
 
     <!-- <rule ref="Zend.NamingConventions.ValidVariableName"/> -->
-
 
     <!-- PEAR rules -->
 
@@ -404,7 +391,6 @@
     <!-- <rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/> -->
 
     <!-- <rule ref="PEAR.WhiteSpace.ScopeIndent"/> -->
-
 
     <!-- Generic rules -->
 
@@ -521,7 +507,6 @@
 
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
 
-    <!-- Todo need working with classes -->
     <!-- <rule ref="Generic.PHP.ForbiddenFunctionsSniff"/> -->
 
     <rule ref="Generic.PHP.LowerCaseConstant"/>
