@@ -415,6 +415,8 @@
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
     <rule ref="Generic.Commenting.DocComment">
+        <!-- @see https://github.com/squizlabs/PHP_CodeSniffer/issues/1397 -->
+        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
         <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
     </rule>
 
