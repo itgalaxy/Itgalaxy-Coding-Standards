@@ -80,7 +80,7 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
 
         if ($foundFunction && !$foundOperator) {
             $phpcsFile->addError(
-                'Identical operator === is not used for testing the return value of %s function'.
+                'Identical operator === is not used for testing the return value of %s function',
                 $stackPtr,
                 'Found',
                 [$foundFunctionName]
