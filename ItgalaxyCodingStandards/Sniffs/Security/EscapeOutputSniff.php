@@ -437,6 +437,32 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
                     true
                 );
 
+                // Ignore php constants
+                // Todo ClassName::class
+                // Todo more constant
+                if (in_array($functionName, [
+                    'PHP_VERSION', 'PHP_MAJOR_VERSION', 'PHP_MINOR_VERSION', 'PHP_RELEASE_VERSION', 'PHP_VERSION_ID',
+                    'PHP_EXTRA_VERSION', 'PHP_ZTS', 'PHP_DEBUG', 'PHP_MAXPATHLEN', 'PHP_OS', 'PHP_OS_FAMILY',
+                    'PHP_SAPI', 'PHP_EOL', 'PHP_INT_MAX', 'PHP_INT_MIN', 'PHP_INT_SIZE', 'PHP_FLOAT_DIG',
+                    'PHP_FLOAT_EPSILON', 'PHP_FLOAT_MIN', 'PHP_FLOAT_MAX', 'DEFAULT_INCLUDE_PATH',
+                    'PEAR_INSTALL_DIR', 'PEAR_EXTENSION_DIR', 'PHP_EXTENSION_DIR', 'PHP_PREFIX', 'PHP_BINDIR',
+                    'PHP_BINARY', 'PHP_MANDIR', 'PHP_LIBDIR', 'PHP_DATADIR', 'PHP_SYSCONFDIR', 'PHP_LOCALSTATEDIR',
+                    'PHP_CONFIG_FILE_PATH', 'PHP_CONFIG_FILE_SCAN_DIR', 'PHP_SHLIB_SUFFIX', 'PHP_FD_SETSIZE',
+                    'E_ERROR', 'E_WARNING', 'E_PARSE', 'E_NOTICE', 'E_CORE_ERROR', 'E_CORE_WARNING', 'E_COMPILE_ERROR',
+                    'E_COMPILE_WARNING', 'E_USER_ERROR', 'E_USER_WARNING', 'E_USER_NOTICE', 'E_DEPRECATED',
+                    'E_USER_DEPRECATED', 'E_ALL', 'E_STRICT', '__COMPILER_HALT_OFFSET__',
+                    '__LINE__', '__FILE__', '__DIR__', '__FUNCTION__', '__CLASS__', '__TRAIT__', '__METHOD__',
+                    '__NAMESPACE__',
+                    'SID', 'PHP_SESSION_DISABLED', 'PHP_SESSION_NONE', 'PHP_SESSION_ACTIVE',
+                    'M_PI', 'M_E', 'M_LOG2E', 'M_LOG10E', 'M_LN2', 'M_LN10', 'M_PI_2', 'M_PI_4', 'M_1_PI',
+                    'M_2_PI', 'M_SQRTPI', 'M_2_SQRTPI', 'M_SQRT2', 'M_SQRT3', 'M_SQRT1_2', 'M_LNPI',
+                    'M_EULER', 'PHP_ROUND_HALF_UP', 'PHP_ROUND_HALF_DOWN', 'PHP_ROUND_HALF_EVEN', 'PHP_ROUND_HALF_ODD',
+                    'NAN', 'INF',
+                    'PATH_SEPARATOR', 'SCANDIR_SORT_ASCENDING', 'SCANDIR_SORT_DESCENDING', 'SCANDIR_SORT_NONE'
+                ])) {
+                    continue;
+                }
+
                 $isFormattingFunction = isset($this->formattingFunctions[$functionName]);
 
                 if ($functionOpener) {
