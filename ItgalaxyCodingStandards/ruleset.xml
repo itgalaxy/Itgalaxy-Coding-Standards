@@ -3,41 +3,6 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
-    <!-- Drupal rules -->
-    <!-- Todo false positive $test = new class {}; -->
-    <!-- <rule ref="Drupal.Classes.ClassCreateInstance"/> -->
-
-    <rule ref="Drupal.Classes.FullyQualifiedNamespace"/>
-
-    <rule ref="Drupal.Classes.UnusedUseStatement"/>
-
-    <rule ref="Drupal.Classes.UseLeadingBackslash"/>
-
-    <rule ref="Drupal.Commenting.ClassComment">
-        <exclude name="Drupal.Commenting.ClassComment.Missing"/>
-        <exclude name="Drupal.Commenting.ClassComment.SpacingAfter"/>
-    </rule>
-
-    <rule ref="Drupal.Commenting.DataTypeNamespace"/>
-
-    <rule ref="Drupal.Commenting.FileComment">
-        <exclude name="Drupal.Commenting.FileComment.Missing"/>
-        <exclude name="Drupal.Commenting.FileComment.FileTag"/>
-        <exclude name="Drupal.Commenting.FileComment.NamespaceNoFileDoc"/>
-    </rule>
-
-    <rule ref="Drupal.Files.FileEncoding"/>
-
-    <rule ref="Drupal.Semantics.PregSecurity"/>
-
-    <rule ref="Drupal.WhiteSpace.CloseBracketSpacing"/>
-
-    <rule ref="Drupal.WhiteSpace.Comma"/>
-
-    <rule ref="Drupal.WhiteSpace.Namespace"/>
-
-    <rule ref="Drupal.WhiteSpace.OpenBracketSpacing"/>
-
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
