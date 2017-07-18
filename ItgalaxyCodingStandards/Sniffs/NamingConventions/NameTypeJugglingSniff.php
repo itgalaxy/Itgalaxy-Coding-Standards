@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
+// Todo See https://github.com/FriendsOfPHP/PHP-CS-Fixer
+
 class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
 {
     public $useShortName = true;

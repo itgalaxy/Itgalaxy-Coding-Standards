@@ -4,13 +4,6 @@ namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * The number of spaces code should be indented.
      *
      * @var int

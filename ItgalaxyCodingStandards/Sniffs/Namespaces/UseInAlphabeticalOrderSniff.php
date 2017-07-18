@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Namespaces;
 
+// Todo buggy, see https://github.com/FriendsOfPHP/PHP-CS-Fixer
+
 class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
 {
     /**

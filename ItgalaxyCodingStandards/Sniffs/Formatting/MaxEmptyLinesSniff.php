@@ -26,13 +26,6 @@ namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 class MaxEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array

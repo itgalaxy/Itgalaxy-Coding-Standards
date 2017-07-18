@@ -33,13 +33,6 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * Allow newlines instead of spaces.
      *
      * @var boolean

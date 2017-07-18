@@ -17,13 +17,6 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
     public $requiredSpacesBeforeClose = 0;
 
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = ['PHP'];
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return int[]

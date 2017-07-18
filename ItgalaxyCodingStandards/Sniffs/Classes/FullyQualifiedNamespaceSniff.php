@@ -46,15 +46,9 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        // Skip this sniff in *api.php files because they want to have fully
-        // qualified names for documentation purposes.
-        if (substr($phpcsFile->getFilename(), -8) === '.api.php') {
-            return ($phpcsFile->numTokens + 1);
-        }
-
         // We are only interested in a backslash embedded between strings, which
         // means this is a class reference with more than once namespace part.
-        if ($tokens[($stackPtr - 1)]['code'] !== T_STRING || $tokens[($stackPtr + 1)]['code'] !== T_STRING) {
+        if ($tokens[$stackPtr - 1]['code'] !== T_STRING || $tokens[$stackPtr + 1]['code'] !== T_STRING) {
             return;
         }
 
@@ -62,7 +56,7 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
         $before = $phpcsFile->findPrevious([T_STRING, T_NS_SEPARATOR, T_WHITESPACE], $stackPtr, null, true);
 
         if ($tokens[$before]['code'] === T_USE || $tokens[$before]['code'] === T_NAMESPACE) {
-            return $phpcsFile->findNext([T_STRING, T_NS_SEPARATOR], ($stackPtr + 1), null, true);
+            return;
         }
 
         // If this is a namespaced function call then ignore this because use
@@ -70,7 +64,7 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
         $after = $phpcsFile->findNext([T_STRING, T_NS_SEPARATOR, T_WHITESPACE], $stackPtr, null, true);
 
         if ($tokens[$after]['code'] === T_OPEN_PARENTHESIS && $tokens[$before]['code'] !== T_NEW) {
-            return ($after + 1);
+            return $after + 1;
         }
 
         $error = 'Namespaced classes/interfaces/traits should be referenced with use statements';
@@ -78,7 +72,7 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
         $fix = $phpcsFile->addFixableError($error, $stackPtr, 'UseStatementMissing');
 
         if ($fix === true) {
-            $fullName = $phpcsFile->getTokensAsString(($before + 1), ($after - 1 - $before));
+            $fullName = $phpcsFile->getTokensAsString($before + 1, $after - 1 - $before);
             $fullName = trim($fullName, '\ ');
             $phpcsFile->fixer->beginChangeset();
 
