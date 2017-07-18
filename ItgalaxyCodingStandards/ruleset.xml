@@ -438,7 +438,7 @@
 
     <rule ref="Generic.Functions.CallTimePassByReference"/>
 
-    <!-- Best sniff is `Drupal.WhiteSpace.Comma` -->
+    <!-- Best sniff is `ItgalaxyCodingStandards.WhiteSpace.Comma` -->
     <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
     <!-- Best sniff is `Squiz.Functions.MultiLineFunctionDeclaration -->
