@@ -1,8 +1,6 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-// Todo rename SpaceUnaryOperator and move to Formatting
-
 class UnaryOperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
