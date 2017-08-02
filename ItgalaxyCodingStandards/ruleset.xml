@@ -11,7 +11,9 @@
 
     <rule ref="PSR2.Classes.PropertyDeclaration"/>
 
-    <rule ref="PSR2.ControlStructures.ControlStructureSpacing"/>
+    <!-- Use `OpenBracketSpacingSniff` instead -->
+    <!-- Use `CloseBracketSpacingSniff` instead -->
+    <!-- <rule ref="PSR2.ControlStructures.ControlStructureSpacing"/> -->
 
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
 
