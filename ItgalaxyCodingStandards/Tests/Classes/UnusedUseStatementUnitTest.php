@@ -1,6 +1,5 @@
 <?php
-
-class ItgalaxyCodingStandards_Tests_Files_FileEncodingUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Classes_UnusedUseStatementUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -10,21 +9,21 @@ class ItgalaxyCodingStandards_Tests_Files_FileEncodingUnitTest extends AbstractS
      *
      * @return array<int, int>
      */
-    public function getErrorList($testFile = '')
+    public function getErrorList()
     {
-        switch ($testFile) {
-            case 'FileEncodingUnitTest.1.inc':
-                return [];
-            case 'FileEncodingUnitTest.2.inc':
-                return [
-                    1 => 1,
-                    2 => 1,
-                    3 => 1,
-                    4 => 1
-                ];
-            default:
-                return [];
-        }
+        return [
+            5 => 1,
+            6 => 1,
+            7 => 1,
+            10 => 1,
+            11 => 1,
+            12 => 1,
+            14 => 1,
+            16 => 1,
+            17 => 1,
+            19 => 1,
+            20 => 1
+        ];
     }
 
     /**

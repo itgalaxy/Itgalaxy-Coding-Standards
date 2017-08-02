@@ -139,7 +139,7 @@ class UnusedUseStatementSniff implements \PHP_CodeSniffer_Sniff
         }
 
         $warning = 'Unused use statement';
-        $fix = $phpcsFile->addFixableWarning($warning, $stackPtr, 'UnusedUse');
+        $fix = $phpcsFile->addFixableError($warning, $stackPtr, 'UnusedUse');
 
         if ($fix === true) {
             // Remove the whole use statement line.

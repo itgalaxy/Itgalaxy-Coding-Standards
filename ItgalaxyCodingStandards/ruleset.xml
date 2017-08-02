@@ -19,10 +19,11 @@
 
     <rule ref="PSR2.Files.EndFileNewline"/>
 
-    <rule ref="PSR2.Methods.FunctionCallSignature"/>
-
-    <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
-        <severity>0</severity>
+    <rule ref="PSR2.Methods.FunctionCallSignature">
+        <!-- Use `ItgalaxyCodingStandards.WhiteSpace.OpenBracketSpacingSniff` instead -->
+        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+        <!-- Use `ItgalaxyCodingStandards.WhiteSpace.CloseBracketSpacingSniff` instead -->
+        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
     </rule>
 
     <rule ref="PSR2.Methods.MethodDeclaration"/>
@@ -107,7 +108,7 @@
         <exclude name="Squiz.Commenting.VariableComment.Missing"/>
     </rule>
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` -->
+    <!-- Use `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` instead -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
@@ -190,14 +191,14 @@
 
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` -->
+    <!-- Use `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` instead -->
     <!-- <rule ref="Squiz.PHP.DiscouragedFunctions"/> -->
 
     <!-- <rule ref="Squiz.PHP.EmbeddedPhp"/> -->
 
     <!-- <rule ref="Squiz.PHP.Eval"/> -->
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` -->
+    <!-- Use `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` instead -->
     <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
 
     <!-- Todo need investigation -->
@@ -271,10 +272,10 @@
     <!-- Todo need support beforeFirst option -->
     <!-- <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/> -->
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.WhiteSpace.ObjectOperatorSpacingSniff` -->
+    <!-- Use `ItgalaxyCodingStandards.WhiteSpace.ObjectOperatorSpacingSniff` instead -->
     <!-- <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing"/> -->
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.WhiteSpace.OperatorSpacing` -->
+    <!-- Use `ItgalaxyCodingStandards.WhiteSpace.OperatorSpacing` instead -->
     <!-- <rule ref="Squiz.WhiteSpace.OperatorSpacing"/> -->
 
     <!-- <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/> -->
@@ -374,7 +375,7 @@
 
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.CodeAnalysis.UnusedFunctionParameters` -->
+    <!-- Use `ItgalaxyCodingStandards.CodeAnalysis.UnusedFunctionParameters` instead -->
     <!-- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/> -->
 
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
@@ -438,7 +439,7 @@
 
     <rule ref="Generic.Functions.CallTimePassByReference"/>
 
-    <!-- Best sniff is `ItgalaxyCodingStandards.WhiteSpace.Comma` -->
+    <!-- Use `ItgalaxyCodingStandards.WhiteSpace.Comma` instead -->
     <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
     <!-- Best sniff is `Squiz.Functions.MultiLineFunctionDeclaration -->

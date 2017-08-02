@@ -70,7 +70,7 @@ class FileEncodingSniff implements \PHP_CodeSniffer_Sniff
         if ($validEncodingFound === false) {
             $warning = 'File encoding is invalid, expected %s';
             $data = [implode(' or ', $this->allowedEncodings)];
-            $phpcsFile->addWarning($warning, $stackPtr, 'InvalidEncoding', $data);
+            $phpcsFile->addError($warning, $stackPtr, 'InvalidEncoding', $data);
         }
     }
 }
