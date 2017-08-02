@@ -141,3 +141,9 @@ $bar = function ($b, $a) {
 function ($a, $b, $c, $d) {
     return $a + $c;
 }
+
+abstract class TestAbstract {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+    }
+}

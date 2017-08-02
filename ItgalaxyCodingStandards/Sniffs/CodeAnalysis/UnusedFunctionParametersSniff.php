@@ -35,8 +35,14 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
         $classPtr = $phpcsFile->getCondition($stackPtr, T_CLASS);
 
         // Ignore extended and implemented method in class
-        // Todo uncomment
         if ($classPtr !== false) {
+            $isAbstractClass = $phpcsFile->findNext(T_ABSTRACT, $classPtr - 1, null, true);
+
+            // Ignore abstract class
+            if ($isAbstractClass) {
+                return;
+            }
+
             $implements = $phpcsFile->findImplementedInterfaceNames($classPtr);
             $extends = $phpcsFile->findExtendedClassName($classPtr);
             if ($extends !== false || $implements !== false) {
@@ -85,10 +91,10 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
             if ($code === T_VARIABLE && isset($unusedParams[$token['content']]) === true) {
                 unset($unusedParams[$token['content']]);
             } elseif ($code === T_DOLLAR) {
-                $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($next + 1), null, true);
+                $nextToken = $phpcsFile->findNext(T_WHITESPACE, $next + 1, null, true);
 
                 if ($tokens[$nextToken]['code'] === T_OPEN_CURLY_BRACKET) {
-                    $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($nextToken + 1), null, true);
+                    $nextToken = $phpcsFile->findNext(T_WHITESPACE, $nextToken + 1, null, true);
 
                     if ($tokens[$nextToken]['code'] === T_STRING) {
                         $varContent = '$' . $tokens[$nextToken]['content'];
