@@ -37,7 +37,6 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'die' => 'exit',
         'diskfreespace' => 'disk_free_space',
         'dl' => null,
-        'doubleval' => 'floatval',
         'ereg' => null,
         'ereg_replace' => null,
         'eregi' => null,

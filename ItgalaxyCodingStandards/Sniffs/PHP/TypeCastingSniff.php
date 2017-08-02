@@ -35,33 +35,38 @@ class TypeCastingSniff implements \PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === T_STRING) {
-            if ($tokens[$stackPtr]['content'] === 'boolval') {
-                $error = 'Usage of boolval($val) is not allowed. Please use (bool) $var instead of boolval($var)';
-                $phpcsFile->addError($error, $stackPtr, 'NotAllowedBoolval');
-            }
-
             if ($tokens[$stackPtr]['content'] === 'intval') {
-                $error = 'Usage of intval($val) is not allowed. Please use (int) $var instead of intval($var)';
+                $error = 'Usage of `intval($val)` is not allowed. Please use `(int) $var`.';
                 $phpcsFile->addError($error, $stackPtr, 'NotAllowedIntval');
             }
 
             if ($tokens[$stackPtr]['content'] === 'floatval') {
-                $error = 'Usage of floatval($val) is not allowed. Please use (float) $var instead of floatval($var)';
+                $error = 'Usage of `floatval($val)` is not allowed. Please use `(float) $var`.';
+                $phpcsFile->addError($error, $stackPtr, 'NotAllowedFloatval');
+            }
+
+            if ($tokens[$stackPtr]['content'] === 'doubleval') {
+                $error = 'Usage of `doubleval($val)` is not allowed. Please use `(double) $var`.';
                 $phpcsFile->addError($error, $stackPtr, 'NotAllowedFloatval');
             }
 
             if ($tokens[$stackPtr]['content'] === 'strval') {
-                $error = 'Usage of strval($val) is not allowed. Please use (string) $var instead of strval($var)';
+                $error = 'Usage of `strval($val)` is not allowed. Please use `(string) $var`.';
                 $phpcsFile->addError($error, $stackPtr, 'NotAllowedStrval');
             }
+
+            if ($tokens[$stackPtr]['content'] === 'boolval') {
+                $error = 'Usage of `boolval($val)` is not allowed. Please use `(bool) $var`.';
+                $phpcsFile->addError($error, $stackPtr, 'NotAllowedBoolval');
+            }
         } elseif ($tokens[$stackPtr]['code'] === T_BOOLEAN_NOT) {
-            $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
+            $nextToken = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
 
             if ($tokens[$nextToken]['code'] !== T_BOOLEAN_NOT) {
                 return;
             }
 
-            $error = 'Usage of !! cast is not allowed. Please use (bool) to cast.';
+            $error = 'Usage of `!!` cast is not allowed.';
             $phpcsFile->addError($error, $stackPtr, 'NotAllowedDoubleNot');
         }
     }
