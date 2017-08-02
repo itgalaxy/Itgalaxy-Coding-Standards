@@ -21,12 +21,7 @@
 
     <rule ref="PSR2.Files.EndFileNewline"/>
 
-    <rule ref="PSR2.Methods.FunctionCallSignature">
-        <!-- Use `ItgalaxyCodingStandards.WhiteSpace.OpenBracketSpacingSniff` instead -->
-        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
-        <!-- Use `ItgalaxyCodingStandards.WhiteSpace.CloseBracketSpacingSniff` instead -->
-        <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
-    </rule>
+    <rule ref="PSR2.Methods.FunctionCallSignature"/>
 
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
