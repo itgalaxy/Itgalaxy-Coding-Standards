@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_PHP_TypeCastingUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_PHP_ShortBoolCastUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,28 +13,7 @@ class ItgalaxyCodingStandards_Tests_PHP_TypeCastingUnitTest extends AbstractSnif
     public function getErrorList()
     {
         return [
-            2 => 1,
-            5 => 1,
-            7 => 1,
-            9 => 1,
-            11 => 1,
-            13 => 1,
-            15 => 1,
-            17 => 1,
-            19 => 1,
-            21 => 1,
-            23 => 1,
-            25 => 1,
-            27 => 1,
-            29 => 1,
-            31 => 1,
-            33 => 1,
-            35 => 1,
-            37 => 1,
-            40 => 1,
-            43 => 1,
-            45 => 1,
-            49 => 1
+            3 => 1
         ];
     }
 

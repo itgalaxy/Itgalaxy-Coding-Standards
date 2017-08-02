@@ -45,8 +45,8 @@ $float_value_of_var = floatval($foo);
 $foo = strval(123);
 
 $foo = null;
-echo !!$foo;
-echo !$foo;
+
+$double = doubleval($foo);
 
 $foo = (int) ('123');
 $foo = (float) ('123');
