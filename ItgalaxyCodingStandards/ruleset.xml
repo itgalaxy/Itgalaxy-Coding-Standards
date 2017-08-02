@@ -3,6 +3,8 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
+    <!-- Todo FOUND NEW LINE GOOD MESSAGE -->
+
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
@@ -232,20 +234,18 @@
         <severity>0</severity>
     </rule>
 
-    <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace">
-        <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"/>
-    </rule>
+    <!-- <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/> -->
 
-    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
+    <!-- <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/> -->
 
     <!-- Todo need support afterLast option -->
     <!-- <rule ref="Squiz.WhiteSpace.FunctionSpacing"/> -->
 
+    <!-- Todo Newline not working -->
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
 
-    <!-- Todo need support beforeFirst option -->
     <!-- <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/> -->
 
     <!-- Use `ItgalaxyCodingStandards.WhiteSpace.ObjectOperatorSpacingSniff` instead -->
