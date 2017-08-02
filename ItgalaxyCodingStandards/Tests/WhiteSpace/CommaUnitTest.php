@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_CodeAnalysis_UnusedFunctionParametersUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_WhiteSpace_CommaUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -13,11 +13,10 @@ class ItgalaxyCodingStandards_Tests_CodeAnalysis_UnusedFunctionParametersUnitTes
     public function getErrorList()
     {
         return [
-            23 => 1,
-            27 => 1,
-            129 => 1,
-            133 => 1,
-            141 => 1
+            7 => 2,
+            8 => 1,
+            11 => 1,
+            12 => 1
         ];
     }
 

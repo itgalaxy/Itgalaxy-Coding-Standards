@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_CodeAnalysis_UnusedFunctionParametersUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Files_FileEncodingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -10,15 +10,9 @@ class ItgalaxyCodingStandards_Tests_CodeAnalysis_UnusedFunctionParametersUnitTes
      *
      * @return array<int, int>
      */
-    public function getErrorList()
+    public function getErrorList($testFile = '')
     {
-        return [
-            23 => 1,
-            27 => 1,
-            129 => 1,
-            133 => 1,
-            141 => 1
-        ];
+        return [];
     }
 
     /**

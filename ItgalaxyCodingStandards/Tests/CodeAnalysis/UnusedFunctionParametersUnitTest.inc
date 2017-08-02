@@ -1,5 +1,25 @@
 <?php
 
+class Foo {
+    public function run($one, $two) {
+        return $one * $two;
+    }
+}
+
+class Bar extends Foo {
+    public function run($one, $two) {
+        return $one;
+    }
+}
+
+class FooBar extends Bar {
+    public function run($one, $two) {
+        $result = $one * 2;
+
+        return $result;
+    }
+}
+
 function foo($a, $b) {
     return $a * 2;
 }
@@ -23,12 +43,12 @@ function foobar($a, &$b) {
 }
 
 class Foo {
-    function barfoo($a, $b) {
-        // Empty body means interface method in many cases.
+    function barfoo(string $a, string $b) {
+        return $a . $b;
     }
 
-    function fooBar($a, $b) {
-        return;
+    function fooBar(int $a, int $b) {
+        return $a + $b;
     }
 }
 
@@ -99,5 +119,25 @@ class Foo
 }
 
 add(function () {
-    return ?> <? echo 'test'; ?><?php
+    return ?> <? echo 'foo'; ?><?php
 });
+
+function foo($b, $a) {
+    return $a * 2;
+}
+
+$foo = function ($a) {
+    return 'foo';
+};
+
+function fooBarFoo($b) {
+    return 'bar';
+}
+
+$bar = function ($b, $a) {
+    return $a * 2;
+};
+
+function ($a, $b, $c, $d) {
+    return $a + $c;
+}

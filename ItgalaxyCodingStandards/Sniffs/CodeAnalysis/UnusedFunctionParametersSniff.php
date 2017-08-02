@@ -3,7 +3,6 @@ namespace ItgalaxyCodingStandards\Sniffs\CodeAnalysis;
 
 class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
 {
-    public $onlyLast = true;
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -11,7 +10,7 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return [T_FUNCTION];
+        return [T_FUNCTION, T_CLOSURE];
     }
 
     /**
@@ -28,29 +27,48 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
 
-        // Skip empty function declarations in classes.
+        // Skip broken function declarations.
         if (isset($token['scope_opener']) === false || isset($token['parenthesis_opener']) === false) {
+            return;
+        }
+
+        $classPtr = $phpcsFile->getCondition($stackPtr, T_CLASS);
+
+        // Ignore extended and implemented method in class
+        // Todo uncomment
+        if ($classPtr !== false) {
+            $implements = $phpcsFile->findImplementedInterfaceNames($classPtr);
+            $extends = $phpcsFile->findExtendedClassName($classPtr);
+            if ($extends !== false || $implements !== false) {
+                return;
+            }
+        }
+
+        $methodParams = $phpcsFile->getMethodParameters($stackPtr);
+
+        // Skip when no parameters found.
+        $methodParamsCount = count($methodParams);
+
+        if ($methodParamsCount === 0) {
             return;
         }
 
         $params = [];
 
-        foreach ($phpcsFile->getMethodParameters($stackPtr) as $param) {
-            $params[$param['name']] = $stackPtr;
+        foreach ($methodParams as $param) {
+            $params[$param['name']] = $param['token'];
         }
 
-        $allParams = $params;
+        $unusedParams = $params;
         $next = ++$token['scope_opener'];
         $end = --$token['scope_closer'];
-
-        $foundContent = false;
 
         $validTokens = [
             T_HEREDOC => T_HEREDOC,
             T_NOWDOC => T_NOWDOC,
             T_END_HEREDOC => T_END_HEREDOC,
             T_END_NOWDOC => T_END_NOWDOC,
-            T_DOUBLE_QUOTED_STRING => T_DOUBLE_QUOTED_STRING
+            T_DOUBLE_QUOTED_STRING => T_DOUBLE_QUOTED_STRING,
         ];
 
         $validTokens += \PHP_CodeSniffer_Tokens::$emptyTokens;
@@ -64,34 +82,8 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
                 continue;
             }
 
-            if ($foundContent === false) {
-                // A throw statement as the first content indicates an interface method.
-                if ($code === T_THROW) {
-                    return;
-                }
-
-                // A return statement as the first content indicates an interface method.
-                if (isset($tokens[$next + 1]) && $code === T_RETURN) {
-                    $tmp = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $next + 1, null, true);
-
-                    // There is a return.
-                    if ($tokens[$tmp]['code'] === T_SEMICOLON) {
-                        return;
-                    }
-
-                    $tmp = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $tmp + 1, null, true);
-
-                    if ($tmp !== false && $tokens[$tmp]['code'] === T_SEMICOLON) {
-                        // There is a return <token>.
-                        return;
-                    }
-                }
-            }
-
-            $foundContent = true;
-
-            if ($code === T_VARIABLE && isset($params[$token['content']]) === true) {
-                unset($params[$token['content']]);
+            if ($code === T_VARIABLE && isset($unusedParams[$token['content']]) === true) {
+                unset($unusedParams[$token['content']]);
             } elseif ($code === T_DOLLAR) {
                 $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($next + 1), null, true);
 
@@ -101,8 +93,8 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
                     if ($tokens[$nextToken]['code'] === T_STRING) {
                         $varContent = '$' . $tokens[$nextToken]['content'];
 
-                        if (isset($params[$varContent]) === true) {
-                            unset($params[$varContent]);
+                        if (isset($unusedParams[$varContent]) === true) {
+                            unset($unusedParams[$varContent]);
                         }
                     }
                 }
@@ -133,43 +125,33 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
                     $varContent = '';
 
                     if ($stringToken[0] === T_DOLLAR_OPEN_CURLY_BRACES) {
-                        $varContent = '$' . $stringTokens[($stringPtr + 1)][1];
+                        $varContent = '$' . $stringTokens[$stringPtr + 1][1];
                     } elseif ($stringToken[0] === T_VARIABLE) {
                         $varContent = $stringToken[1];
                     }
 
-                    if ($varContent !== '' && isset($params[$varContent]) === true) {
-                        unset($params[$varContent]);
+                    if ($varContent !== '' && isset($unusedParams[$varContent]) === true) {
+                        unset($unusedParams[$varContent]);
                     }
                 }
             }
         }
 
-        $ignoreParam = false;
-
-        if ($this->onlyLast) {
-            $ignoreParam = true;
+        if (count($unusedParams) == 0) {
+            return;
         }
 
-        reset($allParams);
-        $nextKey = key($allParams);
+        $reversedParams = array_reverse($params);
 
-        if ($foundContent === true && count($params) > 0) {
-            foreach ($params as $paramName => $position) {
-                if ($nextKey !== $paramName) {
-                    $ignoreParam = false;
-                }
-
-                unset($allParams[$paramName]);
-                reset($allParams);
-                $nextKey = key($allParams);
-
-                if (!$ignoreParam) {
-                    $error = 'The method parameter %s is never used';
-                    $data = [$paramName];
-                    $phpcsFile->addError($error, $position, 'Found', $data);
-                }
+        foreach ($reversedParams as $paramName => $position) {
+            // We found used param in the function, stop the search
+            if (!isset($unusedParams[$paramName])) {
+                break;
             }
+
+            $error = 'The method parameter %s is never used';
+            $data = [$paramName];
+            $phpcsFile->addError($error, $position, 'Found', $data);
         }
     }
 }
