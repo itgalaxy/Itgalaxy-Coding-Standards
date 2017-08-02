@@ -258,7 +258,6 @@
 
     <!-- <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/> -->
 
-    <!-- Todo https://github.com/squizlabs/PHP_CodeSniffer/issues/1312 -->
     <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>

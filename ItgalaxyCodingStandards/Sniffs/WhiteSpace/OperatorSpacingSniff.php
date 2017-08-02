@@ -94,8 +94,8 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         if ($tokens[$stackPtr]['code'] === T_EQUAL) {
             // Skip for '=&' case.
-            if (isset($tokens[($stackPtr + 1)]) === true
-                && $tokens[($stackPtr + 1)]['code'] === T_BITWISE_AND
+            if (isset($tokens[$stackPtr + 1]) === true
+                && $tokens[$stackPtr + 1]['code'] === T_BITWISE_AND
             ) {
                 return;
             }
@@ -103,8 +103,8 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         // Skip short ternary such as: "$foo = $bar ?: true;".
         if (($tokens[$stackPtr]['code'] === T_INLINE_THEN
-                && $tokens[($stackPtr + 1)]['code'] === T_INLINE_ELSE)
-            || ($tokens[($stackPtr - 1)]['code'] === T_INLINE_THEN
+                && $tokens[$stackPtr + 1]['code'] === T_INLINE_ELSE)
+            || ($tokens[$stackPtr - 1]['code'] === T_INLINE_THEN
                 && $tokens[$stackPtr]['code'] === T_INLINE_ELSE)
         ) {
             return;
@@ -118,7 +118,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
 
             // Check there is one space before the & operator.
-            if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE) {
+            if ($tokens[$stackPtr - 1]['code'] !== T_WHITESPACE) {
                 $error = 'Expected 1 space before "&" operator; 0 found';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceBeforeAmp');
 
@@ -130,10 +130,10 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
                 $phpcsFile->recordMetric($stackPtr, 'Space before operator', 0);
             } else {
-                if ($tokens[($stackPtr - 2)]['line'] !== $tokens[$stackPtr]['line']) {
+                if ($tokens[$stackPtr - 2]['line'] !== $tokens[$stackPtr]['line']) {
                     $found = 'newline';
                 } else {
-                    $found = $tokens[($stackPtr - 1)]['length'];
+                    $found = $tokens[$stackPtr - 1]['length'];
                 }
 
                 $phpcsFile->recordMetric($stackPtr, 'Space before operator', $found);
@@ -148,13 +148,13 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
                     if ($fix === true) {
                         $phpcsFile
                             ->fixer
-                            ->replaceToken(($stackPtr - 1), ' ');
+                            ->replaceToken($stackPtr - 1, ' ');
                     }
                 }
             }
 
             // Check there is one space after the & operator.
-            if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
+            if ($tokens[$stackPtr + 1]['code'] !== T_WHITESPACE) {
                 $error = 'Expected 1 space after "&" operator; 0 found';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceAfterAmp');
 
@@ -166,12 +166,12 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
                 $phpcsFile->recordMetric($stackPtr, 'Space after operator', 0);
             } else {
-                if (isset($tokens[($stackPtr + 2)]) === true
-                    && $tokens[($stackPtr + 2)]['line'] !== $tokens[$stackPtr]['line']
+                if (isset($tokens[$stackPtr + 2]) === true
+                    && $tokens[$stackPtr + 2]['line'] !== $tokens[$stackPtr]['line']
                 ) {
                     $found = 'newline';
                 } else {
-                    $found = $tokens[($stackPtr + 1)]['length'];
+                    $found = $tokens[$stackPtr + 1]['length'];
                 }
 
                 $phpcsFile->recordMetric($stackPtr, 'Space after operator', $found);
@@ -186,7 +186,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
                     if ($fix === true) {
                         $phpcsFile
                             ->fixer
-                            ->replaceToken(($stackPtr + 1), ' ');
+                            ->replaceToken($stackPtr + 1, ' ');
                     }
                 }
             }
@@ -195,7 +195,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[$stackPtr]['code'] === T_PLUS) {
-            $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+            $prev = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
 
             if (isset(\PHP_CodeSniffer_Tokens::$assignmentTokens[$tokens[$prev]['code']]) === true) {
                 // Just trying to assign a negative value; eg. ($var = -1).
@@ -206,7 +206,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
         if ($tokens[$stackPtr]['code'] === T_MINUS) {
             // Check minus spacing, but make sure we aren't just assigning
             // a minus value or returning one.
-            $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+            $prev = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
 
             if ($tokens[$prev]['code'] === T_RETURN) {
                 // Just returning a negative value; eg. (return -1).
@@ -255,7 +255,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
         $operator = $tokens[$stackPtr]['content'];
 
-        if ($tokens[($stackPtr - 1)]['code'] !== T_WHITESPACE) {
+        if ($tokens[$stackPtr - 1]['code'] !== T_WHITESPACE) {
             $error = 'Expected 1 space before "' . $operator . '"; 0 found';
             $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceBefore');
 
@@ -267,10 +267,10 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
             $phpcsFile->recordMetric($stackPtr, 'Space before operator', 0);
         } else {
-            if ($tokens[($stackPtr - 2)]['line'] !== $tokens[$stackPtr]['line']) {
+            if ($tokens[$stackPtr - 2]['line'] !== $tokens[$stackPtr]['line']) {
                 $found = 'newline';
             } else {
-                $found = $tokens[($stackPtr - 1)]['length'];
+                $found = $tokens[$stackPtr - 1]['length'];
             }
 
             if ($tokens[$stackPtr]['type'] === 'T_INLINE_THEN') {
@@ -331,7 +331,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
                     if ($tokens[($stackPtr + 2)]['line'] !== $tokens[$stackPtr]['line']) {
                         $afterFound = 'newline';
                     } else {
-                        $afterFound = $tokens[($stackPtr + 1)]['length'];
+                        $afterFound = $tokens[$stackPtr + 1]['length'];
                     }
 
                     if ($tokens[$stackPtr]['line'] === $tokens[$prev]['line'] && $afterFound === 'newline') {
@@ -372,7 +372,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
                     $phpcsFile
                         ->fixer
-                        ->replaceToken(($stackPtr - 1), ' ');
+                        ->replaceToken($stackPtr - 1, ' ');
                     $phpcsFile
                         ->fixer
                         ->endChangeset();
@@ -380,7 +380,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
-        if (isset($tokens[($stackPtr + 1)]) === false) {
+        if (isset($tokens[$stackPtr + 1]) === false) {
             return;
         }
 
@@ -396,10 +396,10 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
 
             $phpcsFile->recordMetric($stackPtr, 'Space after operator', 0);
         } else {
-            if ($tokens[($stackPtr + 2)]['line'] !== $tokens[$stackPtr]['line']) {
+            if ($tokens[$stackPtr + 2]['line'] !== $tokens[$stackPtr]['line']) {
                 $found = 'newline';
             } else {
-                $found = $tokens[($stackPtr + 1)]['length'];
+                $found = $tokens[$stackPtr + 1]['length'];
             }
 
             if ($tokens[$stackPtr]['type'] === 'T_INLINE_THEN' && $found === 'newline') {
@@ -435,7 +435,7 @@ class OperatorSpacingSniff implements \PHP_CodeSniffer_Sniff
                 if ($fix === true) {
                     $phpcsFile
                         ->fixer
-                        ->replaceToken(($stackPtr + 1), ' ');
+                        ->replaceToken($stackPtr + 1, ' ');
                 }
             }
         }
