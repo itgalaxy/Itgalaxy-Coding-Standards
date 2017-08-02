@@ -27,6 +27,7 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+
         // Ignore default value assignments in function definitions.
         $function = $phpcsFile->findPrevious(
             [
@@ -109,6 +110,10 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
         $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($varToken - 1), null, true);
 
         if (isset(\PHP_CodeSniffer_Tokens::$scopeModifiers[$tokens[$prev]['code']]) === true) {
+            return;
+        }
+
+        if ($tokens[$prev]['code'] === T_VAR) {
             return;
         }
 

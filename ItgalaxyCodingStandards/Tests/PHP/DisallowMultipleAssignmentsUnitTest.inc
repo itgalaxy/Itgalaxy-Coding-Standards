@@ -102,3 +102,7 @@ $value = true;
 $newValue = null;
 $someFunction = 'json_decode';
 $val = $someFunction('{"test": "test"}', true)['test'] = 1 ? $newValue = 1 : $newValue = 2;
+
+class Foo {
+    var $test = 1;
+}

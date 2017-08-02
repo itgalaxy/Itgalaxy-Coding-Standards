@@ -39,7 +39,7 @@
 
     <rule ref="PSR1.Files.SideEffects"/>
 
-    <!-- Use Generic.NamingConventions.CamelCapsFunctionName -->
+    <!-- Use `Generic.NamingConventions.CamelCapsFunctionName` instead -->
     <!-- <rule ref="PSR1.Methods.CamelCapsMethodName"/> -->
 
     <!-- Squiz rules -->
