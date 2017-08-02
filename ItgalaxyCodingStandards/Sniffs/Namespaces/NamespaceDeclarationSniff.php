@@ -26,6 +26,15 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        if ($tokens[($stackPtr + 1)]['content'] !== ' ') {
+            $error = 'There must be exactly one space after the namepace keyword';
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr + 1, 'TooManySpacesAfter');
+
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
+            }
+        }
+
         for ($prevPtr = ($stackPtr - 1); $prevPtr !== 0; $prevPtr--) {
             if ($tokens[$prevPtr]['line'] === $tokens[$stackPtr]['line']) {
                 continue;

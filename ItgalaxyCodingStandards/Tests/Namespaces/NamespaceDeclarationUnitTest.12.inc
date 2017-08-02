@@ -1,3 +1,2 @@
 <?php
-
 namespace  Klausi\Test;

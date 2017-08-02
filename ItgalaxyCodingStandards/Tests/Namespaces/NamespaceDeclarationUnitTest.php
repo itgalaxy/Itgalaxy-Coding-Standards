@@ -35,6 +35,8 @@ class ItgalaxyCodingStandards_Tests_Namespaces_NamespaceDeclarationUnitTest exte
                 return [];
             case 'NamespaceDeclarationUnitTest.11.inc':
                 return [];
+            case 'NamespaceDeclarationUnitTest.12.inc':
+                return [2 => 1];
             default:
                 return [];
         }
