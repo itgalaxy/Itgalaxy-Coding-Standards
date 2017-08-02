@@ -10,4 +10,5 @@ function fooBar($a , $b,  $c) {
 
 $foo = [$a,$b];
 $bar = [$a , $b];
-
+$fooBar = [1,];
+$barFoo = [1, ];

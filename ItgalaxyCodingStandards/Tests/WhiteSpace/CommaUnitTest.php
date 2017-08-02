@@ -16,7 +16,8 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_CommaUnitTest extends AbstractSni
             7 => 2,
             8 => 1,
             11 => 1,
-            12 => 1
+            12 => 1,
+            14 => 1
         ];
     }
 
