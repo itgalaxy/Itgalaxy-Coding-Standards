@@ -65,48 +65,29 @@
 
     <rule ref="Squiz.Classes.ValidClassName"/>
 
-    <rule ref="Squiz.Commenting.BlockComment">
-        <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
-        <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
-        <exclude name="Squiz.Commenting.BlockComment.LastLineIndent"/>
-        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
-        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
-        <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
-    </rule>
+    <!-- <rule ref="Squiz.Commenting.BlockComment"> -->
 
-    <rule ref="Squiz.Commenting.ClassComment">
-        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
-    </rule>
+    <!-- <rule ref="Squiz.Commenting.ClassComment"> -->
 
     <!-- <rule ref="Squiz.Commenting.ClosingDeclarationComment"/> -->
 
-    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+    <!-- <rule ref="Squiz.Commenting.DocCommentAlignment"/> -->
 
-    <rule ref="Squiz.Commenting.EmptyCatchComment"/>
+    <!-- <rule ref="Squiz.Commenting.EmptyCatchComment"/> -->
 
     <!-- <rule ref="Squiz.Commenting.FileComment"/> -->
 
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
-        <exclude name="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing"/>
-    </rule>
+    <!-- <rule ref="Squiz.Commenting.FunctionComment"> -->
 
-    <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
+    <!-- <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/> -->
 
-    <rule ref="Squiz.Commenting.InlineComment">
-        <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
-        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
-        <exclude name="Squiz.Commenting.InlineComment.SpacingAfter"/>
-    </rule>
+    <!-- <rule ref="Squiz.Commenting.InlineComment"> -->
 
     <!-- <rule ref="Squiz.Commenting.LongConditionClosingComment"/> -->
 
-    <!-- Allow commenting after statement -->
     <!-- <rule ref="Squiz.Commenting.PostStatementComment"/> -->
 
-    <rule ref="Squiz.Commenting.VariableComment">
-        <exclude name="Squiz.Commenting.VariableComment.Missing"/>
-    </rule>
+    <!-- <rule ref="Squiz.Commenting.VariableComment"> -->
 
     <!-- Use `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` instead -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
@@ -380,11 +361,7 @@
 
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
-    <rule ref="Generic.Commenting.DocComment">
-        <!-- @see https://github.com/squizlabs/PHP_CodeSniffer/issues/1397 -->
-        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
-        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
-    </rule>
+    <!-- <rule ref="Generic.Commenting.DocComment"> -->
 
     <rule ref="Generic.Commenting.Fixme"/>
 
