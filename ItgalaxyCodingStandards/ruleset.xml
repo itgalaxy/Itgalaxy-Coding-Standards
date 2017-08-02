@@ -46,7 +46,6 @@
 
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
-    <!-- Todo need used in next release -->
     <!-- <rule ref="Squiz.Arrays.ArrayDeclaration"/> -->
 
     <!-- <rule ref="Squiz.CSS"/> -->
@@ -116,7 +115,6 @@
 
     <!-- <rule ref="Squiz.Files.FileExtension"/> -->
 
-    <!-- Todo need reverse sniff -->
     <!-- <rule ref="Squiz.Formatting.OperatorBracket"/> -->
 
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
@@ -158,14 +156,12 @@
 
     <!-- <rule ref="Squiz.PHP.CommentedOutCode"/> -->
 
-    <!-- Todo not working in ternary -->
     <!-- <rule ref="Squiz.PHP.DisallowBooleanStatement"/> -->
 
     <!-- <rule ref="Squiz.PHP.DisallowComparisonAssignment"/> -->
 
     <!-- <rule ref="Squiz.PHP.DisallowInlineIf"/> -->
 
-    <!-- Todo need enable in next release -->
     <!-- <rule ref="Squiz.PHP.DisallowMultipleAssignments"/> -->
 
     <!-- <rule ref="Squiz.PHP.DisallowObEndFlush"/> -->
@@ -182,7 +178,6 @@
     <!-- Use `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` instead -->
     <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
 
-    <!-- Todo need investigation -->
     <!-- <rule ref="Squiz.PHP.GlobalKeyword"/> -->
 
     <rule ref="Squiz.PHP.Heredoc"/>
@@ -193,7 +188,7 @@
 
     <rule ref="Squiz.PHP.NonExecutableCode"/>
 
-    <rule ref="Squiz.Scope.MemberVarScope"/>
+    <!-- <rule ref="Squiz.Scope.MemberVarScope"/> -->
 
     <rule ref="Squiz.Scope.MethodScope"/>
 
@@ -419,7 +414,7 @@
     <!-- Use `ItgalaxyCodingStandards.WhiteSpace.Comma` instead -->
     <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
-    <!-- Best sniff is `Squiz.Functions.MultiLineFunctionDeclaration -->
+    <!-- Use `Squiz.Functions.MultiLineFunctionDeclaration instead -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceKernighan"/> -->
 
