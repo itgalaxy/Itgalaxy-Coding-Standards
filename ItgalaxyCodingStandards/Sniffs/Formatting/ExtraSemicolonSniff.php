@@ -1,7 +1,7 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class DisallowMultipleStatementsSniff implements \PHP_CodeSniffer_Sniff
+class ExtraSemicolonSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -53,10 +53,12 @@ class DisallowMultipleStatementsSniff implements \PHP_CodeSniffer_Sniff
 
         $previousIndex = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
 
+        $error = 'There is no extra semicolon';
+        $code = 'ExtraSemicolonFound';
+
         if ($tokens[$prev]['line'] === $tokens[$stackPtr]['line']) {
             $phpcsFile->recordMetric($stackPtr, 'Multiple statements on same line', 'yes');
-            $error = 'Each PHP statement must be on a line by itself';
-            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'SameLine');
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, $code);
 
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
@@ -80,18 +82,11 @@ class DisallowMultipleStatementsSniff implements \PHP_CodeSniffer_Sniff
                 return;
             }
 
-            $fix = $phpcsFile->addFixableError('Extra semicolon found', $stackPtr, 'ExtraSemicolon');
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, $code);
 
             if ($fix) {
                 $phpcsFile->fixer->beginChangeset();
                 $phpcsFile->fixer->replaceToken($stackPtr, '');
-
-                for ($i = $stackPtr; $i > $previousIndex; --$i) {
-                    if ($tokens[$i]['code'] === T_WHITESPACE) {
-                        $phpcsFile->fixer->replaceToken($i, '');
-                    }
-                }
-
                 $phpcsFile->fixer->endChangeset();
             }
         }

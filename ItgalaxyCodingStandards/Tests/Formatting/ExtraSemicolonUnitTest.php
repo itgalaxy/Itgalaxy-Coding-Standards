@@ -1,6 +1,6 @@
 <?php
 
-class ItgalaxyCodingStandards_Tests_Formatting_DisallowMultipleStatementsUnitTest extends AbstractSniffUnitTest
+class ItgalaxyCodingStandards_Tests_Formatting_ExtraSemicolonUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
