@@ -1,5 +1,4 @@
-<?php
-namespace Foo\Bar\subnamespace;
+<?php namespace Foo\Bar\subnamespace;
 
 class Foo
 {

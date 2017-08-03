@@ -14,28 +14,38 @@ class ItgalaxyCodingStandards_Tests_Namespaces_NamespaceDeclarationUnitTest exte
     {
         switch ($testFile) {
             case 'NamespaceDeclarationUnitTest.1.inc':
-                return [];
+                return [1 => 1];
             case 'NamespaceDeclarationUnitTest.2.inc':
-                return [3 => 2];
+                return [3 => 1];
             case 'NamespaceDeclarationUnitTest.3.inc':
                 return [4 => 2];
             case 'NamespaceDeclarationUnitTest.4.inc':
-                return [1 => 1];
+                return [1 => 2];
             case 'NamespaceDeclarationUnitTest.5.inc':
                 return [3 => 2];
             case 'NamespaceDeclarationUnitTest.6.inc':
-                return [];
+                return [2 => 1];
             case 'NamespaceDeclarationUnitTest.7.inc':
-                return [2 => 1];
+                return [2 => 2];
             case 'NamespaceDeclarationUnitTest.8.inc':
-                return [2 => 1];
+                return [2 => 2];
             case 'NamespaceDeclarationUnitTest.9.inc':
-                return [];
+                return [1 => 1];
             case 'NamespaceDeclarationUnitTest.10.inc':
-                return [];
+                return [1 => 1];
             case 'NamespaceDeclarationUnitTest.11.inc':
-                return [];
+                return [1 => 1];
             case 'NamespaceDeclarationUnitTest.12.inc':
+                return [2 => 2];
+            case 'NamespaceDeclarationUnitTest.13.inc':
+                return [];
+            case 'NamespaceDeclarationUnitTest.14.inc':
+                return [];
+            case 'NamespaceDeclarationUnitTest.15.inc':
+                return [11 => 1];
+            case 'NamespaceDeclarationUnitTest.16.inc':
+                return [];
+            case 'NamespaceDeclarationUnitTest.17.inc':
                 return [2 => 1];
             default:
                 return [];

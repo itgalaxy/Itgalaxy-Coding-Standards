@@ -3,6 +3,8 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
+    <!-- Todo PHP4 destructors are allowed to break our rules. -->
+
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
@@ -31,8 +33,7 @@
 
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
-    <!-- Use NamespaceDeclarationSniff  -->
-    <!-- Todo -->
+    <!-- Use `ItgalaxyCodingStandards.Namespaces.NamespaceDeclarationSniff` instead  -->
     <!-- <rule ref="PSR2.Namespaces.NamespaceDeclaration"/> -->
 
     <rule ref="PSR2.Namespaces.UseDeclaration"/>

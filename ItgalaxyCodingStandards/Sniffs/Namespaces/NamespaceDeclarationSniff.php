@@ -35,24 +35,30 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
-        for ($prevPtr = ($stackPtr - 1); $prevPtr !== 0; $prevPtr--) {
-            if ($tokens[$prevPtr]['line'] === $tokens[$stackPtr]['line']) {
+        // The $prevFirstTokenOnLine var now points to the first token on the line before the
+        // namespace declaration, which must be a blank line.
+        for (
+            $prevFirstTokenOnLine = ($stackPtr - 1);
+            $prevFirstTokenOnLine !== 0;
+            $prevFirstTokenOnLine--
+        ) {
+            if ($tokens[$prevFirstTokenOnLine]['line'] === $tokens[$stackPtr]['line']) {
                 continue;
             }
 
             break;
         }
 
-        $prev = $phpcsFile->findPrevious(T_WHITESPACE, $prevPtr, 0, true);
+        $prev = $phpcsFile->findPrevious(T_WHITESPACE, $prevFirstTokenOnLine, 0, true);
 
         if ($prev !== false) {
-            $diffPrev = $tokens[$prevPtr]['line'] - $tokens[$prev]['line'];
+            $diffPrev = $tokens[$prevFirstTokenOnLine]['line'] - $tokens[$prev]['line'];
 
             if ($diffPrev < 0) {
                 $diffPrev = 0;
             }
 
-            if ($diffPrev !== 1 && $tokens[$prev]['code'] !== T_OPEN_TAG) {
+            if ($diffPrev !== 1) {
                 $error = 'There must be one blank line before the namespace declaration';
                 $fix = $phpcsFile->addFixableError($error, $stackPtr, 'BlankLineBefore');
 
@@ -62,7 +68,7 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
                     } else {
                         $phpcsFile->fixer->beginChangeset();
 
-                        for ($x = $prev + 1; $x < $prevPtr; $x++) {
+                        for ($x = $prevFirstTokenOnLine; $x > $prev; $x--) {
                             if ($tokens[$x]['line'] === $tokens[$stackPtr]['line']) {
                                 break;
                             }
@@ -74,40 +80,27 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
                         $phpcsFile->fixer->endChangeset();
                     }
                 }
-            } elseif ($diffPrev > 0 && $tokens[$prev]['code'] === T_OPEN_TAG) {
-                $error = 'There must be no blank line before the open PHP tag';
-                $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoBlankLineBeforePHPTag');
-
-                if ($fix === true) {
-                    $phpcsFile->fixer->beginChangeset();
-
-                    for ($x = $prev + 1; $x < $stackPtr; $x++) {
-                        if ($tokens[$x]['line'] === $tokens[$stackPtr]['line']) {
-                            break;
-                        }
-
-                        $phpcsFile->fixer->replaceToken($x, '');
-                    }
-
-                    $phpcsFile->fixer->endChangeset();
-                }
             }
         }
 
-        for ($nextPtr = ($stackPtr + 1); $nextPtr < ($phpcsFile->numTokens - 1); $nextPtr++) {
-            if ($tokens[$nextPtr]['line'] === $tokens[$stackPtr]['line']) {
+        for (
+            $nextFirstTokenOnLine = ($stackPtr + 1);
+            $nextFirstTokenOnLine < ($phpcsFile->numTokens - 1);
+            $nextFirstTokenOnLine++
+        ) {
+            if ($tokens[$nextFirstTokenOnLine]['line'] === $tokens[$stackPtr]['line']) {
                 continue;
             }
 
             break;
         }
 
-        // The $nextPtr var now points to the first token on the line after the
+        // The $nextFirstTokenOnLine var now points to the first token on the line after the
         // namespace declaration, which must be a blank line.
-        $next = $phpcsFile->findNext(T_WHITESPACE, $nextPtr, $phpcsFile->numTokens, true);
+        $next = $phpcsFile->findNext(T_WHITESPACE, $nextFirstTokenOnLine, $phpcsFile->numTokens, true);
 
         if ($next !== false) {
-            $diffNext = $tokens[$next]['line'] - $tokens[$nextPtr]['line'];
+            $diffNext = $tokens[$next]['line'] - $tokens[$nextFirstTokenOnLine]['line'];
 
             if ($diffNext < 0) {
                 $diffNext = 0;
@@ -119,11 +112,11 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
                 if ($fix === true) {
                     if ($diffNext === 0) {
-                        $phpcsFile->fixer->addNewlineBefore($nextPtr);
+                        $phpcsFile->fixer->addNewlineBefore($nextFirstTokenOnLine);
                     } else {
                         $phpcsFile->fixer->beginChangeset();
 
-                        for ($x = $nextPtr; $x < $next; $x++) {
+                        for ($x = $nextFirstTokenOnLine; $x < $next; $x++) {
                             if ($tokens[$x]['line'] === $tokens[$next]['line']) {
                                 break;
                             }
@@ -131,7 +124,7 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
                             $phpcsFile->fixer->replaceToken($x, '');
                         }
 
-                        $phpcsFile->fixer->addNewline($nextPtr);
+                        $phpcsFile->fixer->addNewline($nextFirstTokenOnLine);
                         $phpcsFile->fixer->endChangeset();
                     }
                 }
