@@ -381,7 +381,9 @@
 
     <rule ref="Generic.Files.OneTraitPerFile"/>
 
-    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+
+
+    <!-- <rule ref="Generic.Formatting.DisallowMultipleStatements"/> -->
 
     <!-- <rule ref="Generic.Formatting.MultipleStatementAlignment"/> -->
 
@@ -391,12 +393,13 @@
 
     <!-- <rule ref="Generic.Formatting.SpaceAfterNotSniff"/> -->
 
-    <rule ref="Generic.Functions.CallTimePassByReference"/>
+    <!-- Use `PHPCompatibility` instead -->
+    <!-- <rule ref="Generic.Functions.CallTimePassByReference"/> -->
 
     <!-- Use `ItgalaxyCodingStandards.WhiteSpace.Comma` instead -->
     <!-- <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/> -->
 
-    <!-- Use `Squiz.Functions.MultiLineFunctionDeclaration instead -->
+    <!-- Use `Squiz.Functions.MultiLineFunctionDeclaration` instead -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/> -->
     <!-- <rule ref="Generic.Functions.OpeningFunctionBraceKernighan"/> -->
 
@@ -414,7 +417,6 @@
 
     <!-- <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/> -->
 
-    <!-- No need everywhere closing php tag -->
     <!-- <rule ref="Generic.PHP.ClosingPHPTag"/> -->
 
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
