@@ -3,8 +3,6 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
-    <!-- Todo Better message own sniff -->
-
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
@@ -31,7 +29,6 @@
         <severity>0</severity>
     </rule>
 
-    <!-- Todo -->
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
     <!-- Use NamespaceDeclarationSniff  -->
@@ -47,7 +44,6 @@
     <rule ref="PSR1.Files.SideEffects"/>
 
     <!-- Use `Generic.NamingConventions.CamelCapsFunctionName` instead -->
-    <!-- Todo -->
     <!-- <rule ref="PSR1.Methods.CamelCapsMethodName"/> -->
 
     <!-- Squiz rules -->
@@ -139,7 +135,6 @@
 
     <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
 
-    <!-- Todo -->
     <!-- <rule ref="Squiz.Functions.GlobalFunction"/> -->
 
     <!-- Use `Generic.PHP.LowerCaseKeyword` instead -->
