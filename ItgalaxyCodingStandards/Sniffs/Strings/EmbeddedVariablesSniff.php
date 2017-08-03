@@ -20,7 +20,7 @@ class EmbeddedVariablesSniff implements \PHP_CodeSniffer_Sniff
      * @param int                   $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *
-     * @return bool|int
+     * @return void
      */
     public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
