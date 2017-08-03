@@ -124,7 +124,7 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'mysqli_get_metadata' => 'mysqli_stmt_result_metadata',
         'mysqli_param_count' => 'mysqli_stmt_param_count',
         'mysqli_send_long_data' => 'mysqli_stmt_send_long_data',
-        'ob_end_flush' => 'ob_get_contents() and ob_end_clean() instead',
+        'ob_end_flush' => 'use ob_get_contents() and ob_end_clean() instead',
         'oci8append' => 'ocicollappend',
         'oci8assign' => 'ocicollassign',
         'oci8assignelem' => 'ocicollassignelem',
@@ -188,7 +188,13 @@ class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSnif
         'user_error' => 'trigger_error',
         'var_dump' => null,
         'var_export' => null,
-        'xptr_new_context' => 'xpath_new_context'
+        'xptr_new_context' => 'xpath_new_context',
+        // Type casting
+        'intval' => 'use `(int) $var` instead',
+        'floatval' => 'use `(float) $var` instead',
+        'doubleval' => 'use `(double) $var` instead',
+        'strval' => 'use `(str) $var` instead',
+        'boolval' => 'use `(bool) $var` instead'
     ];
 
     /**

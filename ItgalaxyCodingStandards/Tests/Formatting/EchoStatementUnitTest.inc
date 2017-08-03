@@ -172,3 +172,6 @@ echo 'test';
 
 echo 'test', 'test';
 echo 'test','test';
+
+if (is_null($test))
+    echo 'test';

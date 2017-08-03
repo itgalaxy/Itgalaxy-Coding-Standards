@@ -43,78 +43,59 @@ class CommaSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[$stackPtr - 1]) !== false) {
-            if ($tokens[$stackPtr - 1]['code'] === T_WHITESPACE
-                && isset($tokens[$stackPtr - 2]) === true
-                && $tokens[$stackPtr - 2]['line'] === $tokens[$stackPtr - 1]['line']
-                && $tokens[$stackPtr - 1]['content'] === ' '
-            ) {
-                $error = 'Expected no space before the comma, %s found';
-                $fix = $phpcsFile->addFixableError(
-                    $error,
-                    $stackPtr,
-                    'NoSpaceBefore',
-                    [strlen($tokens[$stackPtr - 1]['content'])]
-                );
+        if (isset($tokens[$stackPtr - 1]) !== false && $tokens[$stackPtr - 1]['code'] === T_WHITESPACE) {
+            $content = $tokens[($stackPtr - 1)]['content'];
 
-                if ($fix === true) {
-                    $phpcsFile->fixer->replaceToken($stackPtr - 1, '');
-                }
+            if ($tokens[($stackPtr - 1)]['line'] < $tokens[$stackPtr]['line']) {
+                $length = 'newline';
+            } else {
+                $length = strlen($content);
+            }
+
+            $error = 'Expected no space before the comma, %s found';
+            $fix = $phpcsFile->addFixableError(
+                $error,
+                $stackPtr,
+                'NoSpaceBefore',
+                [$length]
+            );
+
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr - 1, '');
+            }
+
+        }
+
+        if (isset($tokens[$stackPtr + 1]) !== false
+            && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE
+            && $tokens[$stackPtr + 1]['code'] !== T_COMMA
+            && $tokens[$stackPtr + 1]['code'] !== T_CLOSE_PARENTHESIS
+            && $tokens[$stackPtr + 1]['code'] !== T_CLOSE_SHORT_ARRAY
+        ) {
+            $error = 'Expected one space after the comma, 0 found';
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceAfter');
+
+            if ($fix === true) {
+                $phpcsFile->fixer->addContent($stackPtr, ' ');
             }
         }
 
-        if (isset($tokens[$stackPtr + 1]) !== false) {
-            if ($tokens[$stackPtr + 1]['code'] === T_WHITESPACE) {
-                $nextToken = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
+        if (isset($tokens[$stackPtr + 1]) !== false
+            && $tokens[$stackPtr + 1]['code'] === T_WHITESPACE
+            && isset($tokens[$stackPtr + 2]) !== false
+            && $tokens[$stackPtr + 2]['line'] === $tokens[$stackPtr + 1]['line']
+            && $tokens[$stackPtr + 1]['content'] !== ' '
+        ) {
+            $error = 'Expected one space after the comma, %s found';
+            $fix = $phpcsFile->addFixableError(
+                $error,
+                $stackPtr,
+                'TooManySpacesAfter',
+                [strlen($tokens[$stackPtr + 1]['content'])]
+            );
 
-                if ($tokens[$nextToken]['code'] === T_CLOSE_PARENTHESIS
-                    || $tokens[$nextToken]['code'] === T_CLOSE_SHORT_ARRAY
-                ) {
-                    $error = 'Expected no space after the comma in end expression, %s found';
-                    $fix = $phpcsFile->addFixableError(
-                        $error,
-                        $stackPtr,
-                        'NoSpaceAfterInEnd',
-                        [strlen($tokens[$nextToken - 1]['content'])]
-                    );
-
-                    if ($fix === true) {
-                        $phpcsFile->fixer->replaceToken($nextToken - 1, '');
-                    }
-                }
-            }
-
-            if ($tokens[$stackPtr + 1]['code'] !== T_WHITESPACE
-                && $tokens[$stackPtr + 1]['code'] !== T_COMMA
-                && $tokens[$stackPtr + 1]['code'] !== T_CLOSE_PARENTHESIS
-                && $tokens[$stackPtr + 1]['code'] !== T_CLOSE_SHORT_ARRAY
-            ) {
-                $error = 'Expected one space after the comma, 0 found';
-                $fix = $phpcsFile->addFixableError($error, $stackPtr, 'NoSpaceAfter');
-
-                if ($fix === true) {
-                    $phpcsFile->fixer->addContent($stackPtr, ' ');
-                }
-
-                return;
-            }
-
-            if ($tokens[$stackPtr + 1]['code'] === T_WHITESPACE
-                && isset($tokens[$stackPtr + 2]) === true
-                && $tokens[$stackPtr + 2]['line'] === $tokens[$stackPtr + 1]['line']
-                && $tokens[$stackPtr + 1]['content'] !== ' '
-            ) {
-                $error = 'Expected one space after the comma, %s found';
-                $fix = $phpcsFile->addFixableError(
-                    $error,
-                    $stackPtr,
-                    'TooManySpacesAfter',
-                    [strlen($tokens[$stackPtr + 1]['content'])]
-                );
-
-                if ($fix === true) {
-                    $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
-                }
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
             }
         }
     }

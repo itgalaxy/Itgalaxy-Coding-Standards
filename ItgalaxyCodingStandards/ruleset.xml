@@ -3,7 +3,7 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
-    <!-- Todo FOUND NEW LINE GOOD MESSAGE -->
+    <!-- Todo Better message own sniff -->
 
     <!-- PSR2 rules -->
 
@@ -13,6 +13,7 @@
 
     <!-- Use `OpenBracketSpacingSniff` instead -->
     <!-- Use `CloseBracketSpacingSniff` instead -->
+    <!-- Todo -->
     <!-- <rule ref="PSR2.ControlStructures.ControlStructureSpacing"/> -->
 
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
@@ -23,15 +24,18 @@
 
     <rule ref="PSR2.Files.EndFileNewline"/>
 
+    <!-- Todo -->
     <rule ref="PSR2.Methods.FunctionCallSignature"/>
 
     <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
         <severity>0</severity>
     </rule>
 
+    <!-- Todo -->
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
     <!-- Use NamespaceDeclarationSniff  -->
+    <!-- Todo -->
     <!-- <rule ref="PSR2.Namespaces.NamespaceDeclaration"/> -->
 
     <rule ref="PSR2.Namespaces.UseDeclaration"/>
@@ -43,24 +47,26 @@
     <rule ref="PSR1.Files.SideEffects"/>
 
     <!-- Use `Generic.NamingConventions.CamelCapsFunctionName` instead -->
+    <!-- Todo -->
     <!-- <rule ref="PSR1.Methods.CamelCapsMethodName"/> -->
 
     <!-- Squiz rules -->
 
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
 
+    <!-- Todo -->
     <!-- <rule ref="Squiz.Arrays.ArrayDeclaration"/> -->
 
     <!-- <rule ref="Squiz.CSS"/> -->
 
-    <!-- Best sniff is `PSR2.Classes.ClassDeclaration more best` -->
+    <!-- Use `PSR2.Classes.ClassDeclaration` instead -->
     <!-- <rule ref="Squiz.Classes.ClassDeclaration"/> -->
 
     <rule ref="Squiz.Classes.ClassFileName"/>
 
     <!-- <rule ref="Squiz.Classes.DuplicateProperty"/> -->
 
-    <!-- Best sniff is `Generic.PHP.LowerCaseKeyword` -->
+    <!-- Use `Generic.PHP.LowerCaseKeyword` instead -->
     <!-- <rule ref="Squiz.Classes.LowercaseClassKeywords"/> -->
 
     <rule ref="Squiz.Classes.SelfMemberReference"/>
@@ -92,6 +98,7 @@
     <!-- <rule ref="Squiz.Commenting.VariableComment"> -->
 
     <!-- Use `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` instead -->
+    <!-- Todo -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
@@ -101,6 +108,7 @@
 
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
 
+    <!-- Todo -->
     <rule ref="Squiz.ControlStructures.InlineIfDeclaration">
         <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine"/>
         <exclude name="Squiz.ControlStructures.InlineIfDeclaration.NoBrackets"/>
@@ -118,6 +126,7 @@
 
     <!-- <rule ref="Squiz.Files.FileExtension"/> -->
 
+    <!-- Todo revers rule -->
     <!-- <rule ref="Squiz.Formatting.OperatorBracket"/> -->
 
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
@@ -130,17 +139,20 @@
 
     <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
 
+    <!-- Todo -->
     <!-- <rule ref="Squiz.Functions.GlobalFunction"/> -->
 
-    <!-- Best sniff is `Generic.PHP.LowerCaseKeyword` -->
+    <!-- Use `Generic.PHP.LowerCaseKeyword` instead -->
     <!-- <rule ref="Squiz.Functions.LowercaseFunctionKeywords"/> -->
 
     <rule ref="Squiz.Functions.MultiLineFunctionDeclaration"/>
 
+    <!-- Todo -->
     <rule ref="Squiz.NamingConventions.ValidFunctionName">
         <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
     </rule>
 
+    <!-- Todo -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
@@ -174,6 +186,7 @@
     <!-- Use `ItgalaxyCodingStandards.PHP.ForbiddenFunctionsSniff` instead -->
     <!-- <rule ref="Squiz.PHP.DiscouragedFunctions"/> -->
 
+    <!-- Use `ItgalaxyCodingStandards.PHP.PHPTagSpacingSniff` instead -->
     <!-- <rule ref="Squiz.PHP.EmbeddedPhp"/> -->
 
     <!-- <rule ref="Squiz.PHP.Eval"/> -->
@@ -211,6 +224,7 @@
 
     <rule ref="Squiz.WhiteSpace.CastSpacing"/>
 
+    <!-- Todo why -->
     <!-- See comment below -->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
 
@@ -235,22 +249,25 @@
         <severity>0</severity>
     </rule>
 
+    <!-- Todo need change on 0 lines after brace -->
     <!-- <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/> -->
 
-    <!-- <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/> -->
+    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
     <!-- Todo need support afterLast option -->
     <!-- <rule ref="Squiz.WhiteSpace.FunctionSpacing"/> -->
 
-    <!-- Todo Newline not working -->
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
 
     <!-- <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/> -->
 
-    <!-- Use `ItgalaxyCodingStandards.WhiteSpace.ObjectOperatorSpacingSniff` instead -->
-    <!-- <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing"/> -->
+    <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+        <properties>
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
+    </rule>
 
     <rule ref="Squiz.WhiteSpace.OperatorSpacing">
         <properties>

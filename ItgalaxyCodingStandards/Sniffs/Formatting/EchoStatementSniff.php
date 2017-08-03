@@ -29,6 +29,11 @@ class EchoStatementSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
         $endEchoPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr + 1, null, false);
+
+        if ($endEchoPtr === false) {
+            return;
+        }
+
         $foundComma = false;
 
         for ($next = $stackPtr + 1; $next <= $endEchoPtr - 1; $next++) {
@@ -85,6 +90,7 @@ class EchoStatementSniff implements \PHP_CodeSniffer_Sniff
             && $tokens[$firstNonWhitespacePtr]['code'] !== T_OPEN_TAG
             && $tokens[$firstNonWhitespacePtr]['code'] !== T_OPEN_CURLY_BRACKET
             && $tokens[$firstNonWhitespacePtr]['code'] !== T_COLON
+            && $tokens[$firstNonWhitespacePtr]['code'] !== T_CLOSE_PARENTHESIS
             && $tokens[$firstNonWhitespacePtr]['line'] === $tokens[$beforeCommentOrSelfPtr]['line'] - 1
         ) {
             $data = [$tokens[$stackPtr]['content']];

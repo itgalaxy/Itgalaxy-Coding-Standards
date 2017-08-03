@@ -26,8 +26,8 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[($stackPtr + 1)]['content'] !== ' ') {
-            $error = 'There must be exactly one space after the namepace keyword';
+        if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['content'] !== ' ') {
+            $error = 'There must be exactly one space after the namespace keyword';
             $fix   = $phpcsFile->addFixableError($error, $stackPtr + 1, 'TooManySpacesAfter');
 
             if ($fix === true) {
