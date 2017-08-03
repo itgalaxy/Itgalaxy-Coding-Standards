@@ -18,7 +18,7 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
  * @package  PHP_CodeSniffer
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class CommaSniff implements \PHP_CodeSniffer_Sniff
+class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
