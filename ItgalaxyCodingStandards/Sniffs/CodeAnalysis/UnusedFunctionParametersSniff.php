@@ -35,6 +35,7 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
         $classPtr = $phpcsFile->getCondition($stackPtr, T_CLASS);
 
         // Ignore extended and implemented method in class
+        // Todo implement parsing classes as in `Generic.Classes.DuplicateClassName`
         if ($classPtr !== false) {
             $isAbstractClass = $phpcsFile->findNext(T_ABSTRACT, $classPtr - 1, null, true);
 
