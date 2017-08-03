@@ -58,6 +58,7 @@ class PHPTagSpacingSniff implements \PHP_CodeSniffer_Sniff
             if ($tokens[$firstNonWhitespaceAfter]['code'] !== T_CLOSE_TAG
                 && $tokens[$stackPtr]['line'] !== $tokens[$closeTag]['line']
                 && $tokens[$firstNonWhitespaceAfter]['code'] !== T_OPEN_TAG
+                && $tokens[$firstNonWhitespaceAfter]['code'] !== T_NAMESPACE
                 && $tokens[$stackPtr]['line'] !== $tokens[$firstNonWhitespaceAfter]['line']
                 && $tokens[$stackPtr]['line'] + 1 !== $tokens[$firstNonWhitespaceAfter]['line']
             ) {

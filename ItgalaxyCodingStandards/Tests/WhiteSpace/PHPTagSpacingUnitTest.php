@@ -10,26 +10,33 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_PHPTagSpacingUnitTest extends Abs
      *
      * @return array<int, int>
      */
-    public function getErrorList()
+    public function getErrorList($testFile = '')
     {
-        return [
-            1 => 1,
-            4 => 1,
-            9 => 2,
-            10 => 1,
-            11 => 1,
-            12 => 1,
-            13 => 1,
-            16 => 1,
-            20 => 1,
-            21 => 1,
-            29 => 1,
-            30 => 1,
-            31 => 1,
-            32 => 2,
-            34 => 2,
-            35 => 1
-        ];
+        switch ($testFile) {
+            case 'PHPTagSpacingUnitTest.1.inc':
+                return [
+                    1 => 1,
+                    4 => 1,
+                    9 => 2,
+                    10 => 1,
+                    11 => 1,
+                    12 => 1,
+                    13 => 1,
+                    16 => 1,
+                    20 => 1,
+                    21 => 1,
+                    29 => 1,
+                    30 => 1,
+                    31 => 1,
+                    32 => 2,
+                    34 => 2,
+                    35 => 1
+                ];
+            case 'PHPTagSpacingUnitTest.2.inc':
+                return [];
+            default:
+                return [];
+        }
     }
 
     /**
