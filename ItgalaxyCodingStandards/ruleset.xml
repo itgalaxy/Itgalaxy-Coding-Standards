@@ -35,8 +35,7 @@
 
     <rule ref="PSR2.Methods.MethodDeclaration"/>
 
-    <!-- Use `ItgalaxyCodingStandards.Namespaces.NamespaceDeclarationSniff` instead  -->
-    <!-- <rule ref="PSR2.Namespaces.NamespaceDeclaration"/> -->
+    <rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
 
     <rule ref="PSR2.Namespaces.UseDeclaration"/>
 
