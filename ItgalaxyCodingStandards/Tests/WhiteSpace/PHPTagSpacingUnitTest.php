@@ -34,6 +34,8 @@ class ItgalaxyCodingStandards_Tests_WhiteSpace_PHPTagSpacingUnitTest extends Abs
                 ];
             case 'PHPTagSpacingUnitTest.2.inc':
                 return [];
+            case 'PHPTagSpacingUnitTest.3.inc':
+                return [];
             default:
                 return [];
         }

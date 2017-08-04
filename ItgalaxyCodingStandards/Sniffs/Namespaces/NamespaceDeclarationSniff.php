@@ -1,6 +1,8 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Namespaces;
 
+// Todo respect leading and last comment
+
 class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
 {
     /**
@@ -26,9 +28,12 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (isset($tokens[$stackPtr + 1]) && $tokens[$stackPtr + 1]['content'] !== ' ') {
+        if (isset($tokens[$stackPtr + 1])
+            && strpos($tokens[$stackPtr + 1]['content'], $phpcsFile->eolChar) === false
+            && strlen($tokens[$stackPtr + 1]['content']) > 1
+        ) {
             $error = 'There must be exactly one space after the namespace keyword';
-            $fix   = $phpcsFile->addFixableError($error, $stackPtr + 1, 'TooManySpacesAfter');
+            $fix = $phpcsFile->addFixableError($error, $stackPtr + 1, 'TooManySpacesAfter');
 
             if ($fix === true) {
                 $phpcsFile->fixer->replaceToken($stackPtr + 1, ' ');
@@ -37,22 +42,18 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
         // The $prevFirstTokenOnLine var now points to the first token on the line before the
         // namespace declaration, which must be a blank line.
-        for (
-            $prevFirstTokenOnLine = ($stackPtr - 1);
-            $prevFirstTokenOnLine !== 0;
-            $prevFirstTokenOnLine--
-        ) {
-            if ($tokens[$prevFirstTokenOnLine]['line'] === $tokens[$stackPtr]['line']) {
+        for ($firstPtrOnPrevLine = ($stackPtr - 1); $firstPtrOnPrevLine !== 0; $firstPtrOnPrevLine--) {
+            if ($tokens[$firstPtrOnPrevLine]['line'] === $tokens[$stackPtr]['line']) {
                 continue;
             }
 
             break;
         }
 
-        $prev = $phpcsFile->findPrevious(T_WHITESPACE, $prevFirstTokenOnLine, 0, true);
+        $prevPtr = $phpcsFile->findPrevious(T_WHITESPACE, $firstPtrOnPrevLine, 0, true);
 
-        if ($prev !== false) {
-            $diffPrev = $tokens[$prevFirstTokenOnLine]['line'] - $tokens[$prev]['line'];
+        if ($prevPtr !== false) {
+            $diffPrev = $tokens[$firstPtrOnPrevLine]['line'] - $tokens[$prevPtr]['line'];
 
             if ($diffPrev < 0) {
                 $diffPrev = 0;
@@ -68,7 +69,7 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
                     } else {
                         $phpcsFile->fixer->beginChangeset();
 
-                        for ($x = $prevFirstTokenOnLine; $x > $prev; $x--) {
+                        for ($x = $firstPtrOnPrevLine; $x > $prevPtr; $x--) {
                             if ($tokens[$x]['line'] === $tokens[$stackPtr]['line']) {
                                 break;
                             }
@@ -83,12 +84,14 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
+        $semicolonPtr = $phpcsFile->findNext(T_SEMICOLON, $stackPtr + 1, $phpcsFile->numTokens);
+
         for (
-            $nextFirstTokenOnLine = ($stackPtr + 1);
-            $nextFirstTokenOnLine < ($phpcsFile->numTokens - 1);
-            $nextFirstTokenOnLine++
+            $firstPtrOnNextFile = ($semicolonPtr + 1);
+            $firstPtrOnNextFile < ($phpcsFile->numTokens - 1);
+            $firstPtrOnNextFile++
         ) {
-            if ($tokens[$nextFirstTokenOnLine]['line'] === $tokens[$stackPtr]['line']) {
+            if ($tokens[$firstPtrOnNextFile]['line'] === $tokens[$semicolonPtr]['line']) {
                 continue;
             }
 
@@ -97,10 +100,10 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
         // The $nextFirstTokenOnLine var now points to the first token on the line after the
         // namespace declaration, which must be a blank line.
-        $next = $phpcsFile->findNext(T_WHITESPACE, $nextFirstTokenOnLine, $phpcsFile->numTokens, true);
+        $nextPtr = $phpcsFile->findNext(T_WHITESPACE, $firstPtrOnNextFile, $phpcsFile->numTokens, true);
 
-        if ($next !== false) {
-            $diffNext = $tokens[$next]['line'] - $tokens[$nextFirstTokenOnLine]['line'];
+        if ($nextPtr !== false) {
+            $diffNext = $tokens[$nextPtr]['line'] - $tokens[$firstPtrOnNextFile]['line'];
 
             if ($diffNext < 0) {
                 $diffNext = 0;
@@ -112,19 +115,19 @@ class NamespaceDeclarationSniff implements \PHP_CodeSniffer_Sniff
 
                 if ($fix === true) {
                     if ($diffNext === 0) {
-                        $phpcsFile->fixer->addNewlineBefore($nextFirstTokenOnLine);
+                        $phpcsFile->fixer->addNewlineBefore($firstPtrOnNextFile);
                     } else {
                         $phpcsFile->fixer->beginChangeset();
 
-                        for ($x = $nextFirstTokenOnLine; $x < $next; $x++) {
-                            if ($tokens[$x]['line'] === $tokens[$next]['line']) {
+                        for ($x = $firstPtrOnNextFile; $x < $nextPtr; $x++) {
+                            if ($tokens[$x]['line'] === $tokens[$nextPtr]['line']) {
                                 break;
                             }
 
                             $phpcsFile->fixer->replaceToken($x, '');
                         }
 
-                        $phpcsFile->fixer->addNewline($nextFirstTokenOnLine);
+                        $phpcsFile->fixer->addNewline($firstPtrOnNextFile);
                         $phpcsFile->fixer->endChangeset();
                     }
                 }

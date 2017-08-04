@@ -4,6 +4,8 @@
     <arg name="tab-width" value="4"/>
 
     <!-- Todo PHP4 destructors are allowed to break our rules. -->
+    <!-- Todo Disable \php_function(); -->
+    <!-- Todo change \n to `strpos($content, $phpcsFile->eolChar) === false` -->
 
     <!-- PSR2 rules -->
 
