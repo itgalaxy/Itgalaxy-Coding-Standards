@@ -9,6 +9,10 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
 /**
  * CommaSniff.
  *
@@ -18,7 +22,7 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
  * @package  PHP_CodeSniffer
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
+class CommaSpacingSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -39,7 +43,7 @@ class CommaSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

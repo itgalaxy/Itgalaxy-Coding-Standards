@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class ExtraSemicolonSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class ExtraSemicolonSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,7 +26,7 @@ class ExtraSemicolonSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $prev = $phpcsFile->findPrevious([T_SEMICOLON, T_OPEN_TAG, T_OPEN_TAG_WITH_ECHO], $stackPtr - 1);
@@ -51,7 +55,7 @@ class ExtraSemicolonSniff implements \PHP_CodeSniffer_Sniff
             }
         }
 
-        $previousIndex = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $previousIndex = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
 
         $error = 'There is no extra semicolon';
         $code = 'ExtraSemicolonFound';
@@ -72,7 +76,7 @@ class ExtraSemicolonSniff implements \PHP_CodeSniffer_Sniff
             }
         } else {
             $prevNonEmptyToken = $phpcsFile->findPrevious(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
+                Tokens::$emptyTokens,
                 $stackPtr - 1,
                 null,
                 true

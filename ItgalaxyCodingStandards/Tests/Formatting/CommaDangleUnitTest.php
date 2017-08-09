@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Formatting;
 
-class ItgalaxyCodingStandards_Tests_Formatting_CommaDangleUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class CommaDangleUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

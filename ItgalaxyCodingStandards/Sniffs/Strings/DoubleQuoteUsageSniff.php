@@ -31,7 +31,10 @@ namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
 // Todo deprecated and allow usage double quote
 
-class DoubleQuoteUsageSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class DoubleQuoteUsageSniff implements Sniff
 {
     public $allowedChars = [
         '\0',
@@ -73,7 +76,7 @@ class DoubleQuoteUsageSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class NoEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class NoEachInLoopConditionSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,7 +25,7 @@ class NoEachInLoopConditionSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $startToken = $tokens[$stackPtr]['parenthesis_opener'] + 1;

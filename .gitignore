@@ -116,6 +116,19 @@ jspm_packages
 
 # Caches
 .cache
+.cache-loader
+.eslintcache
+.eclintercache
+.stylelintcache
+.sass-cache
+.cache-wordpress
+
+# npm
+npm-shrinkwrap.json
+package-lock.json
+
+# Yarn
+!yarn.lock
 
 # Composer
 composer.phar

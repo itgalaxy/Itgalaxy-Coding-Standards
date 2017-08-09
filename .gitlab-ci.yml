@@ -1,32 +1,27 @@
-before_script:
-    # Install git, the php image doesn't have installed
-    - apt-get update -yqq
-    - apt-get install git -yqq
-    # Install composer
-    - curl -sS https://getcomposer.org/installer | php
-    # Install all project dependencies
-    - php composer.phar install --prefer-source --no-interaction --no-suggest
-
 cache:
-    paths:
-        - vendor
+  paths:
+    - vendor
 
 test:5.6:
-    image: php:5.6
-    script:
-        - php composer.phar test
+  image: php:5.6
+  script:
+    - php composer.phar test
 
 test:7.0:
-    image: php:7.0
-    script:
-        - php composer.phar test
+  image: php:7.0
+  script:
+    - php composer.phar test
 
 test:7.1:
-    image: php:7.1
-    script:
-        - php composer.phar test
+  image: php:7.1
+  script:
+    - php composer.phar test
 
-# test:7.2:
-#    image: php:7.2
-#    script:
-#        - php composer.phar test
+before_script:
+  # Install git, the php image doesn't have installed
+  - apt-get update -yqq
+  - apt-get install git -yqq
+  # Install composer
+  - curl -sS https://getcomposer.org/installer | php
+  # Install all project dependencies
+  - php composer.phar install --prefer-source --no-interaction --no-suggest

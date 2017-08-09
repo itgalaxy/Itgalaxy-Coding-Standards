@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Formatting;
 
-class ItgalaxyCodingStandards_Tests_Formatting_ExtraSemicolonUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class ExtraSemicolonUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

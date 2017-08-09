@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class UnusedVariableInForEachLoopSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,7 +25,7 @@ class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -89,7 +92,7 @@ class UnusedVariableInForEachLoopSniff implements \PHP_CodeSniffer_Sniff
         }
     }
 
-    protected function isVariableInsideBlock(\PHP_CodeSniffer_File $phpcsFile, $scopeOpener, $scopeCloser, $contentPtr)
+    protected function isVariableInsideBlock(File $phpcsFile, $scopeOpener, $scopeCloser, $contentPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $variableName = $tokens[$contentPtr]['content'];

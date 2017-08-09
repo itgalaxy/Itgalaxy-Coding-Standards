@@ -1,4 +1,7 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Files;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
 class ItgalaxyCodingStandards_Tests_Files_FileEncodingUnitTest extends AbstractSniffUnitTest
 {

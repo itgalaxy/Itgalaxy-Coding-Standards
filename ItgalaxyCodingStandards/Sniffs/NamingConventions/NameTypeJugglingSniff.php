@@ -3,7 +3,10 @@ namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
 // Todo See https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
-class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class NameTypeJugglingSniff implements Sniff
 {
     public $useShortName = true;
 
@@ -36,7 +39,7 @@ class NameTypeJugglingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $content = $tokens[$stackPtr]['content'];

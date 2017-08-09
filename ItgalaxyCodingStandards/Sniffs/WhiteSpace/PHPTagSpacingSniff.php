@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-class PHPTagSpacingSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class PHPTagSpacingSniff implements Sniff
 {
     /**
      * Allow newlines instead of spaces.
@@ -32,7 +36,7 @@ class PHPTagSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -153,7 +157,7 @@ class PHPTagSpacingSniff implements \PHP_CodeSniffer_Sniff
                     $found = $tokens[$stackPtr - 1]['length'];
                 }
             } else {
-                if (in_array($tokens[$stackPtr - 1]['code'], \PHP_CodeSniffer_Tokens::$commentTokens)) {
+                if (in_array($tokens[$stackPtr - 1]['code'], Tokens::$commentTokens)) {
                     $commentContent = $tokens[$stackPtr - 1]['content'];
                     $found = strlen($commentContent) - strlen(rtrim($commentContent));
                 } else {

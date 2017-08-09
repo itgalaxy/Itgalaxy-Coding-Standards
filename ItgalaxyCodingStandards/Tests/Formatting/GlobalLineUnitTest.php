@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Formatting;
 
-class ItgalaxyCodingStandards_Tests_Formatting_GlobalLineUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class GlobalLineUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-class NoDirectlyInputSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class NoDirectlyInputSniff implements Sniff
 {
     // Info maybe get all php function, excluding validation and sanization function and escaped function
     public $functions = [
@@ -257,7 +261,7 @@ class NoDirectlyInputSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -275,7 +279,7 @@ class NoDirectlyInputSniff implements \PHP_CodeSniffer_Sniff
         }
 
         $prev = $phpcsFile->findPrevious(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
+            Tokens::$emptyTokens,
             $stackPtr - 1,
             null,
             true

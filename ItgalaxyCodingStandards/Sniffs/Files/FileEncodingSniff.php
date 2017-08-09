@@ -9,6 +9,9 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Files;
 
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
 /**
  * FileEncodingSniff.
  *
@@ -18,7 +21,7 @@ namespace ItgalaxyCodingStandards\Sniffs\Files;
  * @package   PHP_CodeSniffer
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class FileEncodingSniff implements \PHP_CodeSniffer_Sniff
+class FileEncodingSniff implements Sniff
 {
     /**
      * List of encodings that files may be encoded with.
@@ -51,7 +54,7 @@ class FileEncodingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         // Not all PHP installs have the multi byte extension - nothing we can do.
         if (function_exists('mb_check_encoding') === false) {

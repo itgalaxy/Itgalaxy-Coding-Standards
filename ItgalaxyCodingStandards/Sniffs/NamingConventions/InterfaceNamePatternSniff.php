@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
-class InterfaceNamePatternSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class InterfaceNamePatternSniff implements Sniff
 {
     public $pattern = '/^[A-Z][A-Za-z0-9]*Interface$/';
 
@@ -24,7 +27,7 @@ class InterfaceNamePatternSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $name = $phpcsFile->getDeclarationName($stackPtr);
 

@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-class NoInsecurityIncludeSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class NoInsecurityIncludeSniff implements Sniff
 {
     public $allowUrl = false;
 
@@ -21,7 +25,7 @@ class NoInsecurityIncludeSniff implements \PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return \PHP_CodeSniffer_Tokens::$includeTokens;
+        return Tokens::$includeTokens;
     }
 
     /**
@@ -32,17 +36,17 @@ class NoInsecurityIncludeSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if ($this->allowUrl && $this->allowHasVariable) {
             return;
         }
 
         $tokens = $phpcsFile->getTokens();
-        $nextToken = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 2, null, true);
+        $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 2, null, true);
         $error = '"%s" statement detected. File manipulations are discouraged.';
 
-        $ignoredTokens = array_merge(\PHP_CodeSniffer_Tokens::$emptyTokens, [T_CLOSE_PARENTHESIS]);
+        $ignoredTokens = array_merge(Tokens::$emptyTokens, [T_CLOSE_PARENTHESIS]);
         $isUrl = false;
         $hasVariable = false;
 

@@ -1,13 +1,8 @@
 <?php
-/**
- * Drupal_Sniffs_Classes_FullyQualifiedNamespaceSniff.
- *
- * @category PHP
- * @package  PHP_CodeSniffer
- * @link     http://pear.php.net/package/PHP_CodeSniffer
- */
-
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Checks that class references do not use FQN but use statements.
@@ -16,7 +11,7 @@ namespace ItgalaxyCodingStandards\Sniffs\Classes;
  * @package  PHP_CodeSniffer
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
+class FullyQualifiedNamespaceSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -31,18 +26,13 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param \PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where the
-     *                                        token was found.
-     * @param int                  $stackPtr  The position in the PHP_CodeSniffer
-     *                                        file's token stack where the token
-     *                                        was found.
+     * @param \PHP_CodeSniffer\Sniffs\Sniff $phpcsFile The PHP_CodeSniffer file where the token was found.
+     * @param int                           $stackPtr  The position in the PHP_CodeSniffer
+     *                                                 file's token stack where the token was found.
      *
-     * @return void|int Optionally returns a stack pointer. The sniff will not be
-     *                  called again on the current file until the returned stack
-     *                  pointer is reached. Return $phpcsFile->numTokens + 1 to skip
-     *                  the rest of the file.
+     * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -85,9 +75,9 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
 
             $parts = explode('\\', $fullName);
             $className = end($parts);
-            $phpcsFile->fixer->addContentBefore(($after - 1), $className);
-            // Check if there is a use statement already for this class and
-            // namespace.
+            $phpcsFile->fixer->addContentBefore($after - 1, $className);
+
+            // Check if there is a use statement already for this class and namespace.
             $alreadyUsed = false;
             $useStatement = $phpcsFile->findNext(T_USE, 0);
 
@@ -113,6 +103,7 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
             ) {
                 // Check if there is a group of use statements and add it there.
                 $useStatement = $phpcsFile->findNext(T_USE, 0);
+
                 if ($useStatement !== false && empty($tokens[$useStatement]['conditions']) === true) {
                     $phpcsFile->fixer->addContentBefore($useStatement, "use $fullName;\n");
                 } else {
@@ -125,11 +116,10 @@ class FullyQualifiedNamespaceSniff implements \PHP_CodeSniffer_Sniff
                     $phpcsFile->fixer->addContent($beginning, "use $fullName;\n");
                 }
             }
+
             $phpcsFile->fixer->endChangeset();
         }
 
-        // Continue after this class reference so that errors for this are not
-        // flagged multiple times.
         return $phpcsFile->findNext([T_STRING, T_NS_SEPARATOR], ($stackPtr + 1), null, true);
     }
 }

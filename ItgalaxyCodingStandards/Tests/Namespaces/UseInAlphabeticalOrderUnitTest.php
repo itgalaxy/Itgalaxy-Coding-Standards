@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Namespaces;
 
-class ItgalaxyCodingStandards_Tests_Namespaces_UseInAlphabeticalOrderUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class UseInAlphabeticalOrderUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

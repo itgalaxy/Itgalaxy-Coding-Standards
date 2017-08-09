@@ -1,5 +1,9 @@
 <?php
-class ItgalaxyCodingStandards_Tests_Classes_UnusedUseStatementUnitTest extends AbstractSniffUnitTest
+namespace ItgalaxyCodingStandards\Tests\Arrays;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class UnusedUseStatementUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-class NoInsecureSuperglobalsSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class NoInsecureSuperglobalsSniff implements Sniff
 {
     public $superglobals = [
         '$GLOBALS',
@@ -27,7 +30,7 @@ class NoInsecureSuperglobalsSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $var = $phpcsFile->getTokens()[$stackPtr]['content'];
 

@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Strings;
 
-class ItgalaxyCodingStandards_Tests_Strings_NoMultilineStringDeclarationUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class NoMultilineStringDeclarationUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

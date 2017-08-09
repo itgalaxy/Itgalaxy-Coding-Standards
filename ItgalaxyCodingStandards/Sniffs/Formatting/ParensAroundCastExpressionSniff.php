@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class ParensAroundCastExpressionSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class ParensAroundCastExpressionSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -10,7 +14,7 @@ class ParensAroundCastExpressionSniff implements \PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return \PHP_CodeSniffer_Tokens::$castTokens;
+        return Tokens::$castTokens;
     }
 
     /**
@@ -22,7 +26,7 @@ class ParensAroundCastExpressionSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $next = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
@@ -39,17 +43,17 @@ class ParensAroundCastExpressionSniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $phpcsFile->addError('Do not use parenthesis around expression in type casting', $stackPtr);
+        $phpcsFile->addError('Do not use parenthesis around expression in type casting', $stackPtr, 'Found');
     }
 
-    protected function hasOneNotEmptyTokenInParens(\PHP_CodeSniffer_File $phpcsFile, $opener, $closer)
+    protected function hasOneNotEmptyTokenInParens(File $phpcsFile, $opener, $closer)
     {
         $tokens = $phpcsFile->getTokens();
         $hasOneNotEmptyTokenInParens = true;
         $count = 0;
 
         for ($nextPtr = $opener + 1; $nextPtr < $closer; $nextPtr++) {
-            if (!in_array($tokens[$nextPtr]['code'], \PHP_CodeSniffer_Tokens::$emptyTokens)) {
+            if (!in_array($tokens[$nextPtr]['code'], Tokens::$emptyTokens)) {
                 $count++;
             }
 

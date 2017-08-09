@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\PHP;
 
-class ItgalaxyCodingStandards_Tests_PHP_DisallowMultipleAssignmentsUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class DisallowMultipleAssignmentsUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

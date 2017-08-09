@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class ControlSignatureSniff implements Sniff
 {
     /**
      * How many spaces should follow the opening bracket.
@@ -47,7 +51,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $this->requiredSpacesAfterOpen = abs((int) ($this->requiredSpacesAfterOpen));
         $this->requiredSpacesBeforeClose = abs((int) ($this->requiredSpacesBeforeClose));
@@ -276,7 +280,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 $foundError = false;
                 $errorPtr = null;
 
-                if (in_array($tokens[$nextContent]['code'], \PHP_CodeSniffer_Tokens::$commentTokens)) {
+                if (in_array($tokens[$nextContent]['code'], Tokens::$commentTokens)) {
                     $lastContent = $this->getLastCommentOrSelf($phpcsFile, $nextContent);
                     $nextLastContent = $phpcsFile->findNext(
                         [T_WHITESPACE],
@@ -367,7 +371,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
                 $foundError = false;
                 $errorPtr = null;
 
-                if (in_array($tokens[$prevContent]['code'], \PHP_CodeSniffer_Tokens::$commentTokens)) {
+                if (in_array($tokens[$prevContent]['code'], Tokens::$commentTokens)) {
                     $leadingContent = $this->getLeadingCommentOrSelf($phpcsFile, $prevContent);
                     $prevLastContent = $phpcsFile->findPrevious(
                         [T_WHITESPACE],
@@ -438,9 +442,9 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
             $next = $phpcsFile->findNext([T_WHITESPACE], $stackPtr + 1, null, true);
 
             if (($prev !== false
-                    && in_array($tokens[$prev]['code'], \PHP_CodeSniffer_Tokens::$commentTokens))
+                    && in_array($tokens[$prev]['code'], Tokens::$commentTokens))
                 || ($next !== false
-                    && in_array($tokens[$prev]['code'], \PHP_CodeSniffer_Tokens::$commentTokens))
+                    && in_array($tokens[$prev]['code'], Tokens::$commentTokens))
             ) {
                 $errorPtr = $prev ? $prev : $next;
                 $error = 'No comment between control structure braces';
@@ -462,7 +466,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
 
                 $closer = $tokens[$stackPtr]['scope_closer'];
             } else {
-                $closer = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
+                $closer = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
             }
 
             if ($closer === false || $tokens[$closer]['code'] !== T_CLOSE_CURLY_BRACKET) {
@@ -499,7 +503,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return bool|int
      */
-    protected function getLeadingCommentOrSelf(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function getLeadingCommentOrSelf(File $phpcsFile, $stackPtr)
     {
         $prevTokens = [$stackPtr];
         $tokens = $phpcsFile->getTokens();
@@ -535,7 +539,7 @@ class ControlSignatureSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return bool|int
      */
-    protected function getLastCommentOrSelf(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function getLastCommentOrSelf(File $phpcsFile, $stackPtr)
     {
         $nextTokens = [$stackPtr];
         $tokens = $phpcsFile->getTokens();

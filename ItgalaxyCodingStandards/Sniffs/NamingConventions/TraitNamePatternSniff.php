@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\NamingConventions;
 
-class TraitNamePatternSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class TraitNamePatternSniff implements Sniff
 {
     public $pattern = '/^[A-Z][A-Za-z0-9]*Trait$/';
 
@@ -25,7 +28,7 @@ class TraitNamePatternSniff implements \PHP_CodeSniffer_Sniff
      * @param integer $stackPtr  The position of the current token in the stack passed in $tokens.
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $name = $phpcsFile->getDeclarationName($stackPtr);
 

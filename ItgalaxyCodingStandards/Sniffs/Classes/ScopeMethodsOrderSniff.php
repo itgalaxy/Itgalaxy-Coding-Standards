@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
 
-class ScopeMethodsOrderSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class ScopeMethodsOrderSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -25,7 +28,7 @@ class ScopeMethodsOrderSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $function = $stackPtr;

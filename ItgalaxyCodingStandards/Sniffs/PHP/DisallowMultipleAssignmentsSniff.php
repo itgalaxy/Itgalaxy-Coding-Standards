@@ -3,7 +3,11 @@ namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
 // Todo rename no-multi-assign
 
-class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class DisallowMultipleAssignmentsSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -24,7 +28,7 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -109,7 +113,7 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
         // Ignore member var definitions.
         $prev = $phpcsFile->findPrevious(T_WHITESPACE, ($varToken - 1), null, true);
 
-        if (isset(\PHP_CodeSniffer_Tokens::$scopeModifiers[$tokens[$prev]['code']]) === true) {
+        if (isset(Tokens::$scopeModifiers[$tokens[$prev]['code']]) === true) {
             return;
         }
 
@@ -146,7 +150,7 @@ class DisallowMultipleAssignmentsSniff implements \PHP_CodeSniffer_Sniff
                 return;
             }
 
-            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
+            if (isset(Tokens::$emptyTokens[$tokens[$i]['code']]) === false) {
                 $prevLine = $tokens[$i]['line'];
                 break;
             }

@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\CodeAnalysis;
 
-class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class UnusedFunctionParametersSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,7 +26,7 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $token = $tokens[$stackPtr];
@@ -78,14 +82,14 @@ class UnusedFunctionParametersSniff implements \PHP_CodeSniffer_Sniff
             T_DOUBLE_QUOTED_STRING => T_DOUBLE_QUOTED_STRING,
         ];
 
-        $validTokens += \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $validTokens += Tokens::$emptyTokens;
 
         for (; $next <= $end; ++$next) {
             $token = $tokens[$next];
             $code = $token['code'];
 
             // Ignorable tokens.
-            if (isset(\PHP_CodeSniffer_Tokens::$emptyTokens[$code]) === true) {
+            if (isset(Tokens::$emptyTokens[$code]) === true) {
                 continue;
             }
 

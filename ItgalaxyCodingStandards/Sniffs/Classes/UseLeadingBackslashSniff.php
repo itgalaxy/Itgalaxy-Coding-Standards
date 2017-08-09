@@ -9,6 +9,10 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Classes;
 
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
 /**
  * Use statements to import classes must not begin with "\".
  *
@@ -16,7 +20,7 @@ namespace ItgalaxyCodingStandards\Sniffs\Classes;
  * @package  PHP_CodeSniffer
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class UseLeadingBackslashSniff implements \PHP_CodeSniffer_Sniff
+class UseLeadingBackslashSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -37,7 +41,7 @@ class UseLeadingBackslashSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -47,7 +51,7 @@ class UseLeadingBackslashSniff implements \PHP_CodeSniffer_Sniff
         }
 
         $startPtr = $phpcsFile->findNext(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
+            Tokens::$emptyTokens,
             ($stackPtr + 1),
             null,
             true

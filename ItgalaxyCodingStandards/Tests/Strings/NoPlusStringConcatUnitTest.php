@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Strings;
 
-class ItgalaxyCodingStandards_Tests_Strings_NoPlusStringConcatUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class NoPlusStringConcatUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

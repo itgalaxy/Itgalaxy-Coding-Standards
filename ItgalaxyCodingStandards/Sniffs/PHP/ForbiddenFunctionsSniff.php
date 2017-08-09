@@ -1,8 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff as GenericForbiddenFunctionsSniff;
+
 // Todo need working with classes
-class ForbiddenFunctionsSniff extends \Generic_Sniffs_PHP_ForbiddenFunctionsSniff
+class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
 {
     /**
      * A list of forbidden functions with their alternatives.

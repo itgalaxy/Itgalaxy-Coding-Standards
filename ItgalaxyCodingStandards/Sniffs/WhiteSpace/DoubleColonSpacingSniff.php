@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-class DoubleColonSpacingSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class DoubleColonSpacingSniff implements Sniff
 {
     /**
      * Allow newlines instead of spaces.
@@ -29,14 +33,14 @@ class DoubleColonSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr - 1]['code'] !== T_WHITESPACE) {
             $before = 0;
         } else {
-            if ($tokens[($stackPtr - 2)]['line'] !== $tokens[$stackPtr]['line']) {
+            if ($tokens[$stackPtr - 2]['line'] !== $tokens[$stackPtr]['line']) {
                 $before = 'newline';
             } else {
                 $before = $tokens[$stackPtr - 1]['length'];
@@ -70,7 +74,7 @@ class DoubleColonSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return boolean true if there was no error, false otherwise.
      */
-    protected function checkSpacingBeforeOperator(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $before)
+    protected function checkSpacingBeforeOperator(File $phpcsFile, $stackPtr, $before)
     {
         if ($before !== 0 && ($before !== 'newline' || $this->ignoreNewlines === false)) {
             $error = 'Space found before double colon operator';
@@ -96,7 +100,7 @@ class DoubleColonSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return boolean true if there was no error, false otherwise.
      */
-    protected function checkSpacingAfterOperator(\PHP_CodeSniffer_File $phpcsFile, $stackPtr, $after)
+    protected function checkSpacingAfterOperator(File $phpcsFile, $stackPtr, $after)
     {
         if ($after !== 0 && ($after !== 'newline' || $this->ignoreNewlines === false)) {
             $error = 'Space found after double colon operator';
@@ -108,6 +112,7 @@ class DoubleColonSpacingSniff implements \PHP_CodeSniffer_Sniff
 
             return false;
         }
+
         return true;
     }
 }

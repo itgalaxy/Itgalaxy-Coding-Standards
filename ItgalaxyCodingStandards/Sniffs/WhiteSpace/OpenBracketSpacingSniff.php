@@ -9,6 +9,9 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
 /**
  * Checks that there is no white space after an opening bracket, for "(" and "{".
  * Square Brackets are handled by Squiz_Sniffs_Arrays_ArrayBracketSpacingSniff.
@@ -17,7 +20,7 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
  * @package  PHP_CodeSniffer
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class OpenBracketSpacingSniff implements \PHP_CodeSniffer_Sniff
+class OpenBracketSpacingSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -42,7 +45,7 @@ class OpenBracketSpacingSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

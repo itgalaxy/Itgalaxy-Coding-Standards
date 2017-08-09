@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\PHP;
 
-class ItgalaxyCodingStandards_Tests_PHP_ShortBoolCastUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class ShortBoolCastUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

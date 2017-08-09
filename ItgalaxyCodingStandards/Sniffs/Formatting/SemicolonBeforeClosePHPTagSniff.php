@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class SemicolonBeforeClosePHPTagSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class SemicolonBeforeClosePHPTagSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,13 +26,13 @@ class SemicolonBeforeClosePHPTagSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $prev = $stackPtr - 1;
 
         while ($prev !== 0) {
-            if (!in_array($tokens[$prev]['code'], \PHP_CodeSniffer_Tokens::$emptyTokens)) {
+            if (!in_array($tokens[$prev]['code'], Tokens::$emptyTokens)) {
                 break;
             }
 

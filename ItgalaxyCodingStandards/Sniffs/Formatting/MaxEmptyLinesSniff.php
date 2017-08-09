@@ -23,7 +23,10 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class MaxEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class MaxEmptyLinesSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -44,7 +47,7 @@ class MaxEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -69,7 +72,7 @@ class MaxEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
         }
     }
 
-    protected function isLineContainOnlyWhitespaceByPtr(\PHP_CodeSniffer_File $phpcsFile, $ptr)
+    protected function isLineContainOnlyWhitespaceByPtr(File $phpcsFile, $ptr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -103,7 +106,7 @@ class MaxEmptyLinesSniff implements \PHP_CodeSniffer_Sniff
         return $isPrevTokensOnlyWhitespace && $isNextTokensOnlyWhitespace;
     }
 
-    protected function findFirstPtrOnNextLine(\PHP_CodeSniffer_File $phpcsFile, $ptr)
+    protected function findFirstPtrOnNextLine(File $phpcsFile, $ptr)
     {
         $tokens = $phpcsFile->getTokens();
 

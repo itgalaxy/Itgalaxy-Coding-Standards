@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class CommaDangleSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class CommaDangleSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -27,10 +31,10 @@ class CommaDangleSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $comma = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $comma = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
 
         if ($comma === false || ($comma && $tokens[$comma]['code'] !== T_COMMA)) {
             return;

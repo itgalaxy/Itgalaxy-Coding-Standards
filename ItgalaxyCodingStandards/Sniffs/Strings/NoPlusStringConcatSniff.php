@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Strings;
 
-class NoPlusStringConcatSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class NoPlusStringConcatSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -20,17 +24,17 @@ class NoPlusStringConcatSniff implements \PHP_CodeSniffer_Sniff
      * @param int                   $stackPtr  The position of the current token
      *                                         in the stack passed in $tokens.
      *
-     * @return bool|int
+     * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
-        $prev = $phpcsFile->findPrevious(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr - 1, null, true);
-        $next = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, $stackPtr + 1, null, true);
+        $prev = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
+        $next = $phpcsFile->findNext(Tokens::$emptyTokens, $stackPtr + 1, null, true);
 
-        if (!(in_array($tokens[$prev]['code'], \PHP_CodeSniffer_Tokens::$stringTokens)
-                || in_array($tokens[$next]['code'], \PHP_CodeSniffer_Tokens::$stringTokens))
+        if (!(in_array($tokens[$prev]['code'], Tokens::$stringTokens)
+                || in_array($tokens[$next]['code'], Tokens::$stringTokens))
         ) {
             return;
         }

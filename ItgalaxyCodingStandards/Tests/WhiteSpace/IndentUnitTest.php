@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\WhiteSpace;
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_IndentUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class IndentUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

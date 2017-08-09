@@ -4,15 +4,28 @@
         A custom set of code standard rules to check `ItgalaxyCodingStandards` files.
     </description>
 
+    <config name="installed_paths" value="../../../ItgalaxyCodingStandards"/>
+
     <arg value="sv"/>
     <arg name="encoding" value="utf-8"/>
     <arg name="extensions" value="php"/>
-    <arg name="ignore" value="./build,vendor,./ItgalaxyCodingStandards/GeneralCodingStandard/*,*.inc"/>
+
+    <!-- Exclude build directory. -->
+    <exclude-pattern>/build/*</exclude-pattern>
+
+    <!-- Exclude the Composer Vendor directory. -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+
+    <!-- Exclude the Node Modules directory. -->
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+
+    <!-- Exclude minified files. -->
+    <exclude-pattern>*.min.*</exclude-pattern>
+
+    <!-- Just samples. -->
+    <exclude-pattern>/ItgalaxyCodingStandards/GeneralCodingStandard/*</exclude-pattern>
 
     <rule ref="./ItgalaxyCodingStandards">
         <exclude name="ItgalaxyCodingStandards.Security.EscapeOutput.OutputNotEscaped"/>
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-        <exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
-        <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
     </rule>
 </ruleset>

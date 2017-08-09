@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 
-class IndentSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class IndentSniff implements Sniff
 {
     public $indent = 4;
 
@@ -10,7 +13,7 @@ class IndentSniff implements \PHP_CodeSniffer_Sniff
         return [T_OPEN_TAG];
     }
 
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $closeTagPtr = $phpcsFile->findNext([T_CLOSE_TAG], $stackPtr, null, false);

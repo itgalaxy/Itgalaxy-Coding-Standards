@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Security;
 
-class ItgalaxyCodingStandards_Tests_Security_NoDirectlyInputUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class NoDirectlyInputUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

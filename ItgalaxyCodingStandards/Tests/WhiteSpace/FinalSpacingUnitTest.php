@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\WhiteSpace;
 
-class ItgalaxyCodingStandards_Tests_WhiteSpace_FinalSpacingUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class FinalSpacingUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

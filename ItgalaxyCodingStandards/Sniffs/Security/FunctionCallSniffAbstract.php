@@ -19,7 +19,11 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+abstract class FunctionCallSniffAbstract implements Sniff
 {
     /**
      * The currently processed file.
@@ -75,7 +79,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $functionName = $tokens[$stackPtr]['content'];
@@ -90,7 +94,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
         }
 
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         $this->phpcsFile = $phpcsFile;
         $this->functionCall = $stackPtr;
@@ -122,7 +126,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
         // Start token of the first argument.
         $start = $this
             ->phpcsFile
-            ->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($this->openBracket + 1), null, true);
+            ->findNext(Tokens::$emptyTokens, ($this->openBracket + 1), null, true);
 
         if ($start === $this->closeBracket) {
             // Function call has no arguments, so return false.
@@ -133,7 +137,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
         $end = $this
             ->phpcsFile
             ->findPrevious(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
+                Tokens::$emptyTokens,
                 ($this->closeBracket - 1),
                 null,
                 true
@@ -158,7 +162,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
             $end = $this
                 ->phpcsFile
                 ->findPrevious(
-                    \PHP_CodeSniffer_Tokens::$emptyTokens,
+                    Tokens::$emptyTokens,
                     ($nextSeperator - 1),
                     null,
                     true
@@ -176,7 +180,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
             $counter++;
             $start = $this
                 ->phpcsFile
-                ->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($nextSeperator + 1), null, true);
+                ->findNext(Tokens::$emptyTokens, ($nextSeperator + 1), null, true);
             $end = $lastArgEnd;
         }
 
@@ -202,11 +206,11 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
      *
      * @return bool
      */
-    protected function isFunctionCall(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function isFunctionCall(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(\PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
@@ -219,7 +223,7 @@ abstract class FunctionCallSniffAbstract implements \PHP_CodeSniffer_Sniff
         }
 
         // Find the previous non-empty token.
-        $search = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $search = Tokens::$emptyTokens;
         $search[] = T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
 

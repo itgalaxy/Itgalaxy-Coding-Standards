@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
 
-class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class MultiLineConditionSniff implements Sniff
 {
     /**
      * The number of spaces code should be indented.
@@ -32,7 +36,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -40,7 +44,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
             return;
         }
 
-        $emptyTokens = \PHP_CodeSniffer_Tokens::$emptyTokens;
+        $emptyTokens = Tokens::$emptyTokens;
         $openBracket = $tokens[$stackPtr]['parenthesis_opener'];
         $closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
         $spaceAfterOpen = 0;
@@ -168,7 +172,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
                 if ($tokens[$i]['line'] !== $tokens[$closeBracket]['line']) {
                     $next = $phpcsFile->findNext($emptyTokens, $i, null, true);
 
-                    if (isset(\PHP_CodeSniffer_Tokens::$booleanOperators[$tokens[$next]['code']]) === false) {
+                    if (isset(Tokens::$booleanOperators[$tokens[$next]['code']]) === false) {
                         $error = 'Each line in a multi-line IF statement must begin with a boolean operator';
                         $fix = $phpcsFile->addFixableError($error, $i, 'StartWithBoolean');
 
@@ -180,7 +184,7 @@ class MultiLineConditionSniff implements \PHP_CodeSniffer_Sniff
                                 true
                             );
 
-                            if (isset(\PHP_CodeSniffer_Tokens::$booleanOperators[$tokens[$prev]['code']]) === true) {
+                            if (isset(Tokens::$booleanOperators[$tokens[$prev]['code']]) === true) {
                                 $phpcsFile->fixer->beginChangeset();
                                 $phpcsFile->fixer->replaceToken($prev, '');
                                 $phpcsFile->fixer->addContentBefore($next, $tokens[$prev]['content'] . ' ');

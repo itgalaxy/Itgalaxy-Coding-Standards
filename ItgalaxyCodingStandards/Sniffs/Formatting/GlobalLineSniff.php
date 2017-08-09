@@ -1,7 +1,11 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Formatting;
 
-class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class GlobalLineSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -22,7 +26,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -42,7 +46,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
         $nonWhitespaceTokenPtr = $phpcsFile->findNext(
             array_merge(
                 [T_WHITESPACE],
-                \PHP_CodeSniffer_Tokens::$commentTokens
+                Tokens::$commentTokens
             ),
             $nextPtr,
             null,
@@ -127,7 +131,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
         $nextNonWhitespacePtr = $phpcsFile->findNext(
             array_merge(
                 [T_WHITESPACE],
-                \PHP_CodeSniffer_Tokens::$commentTokens
+                Tokens::$commentTokens
             ),
             $semicolonPtr + 1,
             null,
@@ -164,7 +168,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return bool|int
      */
-    protected function getLeadingCommentOrSelf(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function getLeadingCommentOrSelf(File $phpcsFile, $stackPtr)
     {
         $prevTokens = [$stackPtr];
         $tokens = $phpcsFile->getTokens();
@@ -178,7 +182,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
                 true
             );
 
-            if (in_array($tokens[$newPrev]['code'], \PHP_CodeSniffer_Tokens::$commentTokens)
+            if (in_array($tokens[$newPrev]['code'], Tokens::$commentTokens)
                 && $tokens[$newPrev]['line'] === $tokens[$prev]['line'] - 1
             ) {
                 $prevTokens[] = $newPrev;
@@ -199,7 +203,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return bool|int
      */
-    protected function getLastCommentOrSelf(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function getLastCommentOrSelf(File $phpcsFile, $stackPtr)
     {
         $nextTokens = [$stackPtr];
         $tokens = $phpcsFile->getTokens();
@@ -219,7 +223,7 @@ class GlobalLineSniff implements \PHP_CodeSniffer_Sniff
                 true
             );
 
-            if (in_array($tokens[$newPrev]['code'], \PHP_CodeSniffer_Tokens::$commentTokens)
+            if (in_array($tokens[$newPrev]['code'], Tokens::$commentTokens)
                 && $tokens[$newPrev]['line'] === $tokens[$next]['line'] + 1
             ) {
                 $nextTokens[] = $newPrev;

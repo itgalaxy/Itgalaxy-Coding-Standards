@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\Files;
 
-class FileNameSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class FileNameSniff implements Sniff
 {
     public $pattern = '/^[A-Za-z0-9-\.]*$/';
 
@@ -24,7 +27,7 @@ class FileNameSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return int
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $fileName = basename($phpcsFile->getFileName());
 

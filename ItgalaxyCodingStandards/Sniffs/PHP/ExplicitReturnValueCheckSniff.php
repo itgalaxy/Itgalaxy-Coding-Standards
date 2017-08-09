@@ -1,7 +1,10 @@
 <?php
 namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
-class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class ExplicitReturnValueCheckSniff implements Sniff
 {
     public $functions = [
         'preg_match',
@@ -60,7 +63,7 @@ class ExplicitReturnValueCheckSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $open = $tokens[$stackPtr]['parenthesis_opener'];

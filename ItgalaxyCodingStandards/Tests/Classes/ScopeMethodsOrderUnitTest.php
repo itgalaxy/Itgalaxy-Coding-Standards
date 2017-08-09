@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\Arrays;
 
-class ItgalaxyCodingStandards_Tests_Classes_ScopeMethodsOrderUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class ScopeMethodsOrderUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

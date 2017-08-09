@@ -19,7 +19,11 @@
 
 namespace ItgalaxyCodingStandards\Sniffs\Security;
 
-class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class EscapeOutputSniff implements Sniff
 {
     /**
      * Functions which print output incorporating the values passed to them.
@@ -124,7 +128,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return int|void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if (self::$normalize === false) {
             if (is_string($this->printingFunctions)) {
@@ -190,7 +194,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
         $function = $tokens[$stackPtr]['content'];
         // Find the opening parenthesis (if present; T_ECHO might not have it).
         $openParenthesis = $phpcsFile->findNext(
-            \PHP_CodeSniffer_Tokens::$emptyTokens,
+            Tokens::$emptyTokens,
             $stackPtr + 1,
             null,
             true
@@ -253,7 +257,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
             );
 
             $lastToken = $phpcsFile->findPrevious(
-                \PHP_CodeSniffer_Tokens::$emptyTokens,
+                Tokens::$emptyTokens,
                 $endOfStatement - 1,
                 null,
                 true
@@ -286,7 +290,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
                 $tokens[$i]['code'],
                 array_merge(
                     [T_WHITESPACE],
-                    \PHP_CodeSniffer_Tokens::$commentTokens
+                    Tokens::$commentTokens
                 )
             )) {
                 continue;
@@ -469,7 +473,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
                     if ('array_map' === $functionName) {
                         // Get the first parameter (name of function being used on the array).
                         $mappedFunction = $phpcsFile->findNext(
-                            \PHP_CodeSniffer_Tokens::$emptyTokens,
+                            Tokens::$emptyTokens,
                             $functionOpener + 1,
                             $tokens[$functionOpener]['parenthesis_closer'],
                             true
@@ -537,7 +541,7 @@ class EscapeOutputSniff implements \PHP_CodeSniffer_Sniff
      *
      * @return boolean True if whitelisting comment was found, false otherwise.
      */
-    protected function hasWhitelistComment(\PHP_CodeSniffer_File $phpcsFile, $comment, $stackPtr)
+    protected function hasWhitelistComment(File $phpcsFile, $comment, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         // There is a findEndOfStatement() method, but it considers more tokens than

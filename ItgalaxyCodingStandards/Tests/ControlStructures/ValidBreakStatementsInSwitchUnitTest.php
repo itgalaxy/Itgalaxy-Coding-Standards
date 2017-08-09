@@ -1,6 +1,9 @@
 <?php
+namespace ItgalaxyCodingStandards\Tests\ControlStructures;
 
-class ItgalaxyCodingStandards_Tests_ControlStructures_ValidBreakStatementsInSwitchUnitTest extends AbstractSniffUnitTest
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
+class ValidBreakStatementsInSwitchUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

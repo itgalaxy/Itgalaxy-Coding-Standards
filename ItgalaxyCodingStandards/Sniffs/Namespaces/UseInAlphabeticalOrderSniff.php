@@ -3,7 +3,10 @@ namespace ItgalaxyCodingStandards\Sniffs\Namespaces;
 
 // Todo buggy, see https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
-class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
+class UseInAlphabeticalOrderSniff implements Sniff
 {
     /**
      * Processed files
@@ -36,7 +39,7 @@ class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
      * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
      * @return void
      */
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         if (isset($this->processed[$phpcsFile->getFilename()])) {
             return;
@@ -79,7 +82,7 @@ class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
      * @param integer $stackPtr The index of the first use token.
      * @return void
      */
-    protected function checkUseToken($phpcsFile, $stackPtr)
+    protected function checkUseToken(File $phpcsFile, $stackPtr)
     {
         // If the use token is for a closure we want to ignore it.
         $isClosure = $this->isClosure($phpcsFile, $stackPtr);
@@ -137,15 +140,8 @@ class UseInAlphabeticalOrderSniff implements \PHP_CodeSniffer_Sniff
      * @param integer $stackPtr
      * @return boolean
      */
-    protected function isClosure($phpcsFile, $stackPtr)
+    protected function isClosure(File $phpcsFile, $stackPtr)
     {
-        return $phpcsFile->findPrevious(
-            [T_CLOSURE],
-            ($stackPtr - 1),
-            null,
-            false,
-            null,
-            true
-        );
+        return $phpcsFile->findPrevious([T_CLOSURE], $stackPtr - 1, null, false, null, true);
     }
 }
