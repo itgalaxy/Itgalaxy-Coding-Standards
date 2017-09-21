@@ -6,6 +6,7 @@
     <!-- Todo PHP4 destructors are allowed to break our rules. -->
     <!-- Todo Disable \php_function(); -->
     <!-- Todo change \n to `strpos($content, $phpcsFile->eolChar) === false` -->
+    <!-- Todo rule spaces beetween methods -->
 
     <!-- PSR2 rules -->
 
@@ -223,7 +224,8 @@
 
     <!-- Todo why -->
     <!-- See comment below -->
-    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
 
     <!--
         When 3.0 is released, change this to:
@@ -258,7 +260,12 @@
 
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
 
-    <!-- <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/> -->
+    <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+        <properties>
+            <property name="spacing" value="1"/>
+            <property name="spacingBeforeFirst" value="0"/>
+        </properties>
+    </rule>
 
     <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
         <properties>
@@ -338,6 +345,8 @@
 
     <!-- <rule ref="Generic.Classes.OpeningBraceSameLine"/> -->
 
+    <rule ref="Generic.CodeAnalysis.AssignmentInCondition"/>
+
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
 
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
@@ -387,6 +396,7 @@
         <properties>
             <property name="lineLimit" value="120"/>
             <property name="absoluteLineLimit" value="0"/>
+            <property name="ignoreComments" value="true"/>
         </properties>
     </rule>
 
@@ -394,7 +404,9 @@
 
     <!-- <rule ref="Generic.Files.OneClassPerFile"/> -->
 
-    <!-- <rule ref="Generic.Files.OneInterfacePerFile"/> -->
+    <!-- <rule ref="Generic.Files.OneClassPerFile"/> -->
+
+    <!-- <rule ref="Generic.Files.OneObjectStructurePerFile"/> -->
 
     <!-- <rule ref="Generic.Files.OneTraitPerFile"/> -->
 
@@ -430,6 +442,7 @@
 
     <rule ref="Generic.PHP.BacktickOperator"/>
 
+    <!-- Disable in favor `Squiz.WhiteSpace.SuperfluousWhitespace` rule -->
     <!-- <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/> -->
 
     <!-- <rule ref="Generic.PHP.ClosingPHPTag"/> -->
