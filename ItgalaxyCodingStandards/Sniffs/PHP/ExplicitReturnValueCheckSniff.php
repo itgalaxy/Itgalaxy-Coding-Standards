@@ -20,18 +20,8 @@ class ExplicitReturnValueCheckSniff implements Sniff
         'current',
         'next',
         'iconv_strrpos',
-        'file_get_contents',
-        'file_put_contents',
         'fgetc',
-        'mb_strlen',
-        'imagecolorallocatealpha',
-        'imagecolorallocate',
-        'simplexml_import_dom',
-        'simplexml_load_file',
-        'simplexml_load_string',
-        'curl_exec',
-        'pcntl-getpriority',
-        'readdir'
+        'mb_strlen'
     ];
 
     public $allowedComparisonTokens = [
