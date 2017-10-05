@@ -7,7 +7,6 @@ use PHP_CodeSniffer\Files\File;
 class ExplicitReturnValueCheckSniff implements Sniff
 {
     public $functions = [
-        'preg_match',
         'array_search',
         'strpos',
         'strrpos',
