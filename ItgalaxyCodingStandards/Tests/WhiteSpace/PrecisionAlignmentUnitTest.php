@@ -3,7 +3,7 @@ namespace ItgalaxyCodingStandards\Tests\WhiteSpace;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
-class IndentUnitTest extends AbstractSniffUnitTest
+class PrecisionAlignmentUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

@@ -4,7 +4,7 @@ namespace ItgalaxyCodingStandards\Sniffs\WhiteSpace;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 
-class IndentSniff implements Sniff
+class PrecisionAlignmentSniff implements Sniff
 {
     public $indent = 4;
 
@@ -43,8 +43,8 @@ class IndentSniff implements Sniff
                     $this->indent,
                     $foundIndent
                 ];
-                $error = 'Indent not correctly; expected multiple of %s or 0 spaces but found %s';
-                $phpcsFile->addError($error, $ptr, 'Indent', $data);
+                $error = 'Found precision alignment, expected multiple of %s or 0 spaces but found %s';
+                $phpcsFile->addError($error, $ptr, 'Found', $data);
             }
 
             $beforeLine = $tokens[$ptr]['line'];
