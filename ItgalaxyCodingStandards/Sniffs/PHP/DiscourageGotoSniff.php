@@ -1,10 +1,10 @@
 <?php
-namespace ItgalaxyCodingStandards\Sniffs\ControlStructures;
+namespace ItgalaxyCodingStandards\Sniffs\PHP;
 
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 
-class NoGotoSniff implements Sniff
+class DiscourageGotoSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -13,7 +13,10 @@ class NoGotoSniff implements Sniff
      */
     public function register()
     {
-        return [T_GOTO];
+        return [
+            T_GOTO,
+            T_GOTO_LABEL
+        ];
     }
 
     /**
@@ -27,7 +30,6 @@ class NoGotoSniff implements Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $error = 'The `goto` operator is forbidden';
-        $phpcsFile->addError($error, $stackPtr, 'Found');
+        $phpcsFile->addError('Using the "goto" language construct is discouraged', $stackPtr, 'Found');
     }
 }

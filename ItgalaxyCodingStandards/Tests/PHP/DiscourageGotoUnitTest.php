@@ -1,9 +1,9 @@
 <?php
-namespace ItgalaxyCodingStandards\Tests\ControlStructures;
+namespace ItgalaxyCodingStandards\Tests\PHP;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
-class NoGotoUnitTest extends AbstractSniffUnitTest
+class DiscourageGotoUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -17,7 +17,9 @@ class NoGotoUnitTest extends AbstractSniffUnitTest
     {
         return [
             2 => 1,
-            11 => 1
+            5 => 1,
+            11 => 1,
+            16 => 1
         ];
     }
 
