@@ -39,12 +39,8 @@ class PrecisionAlignmentSniff implements Sniff
             $foundIndent = $tokens[$ptr]['column'] - 1;
 
             if (($tokens[$ptr]['column'] - 1) % $this->indent !== 0) {
-                $data = [
-                    $foundIndent,
-                    $this->indent
-                ];
-                $error = 'Found precision alignment of %s spaces, but expected %s or 0 spaces';
-                $phpcsFile->addError($error, $ptr, 'Found', $data);
+                $error = 'Found precision alignment of %s spaces';
+                $phpcsFile->addError($error, $ptr, 'Found', [$foundIndent]);
             }
 
             $beforeLine = $tokens[$ptr]['line'];
