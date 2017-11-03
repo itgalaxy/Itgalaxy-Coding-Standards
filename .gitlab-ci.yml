@@ -2,11 +2,6 @@ cache:
   paths:
     - vendor
 
-test:5.6:
-  image: php:5.6
-  script:
-    - php composer.phar test
-
 test:7.0:
   image: php:7.0
   script:
