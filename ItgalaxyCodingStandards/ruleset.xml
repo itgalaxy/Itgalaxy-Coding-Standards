@@ -340,6 +340,9 @@
 
     <!-- Generic rules -->
 
+    <!-- In favor `ItgalaxyCodingStandards.WhiteSpace.PrecisionAlignment` -->
+    <!-- <rule ref="Generic.Arrays.ArrayIndent"/> -->
+
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 
     <!-- <rule ref="Generic.Arrays.DisallowShortArraySyntax"/> -->
@@ -455,6 +458,8 @@
     <rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
 
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+
+    <rule ref="Generic.PHP.DiscourageGoto"/>
 
     <!-- <rule ref="Generic.PHP.ForbiddenFunctionsSniff"/> -->
 
