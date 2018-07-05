@@ -39,12 +39,15 @@
 
     <!-- Todo -->
     <rule ref="PSR2.Methods.FunctionCallSignature"/>
-
     <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
         <severity>0</severity>
     </rule>
 
     <rule ref="PSR2.Methods.MethodDeclaration"/>
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <type>error</type>
+        <message>Method name "%s" must not be prefixed with an underscore to indicate visibility</message>
+    </rule>
 
     <rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
 
@@ -114,6 +117,10 @@
 
     <!-- Todo need disable, after add rule `AsKeywordSpacing` -->
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
+    <!-- exclude this message as it is already checked in Generic.PHP.LowerCaseKeyword -->
+    <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration.AsNotLower">
+        <severity>0</severity>
+    </rule>
 
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration"/>
 
@@ -300,6 +307,7 @@
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <!-- Todo severity to 0? https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/PSR12/ruleset.xml#L47 -->
         <!-- In favor `ItgalaxyCodingStandards.Formatting.MaxEmptyLines` -->
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
     </rule>
@@ -430,7 +438,7 @@
 
     <!-- <rule ref="Generic.Files.OneTraitPerFile"/> -->
 
-    <!-- <rule ref="Generic.Formatting.DisallowMultipleStatements"/> -->
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
 
     <!-- <rule ref="Generic.Formatting.MultipleStatementAlignment"/> -->
 
@@ -507,7 +515,10 @@
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
         <properties>
-            <property name="ignoreIndentationTokens" type="array" value="T_COMMENT,T_DOC_COMMENT_OPEN_TAG"/>
+            <property name="ignoreIndentationTokens" type="array">
+                <element value="T_COMMENT"/>
+                <element value="T_DOC_COMMENT_OPEN_TAG"/>
+            </property>
             <property name="indent" value="4"/>
         </properties>
     </rule>
