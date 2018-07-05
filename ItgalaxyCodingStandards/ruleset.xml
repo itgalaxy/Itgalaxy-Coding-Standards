@@ -8,6 +8,14 @@
     <!-- Todo change \n to `strpos($content, $phpcsFile->eolChar) === false` -->
     <!-- Todo rule spaces beetween methods -->
 
+    <!-- PSR12 rules -->
+
+    <rule ref="PSR12.Classes.ClassInstantiation"/>
+
+    <rule ref="PSR12.Keywords.ShortFormTypeKeywords"/>
+
+    <rule ref="PSR12.Namespaces.CompundNamespaceDepth"/>
+
     <!-- PSR2 rules -->
 
     <rule ref="PSR2.Classes.ClassDeclaration"/>
@@ -386,7 +394,7 @@
 
     <rule ref="Generic.Files.ByteOrderMark"/>
 
-    <rule ref="Generic.Files.EndFileNewline"/>
+    <!-- <rule ref="Generic.Files.EndFileNewline"/> -->
 
     <!-- <rule ref="Generic.Files.EndFileNoNewline"/> -->
 
@@ -467,6 +475,8 @@
 
     <rule ref="Generic.PHP.LowerCaseKeyword"/>
 
+    <rule ref="Generic.PHP.LowerCaseType"/>
+
     <rule ref="Generic.PHP.NoSilencedErrors"/>
 
     <rule ref="Generic.PHP.SAPIUsage"/>
@@ -482,6 +492,8 @@
     </rule>
 
     <!-- <rule ref="Generic.VersionControl.SubversionProperties"/> -->
+
+    <!-- <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing"> -->
 
     <!-- <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/> -->
 
