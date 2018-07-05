@@ -135,7 +135,7 @@
 
     <!-- <rule ref="Squiz.Files.FileExtension"/> -->
 
-    <!-- Todo revers rule -->
+    <!-- Todo maybe enable -->
     <!-- <rule ref="Squiz.Formatting.OperatorBracket"/> -->
 
     <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
@@ -171,7 +171,7 @@
 
     <!-- <rule ref="Squiz.Objects.ObjectMemberComma"/> -->
 
-    <!--<rule ref="Squiz.Operators.ComparisonOperatorUsage"/> -->
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage"/>
 
     <rule ref="Squiz.Operators.IncrementDecrementUsage"/>
 
@@ -264,8 +264,13 @@
 
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
-    <!-- Todo need support afterLast option -->
-    <!-- <rule ref="Squiz.WhiteSpace.FunctionSpacing"/> -->
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <properties>
+            <property name="spacing" value="1"/>
+            <property name="spacingBeforeFirst" value="0"/>
+            <property name="spacingAfterLast" value="0"/>
+        </properties>
+    </rule>
 
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 
