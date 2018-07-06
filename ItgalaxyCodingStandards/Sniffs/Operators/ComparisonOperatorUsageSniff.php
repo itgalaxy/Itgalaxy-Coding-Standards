@@ -53,7 +53,8 @@ class ComparisonOperatorUsageSniff implements Sniff
             T_ELSEIF,
             T_INLINE_THEN,
             T_WHILE,
-            T_FOR
+            T_FOR,
+            T_RETURN
         ];
     }
 
@@ -69,7 +70,7 @@ class ComparisonOperatorUsageSniff implements Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        $tokens    = $phpcsFile->getTokens();
+        $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr]['code'] === T_INLINE_THEN) {
             $end = $phpcsFile->findPrevious(Tokens::$emptyTokens, $stackPtr - 1, null, true);
@@ -122,27 +123,30 @@ class ComparisonOperatorUsageSniff implements Sniff
             if ($start === false || $end === false) {
                 return;
             }
+        } else if ($tokens[$stackPtr]['code'] === T_RETURN) {
+            $start = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, null, true);
+            $end = $phpcsFile->findNext(T_SEMICOLON, $stackPtr + 1);
+
+            if ($tokens[$start]['code'] === T_SEMICOLON) {
+                return;
+            }
         } else {
             if (isset($tokens[$stackPtr]['parenthesis_opener']) === false) {
                 return;
             }
 
             $start = $tokens[$stackPtr]['parenthesis_opener'];
-            $end   = $tokens[$stackPtr]['parenthesis_closer'];
+            $end = $tokens[$stackPtr]['parenthesis_closer'];
         }
 
-        $requiredOps = 0;
-        $foundOps    = 0;
-        $foundBools  = 0;
-
-        $lastNonEmpty = $start;
+        $foundOps = 0;
 
         for ($i = $start; $i <= $end; $i++) {
             $type = $tokens[$i]['code'];
 
             if (isset(self::$invalidOps[$type]) === true) {
                 $error = 'Operator %s prohibited; use %s instead';
-                $data  = [$tokens[$i]['content'], self::$invalidOps[$tokenizer][$type]];
+                $data  = [$tokens[$i]['content'], self::$invalidOps[$type]];
                 $phpcsFile->addError($error, $i, 'NotAllowed', $data);
                 $foundOps++;
             }
