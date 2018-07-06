@@ -179,10 +179,8 @@
 
     <!-- <rule ref="Squiz.Objects.ObjectMemberComma"/> -->
 
-    <rule ref="Squiz.Operators.ComparisonOperatorUsage">
-        <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
-    </rule>
-
+    <!-- Use `ItgalaxyCodingStandards.Operators.ComparisonOperatorUsageSniff` instead -->
+    <!-- <rule ref="Squiz.Operators.ComparisonOperatorUsage" /> -->
 
     <rule ref="Squiz.Operators.IncrementDecrementUsage"/>
 
