@@ -6,7 +6,7 @@ use PHP_CodeSniffer\Files\File;
 
 class ExceptionNamePatternSniff implements Sniff
 {
-    public $pattern = '/^[A-Z][A-Za-z0-9]*Exception$/';
+    public $pattern = '/^(.*)Exception$/';
 
     /**
      * Returns an array of tokens this test wants to listen for.

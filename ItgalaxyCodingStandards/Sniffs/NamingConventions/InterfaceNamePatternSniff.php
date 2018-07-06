@@ -6,7 +6,7 @@ use PHP_CodeSniffer\Files\File;
 
 class InterfaceNamePatternSniff implements Sniff
 {
-    public $pattern = '/^[A-Z][A-Za-z0-9]*Interface$/';
+    public $pattern = '/^(.*)Interface$/';
 
     /**
      * Returns an array of tokens this test wants to listen for.
