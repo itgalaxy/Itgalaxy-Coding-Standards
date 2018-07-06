@@ -3,10 +3,8 @@
     <description>Itgalaxy coding standard.</description>
     <arg name="tab-width" value="4"/>
 
-    <!-- Todo PHP4 destructors are allowed to break our rules. -->
     <!-- Todo Disable \php_function(); -->
     <!-- Todo change \n to `strpos($content, $phpcsFile->eolChar) === false` -->
-    <!-- Todo rule spaces beetween methods -->
 
     <!-- PSR12 rules -->
 
@@ -37,9 +35,13 @@
 
     <rule ref="PSR2.Files.EndFileNewline"/>
 
-    <!-- Todo why 0? -->
     <rule ref="PSR2.Methods.FunctionCallSignature"/>
+    <!-- Squiz.WhiteSpace.SemicolonSpacing.Incorrect already check this -->
     <rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
+        <severity>0</severity>
+    </rule>
+    <!-- PSR2.Methods.FunctionCallSignature.Indent already check this -->
+    <rule ref="PSR2.Methods.FunctionCallSignature.OpeningIndent">
         <severity>0</severity>
     </rule>
 
