@@ -22,9 +22,7 @@
 
     <rule ref="PSR2.Classes.PropertyDeclaration"/>
 
-    <!-- Use `OpenBracketSpacingSniff` instead -->
-    <!-- Use `CloseBracketSpacingSniff` instead -->
-    <!-- Todo -->
+    <!-- Use `ItgalaxyCodingStandards.ControlStructures.ControlSignatureSniff` instead -->
     <!-- <rule ref="PSR2.ControlStructures.ControlStructureSpacing"/> -->
 
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
