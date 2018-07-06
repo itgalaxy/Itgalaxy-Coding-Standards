@@ -252,6 +252,8 @@
 
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
+    <!-- Todo need exclude control strctures -->
+    <!--
     <rule ref="Squiz.WhiteSpace.FunctionSpacing">
         <properties>
             <property name="spacing" value="1"/>
@@ -259,6 +261,7 @@
             <property name="spacingAfterLast" value="0"/>
         </properties>
     </rule>
+    -->
 
     <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 
