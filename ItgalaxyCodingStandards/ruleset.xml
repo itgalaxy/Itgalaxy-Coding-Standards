@@ -112,14 +112,13 @@
     <!-- <rule ref="Squiz.Commenting.VariableComment"> -->
 
     <!-- Use `ItgalaxyCodingStandards.ControlSignatures.ControlSignature` instead -->
-    <!-- Todo -->
     <!-- <rule ref="Squiz.ControlStructures.ControlSignature"/> -->
 
     <!-- <rule ref="Squiz.ControlStructures.ElseIfDeclaration"/> -->
 
     <!-- Todo need disable, after add rule `AsKeywordSpacing` -->
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration"/>
-    <!-- exclude this message as it is already checked in Generic.PHP.LowerCaseKeyword -->
+    <!-- Exclude this message as it is already checked in Generic.PHP.LowerCaseKeyword -->
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration.AsNotLower">
         <severity>0</severity>
     </rule>
@@ -242,31 +241,8 @@
 
     <rule ref="Squiz.WhiteSpace.CastSpacing"/>
 
-    <!-- Todo why -->
-    <!-- See comment below -->
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
     <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
-
-    <!--
-        When 3.0 is released, change this to:
-        <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
-        <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
-    -->
-    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace">
-        <severity>0</severity>
-    </rule>
-
-    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpaceBeforeCloseBrace">
-        <severity>0</severity>
-    </rule>
-
-    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose">
-        <severity>0</severity>
-    </rule>
-
-    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing.NoLineAfterClose">
-        <severity>0</severity>
-    </rule>
 
     <!-- Todo need change on 0 lines after brace -->
     <!-- <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/> -->
@@ -309,7 +285,6 @@
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
-        <!-- Todo severity to 0? https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/PSR12/ruleset.xml#L47 -->
         <!-- In favor `ItgalaxyCodingStandards.Formatting.MaxEmptyLines` -->
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines"/>
     </rule>
