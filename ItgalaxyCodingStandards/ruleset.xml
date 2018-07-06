@@ -12,7 +12,7 @@
 
     <rule ref="PSR12.Keywords.ShortFormTypeKeywords"/>
 
-    <rule ref="PSR12.Namespaces.CompundNamespaceDepth"/>
+    <rule ref="PSR12.Namespaces.CompoundNamespaceDepthSniff"/>
 
     <rule ref="PSR12.Operators.OperatorSpacing"/>
 
