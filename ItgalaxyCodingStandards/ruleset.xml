@@ -445,7 +445,8 @@
 
     <rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
 
-    <rule ref="Generic.NamingConventions.ConstructorName"/>
+    <!-- In favor `PHPCompatibility.PHP.DeprecatedPHP4StyleConstructors.Found` -->
+    <!-- <rule ref="Generic.NamingConventions.ConstructorName"/> -->
 
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
 
