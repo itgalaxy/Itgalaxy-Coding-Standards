@@ -163,12 +163,9 @@
 
     <rule ref="Squiz.Functions.MultiLineFunctionDeclaration"/>
 
-    <!-- Todo -->
-    <rule ref="Squiz.NamingConventions.ValidFunctionName">
-        <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore"/>
-    </rule>
+    <!-- In favor `Generic.NamingConventions.CamelCapsFunctionName` -->
+    <!-- <rule ref="Squiz.NamingConventions.ValidFunctionName" /> -->
 
-    <!-- Todo -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
     </rule>
