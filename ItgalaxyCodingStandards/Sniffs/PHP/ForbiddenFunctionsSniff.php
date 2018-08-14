@@ -4,6 +4,7 @@ namespace ItgalaxyCodingStandards\Sniffs\PHP;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff as GenericForbiddenFunctionsSniff;
 
 // Todo need working with classes
+
 class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
 {
     /**
@@ -18,25 +19,16 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
 
     protected $defaultForbiddenFunctions = [
         '_' => 'gettext',
-        'apache_setenv' => null,
         'call_user_method' => 'call_user_func',
         'call_user_method_array' => 'call_user_func_array',
         'chop' => 'rtrim',
         'close' => 'closedir',
-        'create_function' => null,
-        'debug_print_backtrace' => null,
         'define_syslog_variables' => null,
         'delete' => 'unset',
         'die' => 'exit',
         'diskfreespace' => 'disk_free_space',
-        'dl' => null,
-        'error_log' => null,
-        'error_reporting' => null,
         'eval' => null,
-        'extract' => null,
         'fputs' => 'fwrite',
-        'get_magic_quotes_gpc' => null,
-        'get_magic_quotes_runtime' => null,
         'gzputs' => 'gzwrite',
         'i18n_convert' => 'mb_convert_encoding',
         'i18n_discover_encoding' => 'mb_detect_encoding',
@@ -57,9 +49,6 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
         'imap_scan' => 'imap_listscan',
         'imap_scanmailbox' => 'imap_listscan',
         'import_request_variables' => null,
-        'ini_alter' => 'ini_set',
-        'ini_restore' => null,
-        'ini_set' => null,
         'is_double' => 'is_float',
         'is_integer' => 'is_int',
         'is_long' => 'is_int',
@@ -69,11 +58,6 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
         'join' => 'implode',
         'key_exists' => 'array_key_exists',
         'ldap_close' => 'ldap_unbind',
-        'magic_quotes_runtime' => null,
-        'mb_ereg' => null,
-        'mb_ereg_replace' => null,
-        'mb_eregi' => null,
-        'mb_eregi_replace'  => null,
         'mbstrcut' => 'mb_strcut',
         'mbstrlen' => 'mb_strlen',
         'mbstrpos' => 'mb_strpos',
@@ -94,7 +78,7 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
         'msql_listtables' => 'msql_list_tables',
         'msql_numfields' => 'msql_num_fields',
         'msql_numrows' => 'msql_num_rows',
-        'msql_regcase' => 'sql_regcase',
+        'msql_regcase' => null,
         'msql_selectdb' => 'msql_select_db',
         'msql_tablename' => 'msql_result',
         'mssql_affected_rows' => 'sybase_affected_rows',
@@ -147,28 +131,19 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
         'pdf_add_outline' => 'pdf_add_bookmark',
         'pg_clientencoding' => 'pg_client_encoding',
         'pg_setclientencoding' => 'pg_set_client_encoding',
-        'phpinfo' => null,
         'pos' => 'current',
         'print' => 'echo',
-        'print_r' => null,
-        'putenv' => null,
         'recode' => 'recode_string',
         'register_globals' => null,
-        'restore_include_path' => null,
         'session_commit' => 'session_write_close',
         'session_is_registered' => 'use $_SESSION instead',
         'session_register' => 'use $_SESSION instead',
         'session_unregister' => 'use $_SESSION instead',
         'set_error_handler' => null,
-        'set_include_path' => null,
-        'set_magic_quotes_runtime' => null,
         'set_socket_blocking' => 'stream_set_blocking',
         'setTimeZoneID' => 'use datefmt_set_timezone or IntlDateFormatter::setTimeZone instead',
         'show_source' => 'highlight_file',
         'sizeof' => 'count',
-        'split' => 'preg_split',
-        'spliti' => 'preg_split with modifier i instead',
-        'sql_regcase' => 'use preg_match or preg_quote',
         'strchr' => 'strstr',
         'strcut' => 'mb_strcut',
         'stripos' => 'mb_stripos',
@@ -185,12 +160,67 @@ class ForbiddenFunctionsSniff extends GenericForbiddenFunctionsSniff
         'substr' => 'mb_substr',
         'substr_count' => 'mb_substr_count',
         'trimwidth' => 'mb_strimwidth',
-        'urldecode' => 'rawurldecode',
-        'urlencode' => 'rawurlencode',
-        'user_error' => 'trigger_error',
+        'xptr_new_context' => 'xpath_new_context',
+        // Development functions.
+
+        // Debug code should not normally be used in production.
+        'error_log' => null,
         'var_dump' => null,
         'var_export' => null,
-        'xptr_new_context' => 'xpath_new_context',
+        'print_r' => null,
+        'user_error' => null,
+        'trigger_error' => null,
+        'debug_backtrace' => null,
+        'debug_print_backtrace' => null,
+
+        // Prevent_path_disclosure
+        'error_reporting' => null,
+        'phpinfo' => null,
+
+        // Urlencode
+        'urldecode' => 'rawurldecode',
+        'urlencode' => 'rawurlencode',
+
+        // Runtime configuration
+        'ini_alter' => null,
+        'ini_restore' => null,
+        'ini_set' => null,
+        'apache_setenv' => null,
+        'putenv' => null,
+        'set_include_path' => null,
+        'restore_include_path' => null,
+        // This alias was DEPRECATED in PHP 5.3.0, and REMOVED as of PHP 7.0.0.
+        'magic_quotes_runtime' => null,
+        'get_magic_quotes_runtime' => null,
+        // Warning This function was DEPRECATED in PHP 5.3.0, and REMOVED as of PHP 7.0.0.
+        'set_magic_quotes_runtime' => null,
+        'get_magic_quotes_gpc' => null,
+        // Warning This function was removed from most SAPIs in PHP 5.3.0, and was removed from PHP-FPM in PHP 7.0.0.
+        'dl' => null,
+
+        // `extract`
+        'extract' => null,
+
+        // `ereg`
+        'ereg' => null,
+        'eregi' => null,
+        'sql_regcase' => null,
+        'mb_ereg' => null,
+        'mb_eregi' => null,
+
+        // `ereg_replace`
+        'ereg_replace' => null,
+        'eregi_replace' => null,
+        'mb_ereg_replace' => null,
+        'mb_eregi_replace'  => null,
+
+        // `split`
+        'split' => null,
+        'spliti' => null,
+
+        // `create_function`
+        'create_function' => null,
+
         // Type casting
         'intval' => 'use `(int) $var` instead',
         'floatval' => 'use `(float) $var` instead',
