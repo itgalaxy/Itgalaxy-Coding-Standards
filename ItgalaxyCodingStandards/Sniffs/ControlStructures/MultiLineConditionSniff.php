@@ -62,9 +62,9 @@ class MultiLineConditionSniff implements Sniff
             }
         }
 
-        if ($spaceAfterOpen !== 0) {
-            $error = 'First condition of a multi-line IF statement must directly follow the opening parenthesis';
-            $phpcsFile->addError($error, $openBracket + 1, 'SpacingAfterOpenBrace');
+        if ($spaceAfterOpen !== 'newline') {
+            $error = 'First condition of a multi-line IF statement must be on next line after the opening parenthesis';
+            $phpcsFile->addError($error, $openBracket + 1, 'NoNewlineAfterOpenBrace');
         }
 
         // We need to work out how far indented the if statement
