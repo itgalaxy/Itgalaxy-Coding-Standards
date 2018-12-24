@@ -22,7 +22,8 @@ class UnaryOperatorSpacingSniff implements Sniff
             T_NONE,
             T_ASPERAND,
             T_BITWISE_AND,
-            T_BOOLEAN_NOT
+            T_BOOLEAN_NOT,
+            T_BITWISE_NOT
         ];
     }
 

@@ -10,6 +10,8 @@
 
     <rule ref="PSR12.Classes.ClassInstantiation"/>
 
+    <rule ref="PSR12.Functions.NullableTypeDeclaration"/>
+
     <rule ref="PSR12.Keywords.ShortFormTypeKeywords"/>
 
     <rule ref="PSR12.Namespaces.CompoundNamespaceDepth"/>
@@ -176,7 +178,7 @@
 
     <!-- <rule ref="Squiz.Objects.ObjectMemberComma"/> -->
 
-    <!-- Use `ItgalaxyCodingStandards.Operators.ComparisonOperatorUsageSniff` instead -->
+    <!-- Use `ItgalaxyCodingStandards.PHP.StrictComparisonsSniff` instead -->
     <!-- <rule ref="Squiz.Operators.ComparisonOperatorUsage" /> -->
 
     <rule ref="Squiz.Operators.IncrementDecrementUsage"/>
@@ -355,6 +357,9 @@
 
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
 
+    <!-- Disable in favor `ItgalaxyCodingStandards.WhiteSpace.PHPTagSpacing.EmptyPHPTag` -->
+    <!-- <rule ref="Generic.CodeAnalysis.EmptyPHPStatement"/> -->
+
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
 
     <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
@@ -365,8 +370,19 @@
 
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 
-    <!-- Use `ItgalaxyCodingStandards.CodeAnalysis.UnusedFunctionParameters` instead -->
-    <!-- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/> -->
+    <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed" />
+
+        <!-- Exclude `extends` to avoid `should be compatible with` warnings -->
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass" />
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed" />
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed" />
+
+        <!-- Exclude `implement` to avoid `should be compatible with` warnings -->
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterface" />
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceBeforeLastUsed" />
+        <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed" />
+    </rule>
 
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
@@ -424,7 +440,11 @@
 
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
 
+    <!-- Disable in favor `ItgalaxyCodingStandards.WhiteSpace.UnaryOperatorSpacing` -->
     <!-- <rule ref="Generic.Formatting.SpaceAfterNotSniff"/> -->
+
+    <!-- Disable in favor `ItgalaxyCodingStandards.WhiteSpace.UnaryOperatorSpacing` -->
+    <!-- <rule ref="Generic.Formatting.SpaceBeforeCast"/> -->
 
     <!-- Use `PHPCompatibility` instead -->
     <!-- <rule ref="Generic.Functions.CallTimePassByReference"/> -->
@@ -487,6 +507,8 @@
         </properties>
     </rule>
 
+    <!-- <rule ref="Generic.VersionControl.GitMergeConflict"/> -->
+
     <!-- <rule ref="Generic.VersionControl.SubversionProperties"/> -->
 
     <!-- <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing"> -->
@@ -494,6 +516,9 @@
     <!-- <rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/> -->
 
     <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+
+    <!-- Disable in favor `ItgalaxyCodingStandards.WhiteSpace.UnaryOperatorSpacing.Found` -->
+    <!-- <rule ref="Generic.WhiteSpace.IncrementDecrementSpacing"/> -->
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
         <properties>

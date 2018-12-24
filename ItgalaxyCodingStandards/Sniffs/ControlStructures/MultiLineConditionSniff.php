@@ -47,6 +47,11 @@ class MultiLineConditionSniff implements Sniff
         $emptyTokens = Tokens::$emptyTokens;
         $openBracket = $tokens[$stackPtr]['parenthesis_opener'];
         $closeBracket = $tokens[$stackPtr]['parenthesis_closer'];
+
+        if ($tokens[$closeBracket]['line'] - $tokens[$openBracket]['line'] === 0) {
+            return;
+        }
+
         $spaceAfterOpen = 0;
 
         if ($tokens[$openBracket + 1]['code'] === T_WHITESPACE) {
@@ -59,15 +64,7 @@ class MultiLineConditionSniff implements Sniff
 
         if ($spaceAfterOpen !== 0) {
             $error = 'First condition of a multi-line IF statement must directly follow the opening parenthesis';
-            $fix = $phpcsFile->addFixableError($error, $openBracket + 1, 'SpacingAfterOpenBrace');
-
-            if ($fix === true) {
-                if ($spaceAfterOpen === 'newline') {
-                    $phpcsFile->fixer->replaceToken($openBracket + 1, '');
-                } else {
-                    $phpcsFile->fixer->replaceToken($openBracket + 1, '');
-                }
-            }
+            $phpcsFile->addError($error, $openBracket + 1, 'SpacingAfterOpenBrace');
         }
 
         // We need to work out how far indented the if statement
@@ -172,29 +169,9 @@ class MultiLineConditionSniff implements Sniff
                 if ($tokens[$i]['line'] !== $tokens[$closeBracket]['line']) {
                     $next = $phpcsFile->findNext($emptyTokens, $i, null, true);
 
-                    if (isset(Tokens::$booleanOperators[$tokens[$next]['code']]) === false) {
-                        $error = 'Each line in a multi-line IF statement must begin with a boolean operator';
-                        $fix = $phpcsFile->addFixableError($error, $i, 'StartWithBoolean');
-
-                        if ($fix === true) {
-                            $prev = $phpcsFile->findPrevious(
-                                $emptyTokens,
-                                $i - 1,
-                                $openBracket,
-                                true
-                            );
-
-                            if (isset(Tokens::$booleanOperators[$tokens[$prev]['code']]) === true) {
-                                $phpcsFile->fixer->beginChangeset();
-                                $phpcsFile->fixer->replaceToken($prev, '');
-                                $phpcsFile->fixer->addContentBefore($next, $tokens[$prev]['content'] . ' ');
-                                $phpcsFile->fixer->endChangeset();
-                            } else {
-                                for ($x = $prev + 1; $x < $next; $x++) {
-                                    $phpcsFile->fixer->replaceToken($x, '');
-                                }
-                            }
-                        }
+                    if (isset(Tokens::$booleanOperators[$tokens[$next]['code']]) !== false) {
+                        $error = 'Each line in a multi-line IF statement must not begins with a operator';
+                        $phpcsFile->addError($error, $i, 'NoStartsWithOperator');
                     }
                 }
 
